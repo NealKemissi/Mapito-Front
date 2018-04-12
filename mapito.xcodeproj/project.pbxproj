@@ -16,6 +16,8 @@
 		D6A941D4207F78D10022FD29 /* mapitoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941D3207F78D10022FD29 /* mapitoTests.swift */; };
 		D6A941DF207F78D10022FD29 /* mapitoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941DE207F78D10022FD29 /* mapitoUITests.swift */; };
 		D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EC207F7E3A0022FD29 /* MapController.swift */; };
+		D6A941EF207FA15D0022FD29 /* ConnexionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EE207FA15D0022FD29 /* ConnexionController.swift */; };
+		D6A941F1207FA1B40022FD29 /* InscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941F0207FA1B40022FD29 /* InscriptionController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		D6A941DE207F78D10022FD29 /* mapitoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapitoUITests.swift; sourceTree = "<group>"; };
 		D6A941E0207F78D10022FD29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6A941EC207F7E3A0022FD29 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		D6A941EE207FA15D0022FD29 /* ConnexionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnexionController.swift; sourceTree = "<group>"; };
+		D6A941F0207FA1B40022FD29 /* InscriptionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InscriptionController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,8 @@
 				D6A941C7207F78D10022FD29 /* LaunchScreen.storyboard */,
 				D6A941CA207F78D10022FD29 /* Info.plist */,
 				D6A941EC207F7E3A0022FD29 /* MapController.swift */,
+				D6A941EE207FA15D0022FD29 /* ConnexionController.swift */,
+				D6A941F0207FA1B40022FD29 /* InscriptionController.swift */,
 			);
 			path = mapito;
 			sourceTree = "<group>";
@@ -267,7 +273,9 @@
 			files = (
 				D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */,
 				D6A941C1207F78D00022FD29 /* SecondViewController.swift in Sources */,
+				D6A941EF207FA15D0022FD29 /* ConnexionController.swift in Sources */,
 				D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */,
+				D6A941F1207FA1B40022FD29 /* InscriptionController.swift in Sources */,
 				D6A941BF207F78D00022FD29 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +523,7 @@
 				D6A941E5207F78D10022FD29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D6A941E6207F78D10022FD29 /* Build configuration list for PBXNativeTarget "mapitoTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +532,7 @@
 				D6A941E8207F78D10022FD29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D6A941E9207F78D10022FD29 /* Build configuration list for PBXNativeTarget "mapitoUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +541,7 @@
 				D6A941EB207F78D10022FD29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
