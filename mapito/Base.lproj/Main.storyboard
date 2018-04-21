@@ -353,7 +353,7 @@
         <!--Connexion Controller-->
         <scene sceneID="ntg-TW-LNP">
             <objects>
-                <viewController id="xHc-fY-BUV" customClass="ConnexionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="initialView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xHc-fY-BUV" customClass="ConnexionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hOY-Jq-Yos"/>
                         <viewControllerLayoutGuide type="bottom" id="UrS-en-4cH"/>
@@ -363,10 +363,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2we-5b-aKC">
-                                <rect key="frame" x="133" y="481" width="96" height="30"/>
+                                <rect key="frame" x="133" y="481" width="96" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Connexion"/>
                                 <connections>
+                                    <action selector="loginBtnPressed:" destination="xHc-fY-BUV" eventType="touchUpInside" id="oSw-QY-ewh"/>
                                     <segue destination="49e-Tb-3d3" kind="show" id="QpW-Gg-t7g"/>
                                 </connections>
                             </button>
