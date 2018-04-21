@@ -12,5 +12,5 @@ import UIKit
 class TableCell : UITableViewCell {
     
     @IBOutlet weak var Champs: UILabel!
-    var champsArray = ["Modifier Nom","Modifier Prénom"]
+    @IBOutlet weak var Amis: UILabel!
 }

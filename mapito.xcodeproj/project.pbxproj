@@ -21,6 +21,7 @@
 		D6BBAA38208B3D7200FA58FA /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA37208B3D7200FA58FA /* TableCell.swift */; };
 		D6BBAA3A208B405E00FA58FA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA39208B405E00FA58FA /* TabBarController.swift */; };
 		D6BBAA3C208B460A00FA58FA /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA3B208B460A00FA58FA /* ProfileController.swift */; };
+		D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		D6BBAA37208B3D7200FA58FA /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		D6BBAA39208B405E00FA58FA /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D6BBAA3B208B460A00FA58FA /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFriendController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +126,7 @@
 				D6BBAA37208B3D7200FA58FA /* TableCell.swift */,
 				D6BBAA39208B405E00FA58FA /* TabBarController.swift */,
 				D6BBAA3B208B460A00FA58FA /* ProfileController.swift */,
+				D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */,
 			);
 			path = mapito;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			files = (
 				D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */,
 				D6BBAA3A208B405E00FA58FA /* TabBarController.swift in Sources */,
+				D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */,
 				D6A941C1207F78D00022FD29 /* SecondViewController.swift in Sources */,
 				D6A941EF207FA15D0022FD29 /* ConnexionController.swift in Sources */,
 				D6BBAA38208B3D7200FA58FA /* TableCell.swift in Sources */,
