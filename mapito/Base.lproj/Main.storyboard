@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7y-1g-NhI">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -126,7 +126,7 @@
         <!--Connexion Controller-->
         <scene sceneID="ntg-TW-LNP">
             <objects>
-                <viewController id="xHc-fY-BUV" customClass="ConnexionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="initialView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xHc-fY-BUV" customClass="ConnexionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hOY-Jq-Yos"/>
                         <viewControllerLayoutGuide type="bottom" id="UrS-en-4cH"/>
@@ -136,10 +136,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2we-5b-aKC">
-                                <rect key="frame" x="133" y="481" width="96" height="30"/>
+                                <rect key="frame" x="133" y="481" width="96" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Connexion"/>
                                 <connections>
+                                    <action selector="loginBtnPressed:" destination="xHc-fY-BUV" eventType="touchUpInside" id="oSw-QY-ewh"/>
                                     <segue destination="49e-Tb-3d3" kind="show" id="QpW-Gg-t7g"/>
                                 </connections>
                             </button>
@@ -248,7 +249,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4VP-vy-gNU">
-                                <rect key="frame" x="67" y="99" width="240" height="380"/>
+                                <rect key="frame" x="67" y="143" width="240" height="380"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jz4-Am-vzv">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
