@@ -57,7 +57,7 @@ class InscriptionController : UIViewController {
          */
         
     }
-    
+     
     //message info
     func displayMessage(userMessage: String)
     {
