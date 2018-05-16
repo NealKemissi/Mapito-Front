@@ -10,6 +10,21 @@ import UIKit
 
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //deconnexion
+    @IBAction func deconnexion(_ sender: UIButton) {
+        let user = User();
+        user.logout();
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        appDelegate.authenticated = false;
+        
+        let defaults = UserDefaults.standard;
+        defaults.removeObject(forKey: "token");
+        defaults.synchronize();
+        
+        let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+        let connexionController = storyboard.instantiateViewController(withIdentifier: "initialView") as! ConnexionController;
+        self.present(connexionController, animated: true);
+    }
     //var indexArray = ["Info personnelles","Info Connexion"]
     var champs = ["Modifier Nom","Modifier Prénom","Modifier Email","Modifier Mot de passe"]
     override func viewDidLoad() {
@@ -51,5 +66,6 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let deCV = mainStory.instantiateViewController(withIdentifier: "ProfileController") as! ProfileController
         self.navigationController?.pushViewController(deCV, animated: true)
     }
+    
 }
 

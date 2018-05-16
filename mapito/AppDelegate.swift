@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         locationManager.requestWhenInUseAuthorization()
         //Autheticate user
-        let user = User();
-        self.authenticated = user.userAuthenticated()
+        //let user = User();
+        //user.loginWithUsername(username: "a", password: "b");
+        //self.authenticated = user.userAuthenticated();
         return true
     }
 

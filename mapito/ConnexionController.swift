@@ -17,6 +17,7 @@ class ConnexionController : UIViewController {
     @IBAction func loginBtnPressed(_ sender: Any) {
         let userEmail = userEmailTextField.text;
         let userMdp = userMdpTextField.text;
+        let user = User();
         
         //verif champs vide
         if((userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
@@ -31,13 +32,14 @@ class ConnexionController : UIViewController {
         /*
          * Si non alors l'utilisateur se connecte
          */
+        user.loginWithUsername(username: userEmail!, password: userMdp!);
         
-        NotificationCenter.default.addObserver(
+        /*NotificationCenter.default.addObserver(
             forName: Notification.Name(rawValue:"loginActionFinished"),
             object: nil,
             queue: nil,
-            using: loginActionFinished(notification:))
-        
+            using: loginActionFinished(notification:))*/
+        loginActionFinished();
         
     }
     override func viewDidLoad() {
@@ -50,9 +52,15 @@ class ConnexionController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loginActionFinished(notification: Notification) -> Void{
-            print("Catch notification")
-        }
+    func loginActionFinished() -> Void{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
+        appDelegate.authenticated = true;
+        dismissLoginAndShowProfile();
+        let tokenRetrieved = "test";
+        let defaults = UserDefaults.standard;
+        defaults.set(tokenRetrieved, forKey: "token");
+        defaults.synchronize();
+    }
     
     //message info
     func displayMessage(userMessage: String)
@@ -61,6 +69,12 @@ class ConnexionController : UIViewController {
         let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);
+    }
+    
+    func dismissLoginAndShowProfile() {
+        let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+        let tabBarController = mainStory.instantiateViewController(withIdentifier: "profileView") as! TabBarController;
+        self.present(tabBarController, animated: true);
     }
 
 }

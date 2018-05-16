@@ -9,12 +9,17 @@
 import Foundation
 
 class User {
+    
     func loginWithUsername(username : String, password : String) {
         //Valide le user et notifie root controller
         NotificationCenter.default.post(
             name: Notification.Name(rawValue: "loginActionFinished"),
             object: self,
             userInfo: nil)
+    }
+    
+    func register(nom: String, prenom: String, pseudo:String, mail: String, password: String) {
+        
     }
     
     func logout() {
@@ -24,10 +29,6 @@ class User {
     func userAuthenticated() -> Bool{
         let auth : Bool = true;
         
-        if(auth){
-            return true;
-        }
-        
-        return false;
+        return auth;
     }
 }
