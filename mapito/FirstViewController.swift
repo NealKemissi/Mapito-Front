@@ -12,8 +12,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //deconnexion
     @IBAction func deconnexion(_ sender: UIButton) {
-        let user = User();
-        user.logout();
+        /*let user = User(nom: <#String#>);
+        user.logout();*/
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         appDelegate.authenticated = false;
         

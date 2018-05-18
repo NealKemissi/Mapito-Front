@@ -68,7 +68,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cnR-eB-MDN" id="Gya-U0-2i9">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WJw-wW-vbK">
@@ -486,6 +486,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fvi-KP-C6Q"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="loginURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="HoP-iv-GvK" id="RL1-Lg-Bhj"/>
                         <outlet property="userMdpTextField" destination="S7R-Df-Ln3" id="Y5X-wP-tzT"/>

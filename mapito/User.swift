@@ -7,8 +7,30 @@
 //
 
 import Foundation
+import UIKit
+import MapKit
 
 class User {
+    
+    
+    var nom : String;
+    var prenom : String;
+    var mail : String;
+    var password : String;
+    var friends : [Friend];
+    var pos : MKUserLocation;
+    
+    init(nom: String, prenom: String, mail: String, password: String, friends: [Friend]){
+        self.nom = nom;
+        self.prenom = prenom;
+        self.mail = mail;
+        self.password = password;
+        self.friends = friends;
+        self.pos = MKUserLocation() ;
+    }
+    
+    
+    
     
     func loginWithUsername(username : String, password : String) {
         //Valide le user et notifie root controller

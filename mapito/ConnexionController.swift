@@ -13,33 +13,61 @@ class ConnexionController : UIViewController {
     
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userMdpTextField: UITextField!
+    //path de la methode d'authentification
+    @IBInspectable var loginURL: String!
+    //var MyUser : User;
+    
     
     @IBAction func loginBtnPressed(_ sender: Any) {
         let userEmail = userEmailTextField.text;
         let userMdp = userMdpTextField.text;
-        let user = User();
+        //let user = User();
         
         //verif champs vide
         if((userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
             displayMessage(userMessage: "Veuillez remplir correctement tout les champs");
             return;
         }
+        //Si les champs ne sont pas vide, alors appel methode d'authentification
+        let baseUrl = URL(string: self.loginURL)!
         /*
-         * Si les champs ne sont pas vide, alors
-         * verif si l'email et le mdp ne sont pas incorrect
-         */
+        let query: [String : String] = [
+            "mail" : userEmail!,
+            "password" : userMdp!
+        ]*/
+        let request = URLRequest(url: baseUrl)
+        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            if let jsonData = String(data: data!, encoding: .utf8) {
+               print(jsonData)
+            }
+            
+            /*
+            let feed = (try? JSONSerialization.jsonObject(with:
+            jsonData , options: .mutableContainers)) as? NSDictionary ,
+            let nom = feed.value(forKeyPath: "feed.entry.im:nom.label") as? String ,
+            let prenom = feed.value(forKeyPath: "feed.entry.im:prenom.label") as? String ,
+            let mail = feed.value(forKeyPath: "feed.entry.im:mail.label") as? String ,
+            let password = feed.value(forKeyPath: "feed.entry.im:password.label") as? String ,
+            let friends = feed.value(forKeyPath: "feed.entry.im:friends.label") as? [Friend] {
+                let MyUser = User(nom: nom, prenom: prenom, mail: mail, password: password, friends: friends)
+                self.loginActionFinished();
+                //self.titleLabel.text = title; self.artistLabel.text = artist
+            }*/
+            //si l'email et le mdp ne sont incorrect (si jsonData = null)
+        })
+            session.resume()
         
         /*
          * Si non alors l'utilisateur se connecte
          */
-        user.loginWithUsername(username: userEmail!, password: userMdp!);
+        //user.loginWithUsername(username: userEmail!, password: userMdp!);
         
         /*NotificationCenter.default.addObserver(
             forName: Notification.Name(rawValue:"loginActionFinished"),
             object: nil,
             queue: nil,
             using: loginActionFinished(notification:))*/
-        loginActionFinished();
+        //loginActionFinished();
         
     }
     override func viewDidLoad() {
@@ -51,7 +79,7 @@ class ConnexionController : UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    //recuperer le token et passer a l'autre page
     func loginActionFinished() -> Void{
         let appDelegate = UIApplication.shared.delegate as! AppDelegate;
         appDelegate.authenticated = true;
@@ -77,4 +105,15 @@ class ConnexionController : UIViewController {
         self.present(tabBarController, animated: true);
     }
 
+}
+//extension de la classe URL pour pouvoir utiliser les queries
+extension URL {
+    func withQueries(_ queries: [String: String]) -> URL? {
+        var components = URLComponents(url: self,
+                                       resolvingAgainstBaseURL: true)
+        components?.queryItems = queries.flatMap {
+            URLQueryItem(name: $0.0, value: $0.1)
+        }
+        return components?.url
+    }
 }
