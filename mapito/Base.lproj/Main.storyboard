@@ -34,14 +34,31 @@
                             <constraint firstAttribute="trailing" secondItem="e7y-1g-NhI" secondAttribute="trailing" id="zSP-iC-VbZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="first" id="BUZ-lg-1PU"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="003-placeholder-on-map-paper-in-perspective" id="BUZ-lg-1PU"/>
                     <connections>
                         <outlet property="MapView" destination="e7y-1g-NhI" id="LEt-TR-kUj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ok9-9I-nHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2161" y="-921"/>
+            <point key="canvasLocation" x="1974" y="-758"/>
+        </scene>
+        <!--NavigationProfile-->
+        <scene sceneID="22h-Ds-eJi">
+            <objects>
+                <navigationController title="NavigationProfile" id="DeY-Qq-dSu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="r3O-kF-r4i"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ag1-ox-mze">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="VA8-U5-FHh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oDL-JI-jXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="0.0"/>
         </scene>
         <!--Profile-->
         <scene sceneID="hNz-n2-bh7">
@@ -105,11 +122,12 @@
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ue9-q1-1qA" secondAttribute="bottom" id="n4d-Mv-IZd"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="qp6-Ie-VrI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2160.8000000000002" y="-268.51574212893553"/>
+            <point key="canvasLocation" x="2753" y="0.0"/>
         </scene>
         <!--Profile Controller-->
         <scene sceneID="isI-RS-jNU">
@@ -190,6 +208,9 @@
                                 <state key="normal" title="Modifier">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="modificationValue:" destination="s85-nB-olu" eventType="touchUpInside" id="j3v-xl-SYS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Valeur Actuelle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G3-5K-hcE">
                                 <rect key="frame" x="124" y="78" width="127" height="21"/>
@@ -205,10 +226,34 @@
                             <constraint firstItem="HQd-tS-Lm3" firstAttribute="centerX" secondItem="qZX-l2-jqa" secondAttribute="centerX" id="zxG-7h-qm0"/>
                         </constraints>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="confirmNewValueTextField" destination="lZ4-Tg-Mkk" id="Dc1-m4-Qzc"/>
+                        <outlet property="newValueTextField" destination="qNM-Yv-HfT" id="Ra9-YN-Vcg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzd-Mx-rUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2845.5999999999999" y="-268.51574212893553"/>
+            <point key="canvasLocation" x="3518" y="0.0"/>
+        </scene>
+        <!--NavigationFriends-->
+        <scene sceneID="wMW-21-Klk">
+            <objects>
+                <navigationController title="NavigationFriends" id="XYk-aa-dwc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Friends" image="002-add-friend" id="mid-TX-fSb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GHa-2A-isv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="xeN-H8-SxB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OaX-rN-nto" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="757"/>
         </scene>
         <!--Friends-->
         <scene sceneID="wg7-f3-ORb">
@@ -272,11 +317,12 @@
                             <constraint firstAttribute="trailing" secondItem="0nx-2X-pFN" secondAttribute="trailing" id="jb6-jf-oAj"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friends" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="002-add-friend" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" id="ObJ-FN-YIn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2160.8000000000002" y="387.25637181409297"/>
+            <point key="canvasLocation" x="2753" y="757"/>
         </scene>
         <!--New Friend Controller-->
         <scene sceneID="ydT-ta-Lg4">
@@ -291,7 +337,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TZr-Nf-WCn">
-                                <rect key="frame" x="67" y="122" width="240" height="140"/>
+                                <rect key="frame" x="67" y="166" width="240" height="140"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCA-WC-J6w">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
@@ -357,6 +403,9 @@
                                 <state key="normal" title="Ajouter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addFriend:" destination="kJS-wT-1MX" eventType="touchUpInside" id="bd1-sP-RTU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -365,10 +414,88 @@
                             <constraint firstItem="TZr-Nf-WCn" firstAttribute="top" secondItem="7WU-gS-bSL" secondAttribute="bottom" constant="102" id="nOA-nG-mYQ"/>
                         </constraints>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="NomFriendTextField" destination="NK8-8Y-PWc" id="2b6-lj-9Oq"/>
+                        <outlet property="PrenomFriendTextField" destination="PKt-qe-2iN" id="8qa-BR-Ew1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcR-zJ-GBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2853.5999999999999" y="388.15592203898052"/>
+            <point key="canvasLocation" x="3518" y="757"/>
+        </scene>
+        <!--Mot de passe oublié-->
+        <scene sceneID="2K1-2k-9MY">
+            <objects>
+                <viewController title="Mot de passe oublié" id="g24-qG-Wb2" customClass="ForgotPasswordController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Akn-6w-yQS"/>
+                        <viewControllerLayoutGuide type="bottom" id="eMQ-eE-Xb0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VOP-Eo-uzh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-hy-kaL">
+                                <rect key="frame" x="37.5" y="144" width="300" height="70"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5W-nr-Z5H">
+                                        <rect key="frame" x="8" y="0.0" width="41" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jQX-ZF-vEJ" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="24" width="292" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="2Yz-ew-Y2T"/>
+                                    <constraint firstItem="x5W-nr-Z5H" firstAttribute="top" secondItem="gR2-hy-kaL" secondAttribute="top" id="5Xo-np-6OL"/>
+                                    <constraint firstAttribute="trailing" secondItem="jQX-ZF-vEJ" secondAttribute="trailing" id="BJ2-Ej-Wcd"/>
+                                    <constraint firstItem="x5W-nr-Z5H" firstAttribute="leading" secondItem="gR2-hy-kaL" secondAttribute="leadingMargin" id="h8K-qq-mTb"/>
+                                    <constraint firstItem="jQX-ZF-vEJ" firstAttribute="top" secondItem="x5W-nr-Z5H" secondAttribute="bottom" constant="3.5" id="jnX-Ib-TpX"/>
+                                    <constraint firstAttribute="width" constant="300" id="lbb-QF-ymd"/>
+                                    <constraint firstItem="x5W-nr-Z5H" firstAttribute="leading" secondItem="jQX-ZF-vEJ" secondAttribute="leading" id="pOl-Qz-ENv"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-TR-DgA" customClass="MapitoBlueButton" customModule="mapito" customModuleProvider="target">
+                                <rect key="frame" x="37.5" y="294" width="300" height="45"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Réinitialiser mot de passe">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginBtnPressed:" destination="xHc-fY-BUV" eventType="touchUpInside" id="GfY-uH-OKd"/>
+                                    <action selector="resetPassword:" destination="g24-qG-Wb2" eventType="touchUpInside" id="14p-PK-wcI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Ka6-TR-DgA" firstAttribute="top" secondItem="gR2-hy-kaL" secondAttribute="bottom" constant="80" id="Fhy-0t-Exe"/>
+                            <constraint firstItem="gR2-hy-kaL" firstAttribute="centerX" secondItem="VOP-Eo-uzh" secondAttribute="centerX" id="HIh-zB-z0J"/>
+                            <constraint firstItem="gR2-hy-kaL" firstAttribute="top" secondItem="Akn-6w-yQS" secondAttribute="bottom" constant="80" id="S7q-QO-E6A"/>
+                            <constraint firstItem="Ka6-TR-DgA" firstAttribute="trailing" secondItem="gR2-hy-kaL" secondAttribute="trailing" id="obK-U0-Gnz"/>
+                            <constraint firstItem="Ka6-TR-DgA" firstAttribute="leading" secondItem="gR2-hy-kaL" secondAttribute="leading" id="u08-pi-yPT"/>
+                        </constraints>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="resetPasswordURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="userEmailTextField" destination="jQX-ZF-vEJ" id="D0b-um-kDb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pep-JN-swD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-42.399999999999999" y="756.97151424287858"/>
         </scene>
         <!--Connexion Controller-->
         <scene sceneID="ntg-TW-LNP">
@@ -383,14 +510,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2we-5b-aKC" customClass="MapitoBlueButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="519" width="300" height="45"/>
+                                <rect key="frame" x="37" y="538" width="300" height="45"/>
                                 <state key="normal" title="Connexion"/>
                                 <connections>
                                     <action selector="loginBtnPressed:" destination="xHc-fY-BUV" eventType="touchUpInside" id="oSw-QY-ewh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="bCV-Vp-xp9" customClass="MapitoBlueButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="604" width="300" height="45"/>
+                                <rect key="frame" x="37" y="623" width="300" height="45"/>
                                 <state key="normal" title="Inscription"/>
                                 <connections>
                                     <segue destination="Nrf-zu-L9x" kind="show" id="VUm-bL-acX"/>
@@ -403,7 +530,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Vxt-qB-mGS">
-                                <rect key="frame" x="37" y="278" width="300" height="161"/>
+                                <rect key="frame" x="37" y="278" width="300" height="180"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbg-sk-7GM">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -455,14 +582,29 @@
                                             <constraint firstItem="S7R-Df-Ln3" firstAttribute="top" secondItem="zdv-1H-HjV" secondAttribute="bottom" constant="3.5" id="qZE-nP-Muk"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2r-Cm-K3u">
-                                        <rect key="frame" x="0.0" y="160" width="300" height="1"/>
-                                        <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.94999999999999996"/>
-                                        <inset key="contentEdgeInsets" minX="0.0" minY="-17" maxX="0.0" maxY="0.0"/>
-                                        <state key="normal" title="Mot de passe oublié ?">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Spl-ts-ior">
+                                        <rect key="frame" x="0.0" y="160" width="300" height="20"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2r-Cm-K3u">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="20"/>
+                                                <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.94999999999999996"/>
+                                                <inset key="contentEdgeInsets" minX="0.0" minY="-17" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="Mot de passe oublié ?">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <segue destination="g24-qG-Wb2" kind="show" id="7la-ik-w7H"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="m2r-Cm-K3u" secondAttribute="bottom" id="8Lp-DC-iwf"/>
+                                            <constraint firstAttribute="trailing" secondItem="m2r-Cm-K3u" secondAttribute="trailing" id="G1H-nS-ZQ5"/>
+                                            <constraint firstAttribute="height" constant="20" id="WSm-c3-VZU"/>
+                                            <constraint firstItem="m2r-Cm-K3u" firstAttribute="top" secondItem="Spl-ts-ior" secondAttribute="top" id="cXL-o8-PcN"/>
+                                            <constraint firstItem="m2r-Cm-K3u" firstAttribute="leading" secondItem="Spl-ts-ior" secondAttribute="leading" id="ylh-tP-3Je"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="3aG-U2-sly"/>
@@ -475,9 +617,9 @@
                             <constraint firstItem="jb0-Km-nxi" firstAttribute="top" secondItem="hOY-Jq-Yos" secondAttribute="bottom" constant="-30" id="Iul-cm-j5B"/>
                             <constraint firstItem="bCV-Vp-xp9" firstAttribute="trailing" secondItem="Vxt-qB-mGS" secondAttribute="trailing" id="Kma-z5-CwH"/>
                             <constraint firstItem="Vxt-qB-mGS" firstAttribute="leading" secondItem="2we-5b-aKC" secondAttribute="leading" id="Ko7-JP-1zG"/>
+                            <constraint firstItem="Vxt-qB-mGS" firstAttribute="top" secondItem="jb0-Km-nxi" secondAttribute="bottom" constant="4" id="Yx3-7I-Miv"/>
                             <constraint firstItem="bCV-Vp-xp9" firstAttribute="leading" secondItem="Vxt-qB-mGS" secondAttribute="leading" id="cBe-3D-E0S"/>
                             <constraint firstItem="2we-5b-aKC" firstAttribute="top" secondItem="Vxt-qB-mGS" secondAttribute="bottom" constant="80" id="iJb-5v-caf"/>
-                            <constraint firstItem="Vxt-qB-mGS" firstAttribute="top" secondItem="hOY-Jq-Yos" secondAttribute="bottom" constant="214" id="mcZ-iK-qDw"/>
                             <constraint firstItem="bCV-Vp-xp9" firstAttribute="centerX" secondItem="sJ5-XV-hJr" secondAttribute="centerX" id="qmn-Z2-age"/>
                             <constraint firstItem="Vxt-qB-mGS" firstAttribute="trailing" secondItem="2we-5b-aKC" secondAttribute="trailing" id="qoE-Iv-M2a"/>
                             <constraint firstItem="jb0-Km-nxi" firstAttribute="centerX" secondItem="sJ5-XV-hJr" secondAttribute="centerX" id="uzT-MA-UBH"/>
@@ -498,10 +640,10 @@
             </objects>
             <point key="canvasLocation" x="280.80000000000001" y="-0.44977511244377816"/>
         </scene>
-        <!--Retour-->
+        <!--Inscription-->
         <scene sceneID="K7j-Tm-kaM">
             <objects>
-                <viewController id="Nrf-zu-L9x" customClass="InscriptionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Inscription" id="Nrf-zu-L9x" customClass="InscriptionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aG3-kr-QVh"/>
                         <viewControllerLayoutGuide type="bottom" id="cFT-8N-Dg6"/>
@@ -511,7 +653,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4VP-vy-gNU">
-                                <rect key="frame" x="37" y="143" width="300" height="380"/>
+                                <rect key="frame" x="37" y="144" width="300" height="380"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jz4-Am-vzv">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -644,7 +786,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnq-Lf-Go4" customClass="MapitoBlueButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="603" width="300" height="45"/>
+                                <rect key="frame" x="37" y="604" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Inscription">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -660,10 +802,12 @@
                             <constraint firstItem="jnq-Lf-Go4" firstAttribute="top" secondItem="4VP-vy-gNU" secondAttribute="bottom" constant="80" id="IKo-dz-rTx"/>
                             <constraint firstItem="jnq-Lf-Go4" firstAttribute="leading" secondItem="4VP-vy-gNU" secondAttribute="leading" id="lmI-MG-MA8"/>
                             <constraint firstItem="4VP-vy-gNU" firstAttribute="centerX" secondItem="dog-fu-txC" secondAttribute="centerX" id="rD5-Uh-0eu"/>
-                            <constraint firstItem="4VP-vy-gNU" firstAttribute="top" secondItem="aG3-kr-QVh" secondAttribute="bottom" constant="79" id="yeZ-Dl-yzr"/>
+                            <constraint firstItem="4VP-vy-gNU" firstAttribute="top" secondItem="aG3-kr-QVh" secondAttribute="bottom" constant="80" id="yeZ-Dl-yzr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Retour" id="8TZ-KQ-UmI"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="GrH-6e-Kj6" id="gww-l9-Hzb"/>
                         <outlet property="userMdpTextField" destination="gsJ-Y5-Wwu" id="XWC-AK-sAh"/>
@@ -674,7 +818,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJ9-07-Llt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="723"/>
+            <point key="canvasLocation" x="631" y="757"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -688,8 +832,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="jJ3-Jo-jWj" kind="relationship" relationship="viewControllers" id="SD0-WN-4Z1"/>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="DeY-Qq-dSu" kind="relationship" relationship="viewControllers" id="OEL-h1-FeT"/>
+                        <segue destination="XYk-aa-dwc" kind="relationship" relationship="viewControllers" id="Mup-4P-bMD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -734,8 +878,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="001-man-user" width="32" height="32"/>
+        <image name="002-add-friend" width="32" height="32"/>
+        <image name="003-placeholder-on-map-paper-in-perspective" width="32" height="32"/>
         <image name="logo_mapito" width="317" height="240"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

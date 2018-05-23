@@ -17,6 +17,8 @@ class InscriptionController : UIViewController {
     @IBOutlet weak var userPseudoTextField: UITextField!
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userMdpTextField: UITextField!
+    //path de la methode d'inscription
+    @IBInspectable var registerURL: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,24 +40,27 @@ class InscriptionController : UIViewController {
         
         //verif champs vide
         if((userNom?.isEmpty)! || (userPrenom?.isEmpty)! || (userPseudo?.isEmpty)! || (userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
-            displayMessage(userMessage: "Veuillez remplir correctement tout les champs");
+            displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
+        //Si les champs ne sont pas vide, alors appel methode d' inscription
+        let baseUrl = URL(string: self.registerURL)!
         /*
-         *
-         *
-         * Si les champs ne sont pas vide, alors
-         * verif si le nom ou pseudo existe deja dans la bdd
-         *
-         *
-        */
-        
-        /*
-         *
-         * Si non alors l'utilisateur creer son compte
-         *
-         */
-        
+         let query: [String : String] = [
+         "nom" : userNom!,
+         "prenom" : userPrenom!,
+         "pseudo" : userPseudo!,
+         "mail" : userEmail!,
+         "password" : userMdp!
+         ]*/
+        let request = URLRequest(url: baseUrl)
+        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            if let jsonData = String(data: data!, encoding: .utf8) {
+                print(jsonData)
+            }
+            //si l'email existe deja
+        })
+        session.resume()
     }
     
     //message info
