@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D633CCE620AF0B5B00D92884 /* Friend.swift */; };
+		D653780F20B565CB00217E96 /* MapitoBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653780E20B565CB00217E96 /* MapitoBlueButton.swift */; };
 		D66366F8208B46BB000DCAC3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66366F7208B46BB000DCAC3 /* User.swift */; };
+		D66E3D5220B5A42A009208EA /* MapitoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66E3D5120B5A42A009208EA /* MapitoTextField.swift */; };
 		D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BC207F78D00022FD29 /* AppDelegate.swift */; };
 		D6A941BF207F78D00022FD29 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BE207F78D00022FD29 /* FirstViewController.swift */; };
 		D6A941C1207F78D00022FD29 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941C0207F78D00022FD29 /* SecondViewController.swift */; };
@@ -46,7 +48,9 @@
 
 /* Begin PBXFileReference section */
 		D633CCE620AF0B5B00D92884 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		D653780E20B565CB00217E96 /* MapitoBlueButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoBlueButton.swift; sourceTree = "<group>"; };
 		D66366F7208B46BB000DCAC3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D66E3D5120B5A42A009208EA /* MapitoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoTextField.swift; sourceTree = "<group>"; };
 		D6A941B9207F78D00022FD29 /* mapito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A941BC207F78D00022FD29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6A941BE207F78D00022FD29 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 			children = (
 				D6BBAA39208B405E00FA58FA /* TabBarController.swift */,
 				D6BBAA37208B3D7200FA58FA /* TableCell.swift */,
+				D653780E20B565CB00217E96 /* MapitoBlueButton.swift */,
+				D66E3D5120B5A42A009208EA /* MapitoTextField.swift */,
 			);
 			name = "Other controllers";
 			sourceTree = "<group>";
@@ -333,7 +339,9 @@
 				D6CBBE6420AC2BCB00D5D512 /* Main.swift in Sources */,
 				D6BBAA3C208B460A00FA58FA /* ProfileController.swift in Sources */,
 				D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */,
+				D653780F20B565CB00217E96 /* MapitoBlueButton.swift in Sources */,
 				D6A941F1207FA1B40022FD29 /* InscriptionController.swift in Sources */,
+				D66E3D5220B5A42A009208EA /* MapitoTextField.swift in Sources */,
 				D6A941BF207F78D00022FD29 /* FirstViewController.swift in Sources */,
 				D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */,
 				D66366F8208B46BB000DCAC3 /* User.swift in Sources */,

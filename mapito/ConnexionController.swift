@@ -15,7 +15,6 @@ class ConnexionController : UIViewController {
     @IBOutlet weak var userMdpTextField: UITextField!
     //path de la methode d'authentification
     @IBInspectable var loginURL: String!
-    //var MyUser : User;
     
     
     @IBAction func loginBtnPressed(_ sender: Any) {
@@ -25,7 +24,7 @@ class ConnexionController : UIViewController {
         
         //verif champs vide
         if((userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
-            displayMessage(userMessage: "Veuillez remplir correctement tout les champs");
+            displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d'authentification
@@ -67,7 +66,7 @@ class ConnexionController : UIViewController {
             object: nil,
             queue: nil,
             using: loginActionFinished(notification:))*/
-        //loginActionFinished();
+        loginActionFinished();
         
     }
     override func viewDidLoad() {
