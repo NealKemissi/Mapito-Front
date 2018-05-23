@@ -25,7 +25,7 @@ class ConnexionController : UIViewController {
         
         //verif champs vide
         if((userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
-            displayMessage(userMessage: "Veuillez remplir correctement tout les champs");
+            displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d'authentification
@@ -56,6 +56,7 @@ class ConnexionController : UIViewController {
             //si l'email et le mdp ne sont incorrect (si jsonData = null)
         })
             session.resume()
+            loginActionFinished();
         
         /*
          * Si non alors l'utilisateur se connecte
@@ -98,7 +99,7 @@ class ConnexionController : UIViewController {
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);
     }
-    
+    // methode pour se rendre sur le controller du profil du user lorsque celui ci s'est connecter
     func dismissLoginAndShowProfile() {
         let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
         let tabBarController = mainStory.instantiateViewController(withIdentifier: "profileView") as! TabBarController;

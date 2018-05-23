@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D633CCE620AF0B5B00D92884 /* Friend.swift */; };
 		D66366F8208B46BB000DCAC3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66366F7208B46BB000DCAC3 /* User.swift */; };
+		D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */; };
 		D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BC207F78D00022FD29 /* AppDelegate.swift */; };
 		D6A941BF207F78D00022FD29 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BE207F78D00022FD29 /* FirstViewController.swift */; };
 		D6A941C1207F78D00022FD29 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941C0207F78D00022FD29 /* SecondViewController.swift */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		D633CCE620AF0B5B00D92884 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		D66366F7208B46BB000DCAC3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
 		D6A941B9207F78D00022FD29 /* mapito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A941BC207F78D00022FD29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6A941BE207F78D00022FD29 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				D6BBAA3B208B460A00FA58FA /* ProfileController.swift */,
 				D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */,
 				D6CBBE6320AC2BCB00D5D512 /* Main.swift */,
+				D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */,
 				D6BBAA3A208B405E00FA58FA /* TabBarController.swift in Sources */,
 				D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */,
+				D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */,
 				D6A941C1207F78D00022FD29 /* SecondViewController.swift in Sources */,
 				D6A941EF207FA15D0022FD29 /* ConnexionController.swift in Sources */,
 				D6BBAA38208B3D7200FA58FA /* TableCell.swift in Sources */,

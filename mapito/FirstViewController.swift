@@ -22,8 +22,8 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         defaults.synchronize();
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-        let connexionController = storyboard.instantiateViewController(withIdentifier: "initialView") as! ConnexionController;
-        self.present(connexionController, animated: true);
+        let navigationController = storyboard.instantiateViewController(withIdentifier: "navigationController") as! UINavigationController;
+        self.present(navigationController, animated: true);
     }
     //var indexArray = ["Info personnelles","Info Connexion"]
     var champs = ["Modifier Nom","Modifier Prénom","Modifier Email","Modifier Mot de passe"]
@@ -65,6 +65,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let deCV = mainStory.instantiateViewController(withIdentifier: "ProfileController") as! ProfileController
         self.navigationController?.pushViewController(deCV, animated: true)
+        //self.present(deCV, animated: true);
     }
     
 }

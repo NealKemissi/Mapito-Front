@@ -39,14 +39,31 @@
                             <constraint firstAttribute="trailing" secondItem="e7y-1g-NhI" secondAttribute="trailing" id="zSP-iC-VbZ"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="first" id="BUZ-lg-1PU"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="003-placeholder-on-map-paper-in-perspective" id="BUZ-lg-1PU"/>
                     <connections>
                         <outlet property="MapView" destination="e7y-1g-NhI" id="LEt-TR-kUj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ok9-9I-nHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2161" y="-921"/>
+            <point key="canvasLocation" x="1974" y="-758"/>
+        </scene>
+        <!--NavigationProfile-->
+        <scene sceneID="22h-Ds-eJi">
+            <objects>
+                <navigationController title="NavigationProfile" id="DeY-Qq-dSu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="r3O-kF-r4i"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ag1-ox-mze">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="VA8-U5-FHh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oDL-JI-jXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="0.0"/>
         </scene>
         <!--Profile-->
         <scene sceneID="hNz-n2-bh7">
@@ -110,11 +127,12 @@
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ue9-q1-1qA" secondAttribute="bottom" id="n4d-Mv-IZd"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="qp6-Ie-VrI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2160.8000000000002" y="-268.51574212893553"/>
+            <point key="canvasLocation" x="2753" y="0.0"/>
         </scene>
         <!--Profile Controller-->
         <scene sceneID="isI-RS-jNU">
@@ -195,6 +213,9 @@
                                 <state key="normal" title="Modifier">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="modificationValue:" destination="s85-nB-olu" eventType="touchUpInside" id="j3v-xl-SYS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Valeur Actuelle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G3-5K-hcE">
                                 <rect key="frame" x="124" y="78" width="127" height="21"/>
@@ -210,10 +231,34 @@
                             <constraint firstItem="HQd-tS-Lm3" firstAttribute="centerX" secondItem="qZX-l2-jqa" secondAttribute="centerX" id="zxG-7h-qm0"/>
                         </constraints>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="confirmNewValueTextField" destination="lZ4-Tg-Mkk" id="Dc1-m4-Qzc"/>
+                        <outlet property="newValueTextField" destination="qNM-Yv-HfT" id="Ra9-YN-Vcg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzd-Mx-rUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2845.5999999999999" y="-268.51574212893553"/>
+            <point key="canvasLocation" x="3518" y="0.0"/>
+        </scene>
+        <!--NavigationFriends-->
+        <scene sceneID="wMW-21-Klk">
+            <objects>
+                <navigationController title="NavigationFriends" id="XYk-aa-dwc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Friends" image="002-add-friend" id="mid-TX-fSb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GHa-2A-isv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="xeN-H8-SxB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OaX-rN-nto" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1974" y="757"/>
         </scene>
         <!--Friends-->
         <scene sceneID="wg7-f3-ORb">
@@ -277,11 +322,12 @@
                             <constraint firstAttribute="trailing" secondItem="0nx-2X-pFN" secondAttribute="trailing" id="jb6-jf-oAj"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Friends" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="Friends" image="002-add-friend" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" id="ObJ-FN-YIn"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2160.8000000000002" y="387.25637181409297"/>
+            <point key="canvasLocation" x="2753" y="757"/>
         </scene>
         <!--New Friend Controller-->
         <scene sceneID="ydT-ta-Lg4">
@@ -362,6 +408,9 @@
                                 <state key="normal" title="Ajouter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="addFriend:" destination="kJS-wT-1MX" eventType="touchUpInside" id="bd1-sP-RTU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -370,10 +419,88 @@
                             <constraint firstItem="TZr-Nf-WCn" firstAttribute="top" secondItem="7WU-gS-bSL" secondAttribute="bottom" constant="102" id="nOA-nG-mYQ"/>
                         </constraints>
                     </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="NomFriendTextField" destination="NK8-8Y-PWc" id="2b6-lj-9Oq"/>
+                        <outlet property="PrenomFriendTextField" destination="PKt-qe-2iN" id="8qa-BR-Ew1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcR-zJ-GBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2853.5999999999999" y="388.15592203898052"/>
+            <point key="canvasLocation" x="3518" y="757"/>
+        </scene>
+        <!--Mot de passe oublié-->
+        <scene sceneID="2K1-2k-9MY">
+            <objects>
+                <viewController title="Mot de passe oublié" id="g24-qG-Wb2" customClass="ForgotPasswordController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Akn-6w-yQS"/>
+                        <viewControllerLayoutGuide type="bottom" id="eMQ-eE-Xb0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VOP-Eo-uzh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-hy-kaL">
+                                <rect key="frame" x="67" y="141" width="240" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5W-nr-Z5H">
+                                        <rect key="frame" x="8" y="0.0" width="41" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jQX-ZF-vEJ">
+                                        <rect key="frame" x="8" y="24" width="232" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2Yz-ew-Y2T"/>
+                                    <constraint firstItem="x5W-nr-Z5H" firstAttribute="top" secondItem="gR2-hy-kaL" secondAttribute="top" id="5Xo-np-6OL"/>
+                                    <constraint firstAttribute="trailing" secondItem="jQX-ZF-vEJ" secondAttribute="trailing" id="BJ2-Ej-Wcd"/>
+                                    <constraint firstItem="x5W-nr-Z5H" firstAttribute="leading" secondItem="gR2-hy-kaL" secondAttribute="leadingMargin" id="h8K-qq-mTb"/>
+                                    <constraint firstItem="jQX-ZF-vEJ" firstAttribute="top" secondItem="x5W-nr-Z5H" secondAttribute="bottom" constant="3.5" id="jnX-Ib-TpX"/>
+                                    <constraint firstItem="x5W-nr-Z5H" firstAttribute="leading" secondItem="jQX-ZF-vEJ" secondAttribute="leading" id="pOl-Qz-ENv"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-TR-DgA">
+                                <rect key="frame" x="91" y="300" width="193" height="38"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Réinitialiser mot de passe">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginBtnPressed:" destination="xHc-fY-BUV" eventType="touchUpInside" id="GfY-uH-OKd"/>
+                                    <action selector="resetPassword:" destination="g24-qG-Wb2" eventType="touchUpInside" id="14p-PK-wcI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gR2-hy-kaL" firstAttribute="leading" secondItem="VOP-Eo-uzh" secondAttribute="leadingMargin" constant="51" id="8gm-db-EWU"/>
+                            <constraint firstItem="Ka6-TR-DgA" firstAttribute="top" secondItem="gR2-hy-kaL" secondAttribute="bottom" constant="99" id="Fhy-0t-Exe"/>
+                            <constraint firstItem="gR2-hy-kaL" firstAttribute="centerX" secondItem="VOP-Eo-uzh" secondAttribute="centerX" id="Npz-UQ-Pck"/>
+                            <constraint firstItem="gR2-hy-kaL" firstAttribute="top" secondItem="Akn-6w-yQS" secondAttribute="bottom" constant="77" id="S7q-QO-E6A"/>
+                            <constraint firstItem="gR2-hy-kaL" firstAttribute="centerX" secondItem="Ka6-TR-DgA" secondAttribute="centerX" id="eNP-TJ-xqj"/>
+                        </constraints>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="resetPasswordURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="userEmailTextField" destination="jQX-ZF-vEJ" id="D0b-um-kDb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pep-JN-swD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-42.399999999999999" y="756.97151424287858"/>
         </scene>
         <!--Connexion Controller-->
         <scene sceneID="ntg-TW-LNP">
@@ -476,6 +603,15 @@
                                     <constraint firstAttribute="width" constant="240" id="3aG-U2-sly"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u0w-sp-cGZ">
+                                <rect key="frame" x="68" y="383" width="240" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Mot de passe oublié ?"/>
+                                <connections>
+                                    <segue destination="g24-qG-Wb2" kind="show" id="Hq6-Bb-5DZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -498,10 +634,10 @@
             </objects>
             <point key="canvasLocation" x="280.80000000000001" y="-0.44977511244377816"/>
         </scene>
-        <!--Retour-->
+        <!--Inscription-->
         <scene sceneID="K7j-Tm-kaM">
             <objects>
-                <viewController id="Nrf-zu-L9x" customClass="InscriptionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Inscription" id="Nrf-zu-L9x" customClass="InscriptionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aG3-kr-QVh"/>
                         <viewControllerLayoutGuide type="bottom" id="cFT-8N-Dg6"/>
@@ -666,7 +802,9 @@
                             <constraint firstItem="4VP-vy-gNU" firstAttribute="top" secondItem="aG3-kr-QVh" secondAttribute="bottom" constant="79" id="yeZ-Dl-yzr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Retour" id="8TZ-KQ-UmI"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="GrH-6e-Kj6" id="gww-l9-Hzb"/>
                         <outlet property="userMdpTextField" destination="gsJ-Y5-Wwu" id="XWC-AK-sAh"/>
@@ -677,7 +815,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJ9-07-Llt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="281" y="723"/>
+            <point key="canvasLocation" x="631" y="757"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -691,8 +829,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="jJ3-Jo-jWj" kind="relationship" relationship="viewControllers" id="SD0-WN-4Z1"/>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="DeY-Qq-dSu" kind="relationship" relationship="viewControllers" id="OEL-h1-FeT"/>
+                        <segue destination="XYk-aa-dwc" kind="relationship" relationship="viewControllers" id="Mup-4P-bMD"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -737,7 +875,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="001-man-user" width="32" height="32"/>
+        <image name="002-add-friend" width="32" height="32"/>
+        <image name="003-placeholder-on-map-paper-in-perspective" width="32" height="32"/>
     </resources>
 </document>
