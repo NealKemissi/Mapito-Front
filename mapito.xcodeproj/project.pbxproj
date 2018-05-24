@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D633CCE620AF0B5B00D92884 /* Friend.swift */; };
 		D63B3F1220B6B3A300E2C104 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */; };
+		D63B3F1420B6D91200E2C104 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63B3F1320B6D91200E2C104 /* Pin.swift */; };
 		D653780F20B565CB00217E96 /* MapitoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653780E20B565CB00217E96 /* MapitoButton.swift */; };
 		D66366F8208B46BB000DCAC3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66366F7208B46BB000DCAC3 /* User.swift */; };
 		D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */; };
@@ -50,6 +51,7 @@
 /* Begin PBXFileReference section */
 		D633CCE620AF0B5B00D92884 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
+		D63B3F1320B6D91200E2C104 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		D653780E20B565CB00217E96 /* MapitoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoButton.swift; sourceTree = "<group>"; };
 		D66366F7208B46BB000DCAC3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		D66366F5208B4599000DCAC3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D63B3F1320B6D91200E2C104 /* Pin.swift */,
 				D66366F7208B46BB000DCAC3 /* User.swift */,
 				D633CCE620AF0B5B00D92884 /* Friend.swift */,
 			);
@@ -334,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */,
+				D63B3F1420B6D91200E2C104 /* Pin.swift in Sources */,
 				D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */,
 				D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */,
 				D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */,

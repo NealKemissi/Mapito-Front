@@ -11,10 +11,7 @@ import UIKit
 class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     //deconnexion
-    @IBAction func deconnexion(_ sender: UIButton) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        appDelegate.authenticated = false;
-        
+    @IBAction func deconnexion(_ sender: UIButton) {        
         let defaults = UserDefaults.standard;
         defaults.removeObject(forKey: "token");
         defaults.synchronize();

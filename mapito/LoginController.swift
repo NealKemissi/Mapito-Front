@@ -81,8 +81,6 @@ class LoginController : UIViewController {
     }
     //recuperer le token et passer a l'autre page
     func loginActionFinished() -> Void{
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate;
-        appDelegate.authenticated = true;
         dismissLoginAndShowProfile();
         let tokenRetrieved = "test";
         let defaults = UserDefaults.standard;
