@@ -1,5 +1,5 @@
 //
-//  NewFriendController.swift
+//  DetailedProfileController.swift
 //  mapito
 //
 //  Created by m2sar on 21/04/2018.
@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-class NewFriendController: UIViewController {
+class DetailedProfileController: UIViewController {
     
-    @IBOutlet weak var NomFriendTextField: UITextField!
-    @IBOutlet weak var PrenomFriendTextField: UITextField!
-    //path de la methode modification ajout amis
-    @IBInspectable var addFriendURL: String!
+    
+    @IBOutlet weak var newValueTextField: UITextField!
+    @IBOutlet weak var confirmNewValueTextField: UITextField!
+    //path de la methode modification attributs
+    @IBInspectable var modifURL: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,29 +27,29 @@ class NewFriendController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //lorsque le user clique sur ajouter
-    @IBAction func addFriend(_ sender: Any) {
-        let nomFriend = NomFriendTextField.text;
-        let prenomFriend = PrenomFriendTextField.text;
+    //lorsque le user clique sur modifier
+    @IBAction func modificationValue(_ sender: Any) {
+        let newValue = newValueTextField.text;
+        let confirm = confirmNewValueTextField.text;
         
         //verif champs vide
-        if((nomFriend?.isEmpty)! || (prenomFriend?.isEmpty)!){
+        if((newValue?.isEmpty)! || (confirm?.isEmpty)!){
             displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
-        //Si les champs ne sont pas vide, alors appel methode ajouter amis
-        let baseUrl = URL(string: self.addFriendURL)!
+        //Si les champs ne sont pas vide, alors appel methode d' inscription
+        let baseUrl = URL(string: self.modifURL)!
         /*
          let query: [String : String] = [
-         "nomFriend" : nomFriend!,
-         "prenomFriend" : prenomFriend!
+         "newValue" : newValue!,
+         "confirm" : confirm!
          ]*/
         let request = URLRequest(url: baseUrl)
         let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
             if let jsonData = String(data: data!, encoding: .utf8) {
                 print(jsonData)
             }
-            //si l'amis existe pas deja
+            //si la valeur existe deja
         })
         session.resume()
     }

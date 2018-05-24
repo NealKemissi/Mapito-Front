@@ -63,7 +63,7 @@
         <!--Profile-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="FirstViewController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9pv-A4-QxB" customClass="ProfileController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -72,7 +72,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ue9-q1-1qA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ue9-q1-1qA">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="532"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -119,7 +119,7 @@
                             <constraint firstAttribute="trailing" secondItem="ue9-q1-1qA" secondAttribute="trailing" id="5r3-PI-p5Q"/>
                             <constraint firstItem="ue9-q1-1qA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Xtx-xr-LjU"/>
                             <constraint firstItem="ue9-q1-1qA" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="dOT-0S-LXb"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ue9-q1-1qA" secondAttribute="bottom" id="n4d-Mv-IZd"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ue9-q1-1qA" secondAttribute="bottom" constant="86" id="n4d-Mv-IZd"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="acW-dT-cKf"/>
@@ -129,10 +129,10 @@
             </objects>
             <point key="canvasLocation" x="2753" y="0.0"/>
         </scene>
-        <!--Profile Controller-->
+        <!--Detailed Profile Controller-->
         <scene sceneID="isI-RS-jNU">
             <objects>
-                <viewController storyboardIdentifier="ProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="s85-nB-olu" customClass="ProfileController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailedProfileController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="s85-nB-olu" customClass="DetailedProfileController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="FX2-qF-M0B"/>
                         <viewControllerLayoutGuide type="bottom" id="Zdb-7W-wjb"/>
@@ -258,7 +258,7 @@
         <!--Friends-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="FriendsController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -464,7 +464,7 @@
                                     <constraint firstItem="x5W-nr-Z5H" firstAttribute="leading" secondItem="jQX-ZF-vEJ" secondAttribute="leading" id="pOl-Qz-ENv"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-TR-DgA" customClass="MapitoBlueButton" customModule="mapito" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-TR-DgA" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="294" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Réinitialiser mot de passe">
@@ -497,10 +497,10 @@
             </objects>
             <point key="canvasLocation" x="-42.399999999999999" y="756.97151424287858"/>
         </scene>
-        <!--Connexion Controller-->
+        <!--Login Controller-->
         <scene sceneID="ntg-TW-LNP">
             <objects>
-                <viewController storyboardIdentifier="initialView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xHc-fY-BUV" customClass="ConnexionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="initialView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xHc-fY-BUV" customClass="LoginController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hOY-Jq-Yos"/>
                         <viewControllerLayoutGuide type="bottom" id="UrS-en-4cH"/>
@@ -509,14 +509,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2we-5b-aKC" customClass="MapitoBlueButton" customModule="mapito" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2we-5b-aKC" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
                                 <rect key="frame" x="37" y="538" width="300" height="45"/>
                                 <state key="normal" title="Connexion"/>
                                 <connections>
                                     <action selector="loginBtnPressed:" destination="xHc-fY-BUV" eventType="touchUpInside" id="oSw-QY-ewh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="bCV-Vp-xp9" customClass="MapitoBlueButton" customModule="mapito" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="bCV-Vp-xp9" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
                                 <rect key="frame" x="37" y="623" width="300" height="45"/>
                                 <state key="normal" title="Inscription"/>
                                 <connections>
@@ -643,7 +643,7 @@
         <!--Inscription-->
         <scene sceneID="K7j-Tm-kaM">
             <objects>
-                <viewController title="Inscription" id="Nrf-zu-L9x" customClass="InscriptionController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Inscription" id="Nrf-zu-L9x" customClass="RegistrationController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aG3-kr-QVh"/>
                         <viewControllerLayoutGuide type="bottom" id="cFT-8N-Dg6"/>
@@ -785,7 +785,7 @@
                                     <constraint firstAttribute="width" constant="300" id="dEH-N8-3pH"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnq-Lf-Go4" customClass="MapitoBlueButton" customModule="mapito" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnq-Lf-Go4" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
                                 <rect key="frame" x="37" y="604" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Inscription">
@@ -823,7 +823,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController storyboardIdentifier="profileView" id="49e-Tb-3d3" customClass="TabBarController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBar" id="49e-Tb-3d3" customClass="TabBarController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -861,7 +861,7 @@
         <!--Navigation Controller-->
         <scene sceneID="uKg-of-edP">
             <objects>
-                <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gsW-Xm-mYH" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationAuthentication" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gsW-Xm-mYH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="kqo-iF-hZI">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

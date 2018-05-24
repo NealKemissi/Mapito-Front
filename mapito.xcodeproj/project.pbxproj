@@ -8,26 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D633CCE620AF0B5B00D92884 /* Friend.swift */; };
-		D653780F20B565CB00217E96 /* MapitoBlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653780E20B565CB00217E96 /* MapitoBlueButton.swift */; };
+		D63B3F1220B6B3A300E2C104 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */; };
+		D653780F20B565CB00217E96 /* MapitoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653780E20B565CB00217E96 /* MapitoButton.swift */; };
 		D66366F8208B46BB000DCAC3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66366F7208B46BB000DCAC3 /* User.swift */; };
-		D66E3D5220B5A42A009208EA /* MapitoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66E3D5120B5A42A009208EA /* MapitoTextField.swift */; };
 		D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */; };
+		D66E3D5220B5A42A009208EA /* MapitoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66E3D5120B5A42A009208EA /* MapitoTextField.swift */; };
 		D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BC207F78D00022FD29 /* AppDelegate.swift */; };
-		D6A941BF207F78D00022FD29 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BE207F78D00022FD29 /* FirstViewController.swift */; };
-		D6A941C1207F78D00022FD29 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941C0207F78D00022FD29 /* SecondViewController.swift */; };
+		D6A941BF207F78D00022FD29 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BE207F78D00022FD29 /* ProfileController.swift */; };
+		D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941C0207F78D00022FD29 /* FriendsController.swift */; };
 		D6A941C4207F78D00022FD29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A941C2207F78D00022FD29 /* Main.storyboard */; };
 		D6A941C6207F78D10022FD29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6A941C5207F78D10022FD29 /* Assets.xcassets */; };
 		D6A941C9207F78D10022FD29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6A941C7207F78D10022FD29 /* LaunchScreen.storyboard */; };
 		D6A941D4207F78D10022FD29 /* mapitoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941D3207F78D10022FD29 /* mapitoTests.swift */; };
 		D6A941DF207F78D10022FD29 /* mapitoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941DE207F78D10022FD29 /* mapitoUITests.swift */; };
 		D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EC207F7E3A0022FD29 /* MapController.swift */; };
-		D6A941EF207FA15D0022FD29 /* ConnexionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EE207FA15D0022FD29 /* ConnexionController.swift */; };
-		D6A941F1207FA1B40022FD29 /* InscriptionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941F0207FA1B40022FD29 /* InscriptionController.swift */; };
+		D6A941EF207FA15D0022FD29 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EE207FA15D0022FD29 /* LoginController.swift */; };
+		D6A941F1207FA1B40022FD29 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941F0207FA1B40022FD29 /* RegistrationController.swift */; };
 		D6BBAA38208B3D7200FA58FA /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA37208B3D7200FA58FA /* TableCell.swift */; };
-		D6BBAA3A208B405E00FA58FA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA39208B405E00FA58FA /* TabBarController.swift */; };
-		D6BBAA3C208B460A00FA58FA /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA3B208B460A00FA58FA /* ProfileController.swift */; };
+		D6BBAA3C208B460A00FA58FA /* DetailedProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA3B208B460A00FA58FA /* DetailedProfileController.swift */; };
 		D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */; };
-		D6CBBE6420AC2BCB00D5D512 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CBBE6320AC2BCB00D5D512 /* Main.swift */; };
+		D6CBBE6420AC2BCB00D5D512 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CBBE6320AC2BCB00D5D512 /* MainController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,14 +49,15 @@
 
 /* Begin PBXFileReference section */
 		D633CCE620AF0B5B00D92884 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
-		D653780E20B565CB00217E96 /* MapitoBlueButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoBlueButton.swift; sourceTree = "<group>"; };
+		D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
+		D653780E20B565CB00217E96 /* MapitoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoButton.swift; sourceTree = "<group>"; };
 		D66366F7208B46BB000DCAC3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		D66E3D5120B5A42A009208EA /* MapitoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoTextField.swift; sourceTree = "<group>"; };
 		D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
+		D66E3D5120B5A42A009208EA /* MapitoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoTextField.swift; sourceTree = "<group>"; };
 		D6A941B9207F78D00022FD29 /* mapito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A941BC207F78D00022FD29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D6A941BE207F78D00022FD29 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		D6A941C0207F78D00022FD29 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		D6A941BE207F78D00022FD29 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		D6A941C0207F78D00022FD29 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		D6A941C3207F78D00022FD29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D6A941C5207F78D10022FD29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6A941C8207F78D10022FD29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -68,13 +69,12 @@
 		D6A941DE207F78D10022FD29 /* mapitoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapitoUITests.swift; sourceTree = "<group>"; };
 		D6A941E0207F78D10022FD29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6A941EC207F7E3A0022FD29 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
-		D6A941EE207FA15D0022FD29 /* ConnexionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnexionController.swift; sourceTree = "<group>"; };
-		D6A941F0207FA1B40022FD29 /* InscriptionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InscriptionController.swift; sourceTree = "<group>"; };
+		D6A941EE207FA15D0022FD29 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		D6A941F0207FA1B40022FD29 /* RegistrationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		D6BBAA37208B3D7200FA58FA /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
-		D6BBAA39208B405E00FA58FA /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		D6BBAA3B208B460A00FA58FA /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		D6BBAA3B208B460A00FA58FA /* DetailedProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedProfileController.swift; sourceTree = "<group>"; };
 		D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFriendController.swift; sourceTree = "<group>"; };
-		D6CBBE6320AC2BCB00D5D512 /* Main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
+		D6CBBE6320AC2BCB00D5D512 /* MainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,15 +105,15 @@
 		D66366F3208B457D000DCAC3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D6A941F0207FA1B40022FD29 /* InscriptionController.swift */,
-				D6A941EE207FA15D0022FD29 /* ConnexionController.swift */,
-				D6A941EC207F7E3A0022FD29 /* MapController.swift */,
-				D6A941BE207F78D00022FD29 /* FirstViewController.swift */,
-				D6A941C0207F78D00022FD29 /* SecondViewController.swift */,
-				D6BBAA3B208B460A00FA58FA /* ProfileController.swift */,
-				D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */,
-				D6CBBE6320AC2BCB00D5D512 /* Main.swift */,
+				D6CBBE6320AC2BCB00D5D512 /* MainController.swift */,
+				D6A941EE207FA15D0022FD29 /* LoginController.swift */,
+				D6A941F0207FA1B40022FD29 /* RegistrationController.swift */,
 				D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */,
+				D6A941EC207F7E3A0022FD29 /* MapController.swift */,
+				D6A941BE207F78D00022FD29 /* ProfileController.swift */,
+				D6BBAA3B208B460A00FA58FA /* DetailedProfileController.swift */,
+				D6A941C0207F78D00022FD29 /* FriendsController.swift */,
+				D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -121,6 +121,9 @@
 		D66366F4208B458C000DCAC3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D653780E20B565CB00217E96 /* MapitoButton.swift */,
+				D66E3D5120B5A42A009208EA /* MapitoTextField.swift */,
+				D6BBAA37208B3D7200FA58FA /* TableCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -137,10 +140,7 @@
 		D66366F6208B45E1000DCAC3 /* Other controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D6BBAA39208B405E00FA58FA /* TabBarController.swift */,
-				D6BBAA37208B3D7200FA58FA /* TableCell.swift */,
-				D653780E20B565CB00217E96 /* MapitoBlueButton.swift */,
-				D66E3D5120B5A42A009208EA /* MapitoTextField.swift */,
+				D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */,
 			);
 			name = "Other controllers";
 			sourceTree = "<group>";
@@ -334,19 +334,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */,
-				D6BBAA3A208B405E00FA58FA /* TabBarController.swift in Sources */,
 				D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */,
 				D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */,
-				D6A941C1207F78D00022FD29 /* SecondViewController.swift in Sources */,
-				D6A941EF207FA15D0022FD29 /* ConnexionController.swift in Sources */,
+				D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */,
+				D6A941EF207FA15D0022FD29 /* LoginController.swift in Sources */,
+				D63B3F1220B6B3A300E2C104 /* StoryboardHelper.swift in Sources */,
 				D6BBAA38208B3D7200FA58FA /* TableCell.swift in Sources */,
-				D6CBBE6420AC2BCB00D5D512 /* Main.swift in Sources */,
-				D6BBAA3C208B460A00FA58FA /* ProfileController.swift in Sources */,
+				D6CBBE6420AC2BCB00D5D512 /* MainController.swift in Sources */,
+				D6BBAA3C208B460A00FA58FA /* DetailedProfileController.swift in Sources */,
 				D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */,
-				D653780F20B565CB00217E96 /* MapitoBlueButton.swift in Sources */,
-				D6A941F1207FA1B40022FD29 /* InscriptionController.swift in Sources */,
+				D653780F20B565CB00217E96 /* MapitoButton.swift in Sources */,
+				D6A941F1207FA1B40022FD29 /* RegistrationController.swift in Sources */,
 				D66E3D5220B5A42A009208EA /* MapitoTextField.swift in Sources */,
-				D6A941BF207F78D00022FD29 /* FirstViewController.swift in Sources */,
+				D6A941BF207F78D00022FD29 /* ProfileController.swift in Sources */,
 				D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */,
 				D66366F8208B46BB000DCAC3 /* User.swift in Sources */,
 			);

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-// Decide wether MapController or ConnexionController is called
+// Decide whether MapController or LoginController is called
 
 class MainController : UIViewController {
     override func viewDidLoad() {
@@ -22,16 +22,16 @@ class MainController : UIViewController {
         let defaultValue = defaults.object(forKey: "token");
         
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-        // If token -> map
+        // If token -> MainTabBar
         if defaultValue != nil{
-            let tabBarController = storyboard.instantiateViewController(withIdentifier: "profileView") as! UITabBarController;
-            self.present(tabBarController, animated: false);
+            let mainTabBar = storyboard.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController;
+            self.present(mainTabBar, animated: false);
         }
-            // If no token -> connexioncontroller
+        // If no token -> NavigationAuthentication
         else{
-            let navigationController = storyboard.instantiateViewController(withIdentifier: "navigationController") as! UINavigationController;
-            //let navC = UINavigationController(rootViewController: connexionController)
-            self.present(navigationController, animated: false);
+            let navigationAuthentication = storyboard.instantiateViewController(withIdentifier: "NavigationAuthentication") as! UINavigationController;
+            //let navC = UINavigationController(rootViewController: LoginController)
+            self.present(navigationAuthentication, animated: false);
         }
     }
     

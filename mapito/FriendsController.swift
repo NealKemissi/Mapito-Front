@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  FriendsController.swift
 //  mapito
 //
 //  Created by m2sar on 12/04/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var amis = ["Arthur","Héloise","Neal","Robin"]
     

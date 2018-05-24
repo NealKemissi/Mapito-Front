@@ -1,5 +1,5 @@
 //
-//  InscriptionController.swift
+//  RegistrationController.swift
 //  mapito
 //
 //  Created by m2sar on 12/04/2018.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class InscriptionController : UIViewController {
+class RegistrationController : UIViewController {
     
     // les textes fields
     @IBOutlet weak var userNomTextField: UITextField!
@@ -66,7 +66,7 @@ class InscriptionController : UIViewController {
     //message info
     func displayMessage(userMessage: String)
     {
-        var myAlert = UIAlertController(title: "Attention", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        let myAlert = UIAlertController(title: "Attention", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
         let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);

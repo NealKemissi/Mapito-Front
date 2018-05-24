@@ -54,7 +54,7 @@ class ForgotPasswordController: UIViewController {
     //message info
     func displayMessage(header: String, userMessage: String)
     {
-        var myAlert = UIAlertController(title: header, message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        let myAlert = UIAlertController(title: header, message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
         let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);

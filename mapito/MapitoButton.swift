@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@IBDesignable class MapitoBlueButton: UIButton {
+@IBDesignable class MapitoButton: UIButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)

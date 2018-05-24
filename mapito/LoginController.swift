@@ -1,5 +1,5 @@
 //
-//  ConnexionController.swift
+//  LoginController.swift
 //  mapito
 //
 //  Created by m2sar on 12/04/2018.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ConnexionController : UIViewController {
+class LoginController : UIViewController {
     
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userMdpTextField: UITextField!
@@ -93,7 +93,7 @@ class ConnexionController : UIViewController {
     //message info
     func displayMessage(userMessage: String)
     {
-        var myAlert = UIAlertController(title: "Attention", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        let myAlert = UIAlertController(title: "Attention", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
         let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);
@@ -101,8 +101,8 @@ class ConnexionController : UIViewController {
     // methode pour se rendre sur le controller du profil du user lorsque celui ci s'est connecter
     func dismissLoginAndShowProfile() {
         let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-        let tabBarController = mainStory.instantiateViewController(withIdentifier: "profileView") as! TabBarController;
-        self.present(tabBarController, animated: true);
+        let mainTabBar = mainStory.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController;
+        self.present(mainTabBar, animated: true);
     }
 
 }
