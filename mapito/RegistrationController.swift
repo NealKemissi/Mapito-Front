@@ -14,7 +14,6 @@ class RegistrationController : UIViewController {
     // les textes fields
     @IBOutlet weak var userNomTextField: UITextField!
     @IBOutlet weak var userPrenomTextField: UITextField!
-    @IBOutlet weak var userPseudoTextField: UITextField!
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userMdpTextField: UITextField!
     //path de la methode d'inscription
@@ -34,32 +33,32 @@ class RegistrationController : UIViewController {
         
         let userNom = userNomTextField.text;
         let userPrenom = userPrenomTextField.text;
-        let userPseudo = userPseudoTextField.text;
         let userEmail = userEmailTextField.text;
         let userMdp = userMdpTextField.text;
         
         //verif champs vide
-        if((userNom?.isEmpty)! || (userPrenom?.isEmpty)! || (userPseudo?.isEmpty)! || (userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
+        if((userNom?.isEmpty)! || (userPrenom?.isEmpty)! || (userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
             displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d' inscription
         let baseUrl = URL(string: self.registerURL)!
-        /*
+        
          let query: [String : String] = [
-         "nom" : userNom!,
-         "prenom" : userPrenom!,
-         "pseudo" : userPseudo!,
-         "mail" : userEmail!,
-         "password" : userMdp!
-         ]*/
-        let request = URLRequest(url: baseUrl)
-        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            "mail" : userEmail!,
+            "password" : userMdp!,
+            "nom" : userNom!,
+            "prenom" : userPrenom!,
+         
+         ]
+        //let request = URLRequest(url: baseUrl)
+        let request = baseUrl.withQueries(query)
+        let session = URLSession.shared.dataTask(with: request!) { (data, response, error) in
             if let jsonData = String(data: data!, encoding: .utf8) {
                 print(jsonData)
             }
             //si l'email existe deja
-        })
+        }
         session.resume()
     }
     
