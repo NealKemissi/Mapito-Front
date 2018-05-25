@@ -42,7 +42,7 @@ class RegistrationController : UIViewController {
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d' inscription
-        let baseUrl = URL(string: self.registerURL+userEmail!+"/"+userMdp!+"/"+userNom!+"/"+userPrenom!)!
+        let baseUrl = URL(string: self.registerURL+userEmail!+"/"+userMdp!+"/"+userNom!+"/"+userPrenom!)
          let query: [String : String] = [
             "nom" : userNom!,
             "prenom" : userPrenom!,
@@ -50,7 +50,7 @@ class RegistrationController : UIViewController {
             "password" : userMdp!
          
          ]
-        var request = URLRequest(url: baseUrl)
+        var request = URLRequest(url: baseUrl!)
         //let request = baseUrl.withQueries(query)
         request.httpMethod = "POST"
         let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -59,12 +59,14 @@ class RegistrationController : UIViewController {
                 return
             }
             let responseString = String(data : data, encoding: .utf8)
+            DispatchQueue.main.async {
             if(responseString == "Optional(\"500\")"){
                 self.displayMessage(Mytitle: "Attention", userMessage: "Cet email existe deja, Veuillez recommencer");
                 return;
             } else {
                 self.displayMessage(Mytitle: "Félicitations", userMessage: "Bienvenue sur Mapito, vous pouvez maintenant vous connecter");
                 return;
+            }
             }
             print("reponse = \(responseString)")
             //si l'email existe deja

@@ -32,6 +32,16 @@ class MapController : UIViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
+        let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        updateUserPos()
+    }
+    
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateFriendsPosition), userInfo: nil, repeats: true)
@@ -59,10 +69,13 @@ class MapController : UIViewController, MKMapViewDelegate {
                 mapView.removeAnnotation(lastPin)
             }
             let coordinate = friend.pos
-            friend.setLastpos(pos: coordinate)
             let pin = Pin(coordinate: coordinate, title: "Pin", subtitle: "Best pin ever")
             mapView.addAnnotation(pin)
         }
+    }
+    
+    func updateUserPos(){
+        print("didupdate user location")
     }
 }
 

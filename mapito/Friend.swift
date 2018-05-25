@@ -22,9 +22,4 @@ class Friend: CustomStringConvertible {
         self.id = id
         self.pos = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
-    
-    func setLastpos(pos: CLLocationCoordinate2D){
-        self.lastpos = pos
-        //Actualiser dans le back
-    }
 }
