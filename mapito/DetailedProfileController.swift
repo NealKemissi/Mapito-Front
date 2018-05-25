@@ -15,11 +15,24 @@ class DetailedProfileController: UIViewController {
     @IBOutlet weak var newValueTextField: UITextField!
     @IBOutlet weak var confirmNewValueTextField: UITextField!
     //path de la methode modification attributs
+    var myValue : String?
     @IBInspectable var modifURL: String!
+    @IBInspectable var userFieldURL: String!
+    //var Mytoken = UserDefaults.standard.get(tokenRetrieved, forKey: "token");
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        //affichage de la valeur actuelle
+        let baseUrl = URL(string: self.userFieldURL!)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
+        let request = URLRequest(url: baseUrl)
+        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            if let myData = String(data: data!, encoding: .utf8) {
+                print(myData)
+                self.myValue = myData
+            }
+        })
+        session.resume()
     }
     
     override func didReceiveMemoryWarning() {
@@ -34,30 +47,32 @@ class DetailedProfileController: UIViewController {
         
         //verif champs vide
         if((newValue?.isEmpty)! || (confirm?.isEmpty)!){
-            displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
+            displayMessage(Mytitle: "Attention", userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d' inscription
-        let baseUrl = URL(string: self.modifURL)!
-        /*
-         let query: [String : String] = [
-         "newValue" : newValue!,
-         "confirm" : confirm!
-         ]*/
-        let request = URLRequest(url: baseUrl)
+        let baseUrl = URL(string: self.modifURL+"/"+confirm!)! // en param token field et value
+        var request = URLRequest(url: baseUrl)
+        request.httpMethod = "PUT"
         let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
             if let jsonData = String(data: data!, encoding: .utf8) {
                 print(jsonData)
+                DispatchQueue.main.async {
+                    if(jsonData == "200"){
+                        self.displayMessage(Mytitle: "Félicitations", userMessage: "Vous avez changer votre profil");
+                        return;
+                    }
             }
-            //si la valeur existe deja
+        }
+        //si la valeur existe deja
         })
         session.resume()
     }
     
     //message info
-    func displayMessage(userMessage: String)
+    func displayMessage(Mytitle: String, userMessage: String)
     {
-        let myAlert = UIAlertController(title: "Attention", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        let myAlert = UIAlertController(title: Mytitle, message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
         let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);

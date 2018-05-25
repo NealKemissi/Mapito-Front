@@ -36,7 +36,9 @@ class LoginController : UIViewController {
              userMdp!
              ]
             //let url = baseUrl.withQueries(query)!
-            let url = baseUrl //url en dur
+            var url = URLRequest(url: baseUrl)
+            url.httpMethod = "PUT"
+            //let url = baseUrl //url en dur
             let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let jsonData = String(data: data!, encoding: .utf8) {
                     print(baseUrl)
