@@ -31,7 +31,7 @@ class LoginController : UIViewController {
             }
             //Si les champs ne sont pas vide, alors appel methode d'authentification
             let baseUrl = URL(string: self.loginURL+userEmail!+"/"+userMdp!)!
-             let query: [String] = [
+             let _: [String] = [
              userEmail!,
              userMdp!
              ]
