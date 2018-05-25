@@ -47,7 +47,7 @@
         <scene sceneID="22h-Ds-eJi">
             <objects>
                 <navigationController title="NavigationProfile" id="DeY-Qq-dSu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="r3O-kF-r4i"/>
+                    <tabBarItem key="tabBarItem" image="001-man-user" id="r3O-kF-r4i"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ag1-ox-mze">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -783,7 +783,7 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="http://0aa64620.ngrok.io/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="http://c6f53ee2.ngrok.io/api/users/new/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="GrH-6e-Kj6" id="gww-l9-Hzb"/>
@@ -814,7 +814,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938.39999999999998" y="-0.44977511244377816"/>
+            <point key="canvasLocation" x="1047" y="0.0"/>
         </scene>
         <!--Main Controller-->
         <scene sceneID="SOx-tf-7R9">

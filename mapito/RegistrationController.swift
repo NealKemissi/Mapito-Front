@@ -38,34 +38,44 @@ class RegistrationController : UIViewController {
         
         //verif champs vide
         if((userNom?.isEmpty)! || (userPrenom?.isEmpty)! || (userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
-            displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
+            displayMessage(Mytitle: "Attention", userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d' inscription
-        let baseUrl = URL(string: self.registerURL)!
-        
+        let baseUrl = URL(string: self.registerURL+userEmail!+"/"+userMdp!+"/"+userNom!+"/"+userPrenom!)!
          let query: [String : String] = [
-            "mail" : userEmail!,
-            "password" : userMdp!,
             "nom" : userNom!,
             "prenom" : userPrenom!,
+            "mail" : userEmail!,
+            "password" : userMdp!
          
          ]
-        //let request = URLRequest(url: baseUrl)
-        let request = baseUrl.withQueries(query)
-        let session = URLSession.shared.dataTask(with: request!) { (data, response, error) in
-            if let jsonData = String(data: data!, encoding: .utf8) {
-                print(jsonData)
+        var request = URLRequest(url: baseUrl)
+        //let request = baseUrl.withQueries(query)
+        request.httpMethod = "POST"
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data, error == nil else {
+                print("error=\(error)")
+                return
             }
+            let responseString = String(data : data, encoding: .utf8)
+            if(responseString == "Optional(\"500\")"){
+                self.displayMessage(Mytitle: "Attention", userMessage: "Cet email existe deja, Veuillez recommencer");
+                return;
+            } else {
+                self.displayMessage(Mytitle: "Félicitations", userMessage: "Bienvenue sur Mapito, vous pouvez maintenant vous connecter");
+                return;
+            }
+            print("reponse = \(responseString)")
             //si l'email existe deja
         }
         session.resume()
     }
     
     //message info
-    func displayMessage(userMessage: String)
+    func displayMessage(Mytitle: String ,userMessage: String)
     {
-        let myAlert = UIAlertController(title: "Attention", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        let myAlert = UIAlertController(title: Mytitle, message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
         let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);
