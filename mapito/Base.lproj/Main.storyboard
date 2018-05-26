@@ -47,7 +47,7 @@
         <scene sceneID="22h-Ds-eJi">
             <objects>
                 <navigationController title="NavigationProfile" id="DeY-Qq-dSu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" image="001-man-user" id="r3O-kF-r4i"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="r3O-kF-r4i"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ag1-ox-mze">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

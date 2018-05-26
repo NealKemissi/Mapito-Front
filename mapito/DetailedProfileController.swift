@@ -17,22 +17,29 @@ class DetailedProfileController: UIViewController {
     //path de la methode modification attributs
     var myValue : String?
     @IBInspectable var modifURL: String!
-    @IBInspectable var userFieldURL: String!
-    //var Mytoken = UserDefaults.standard.get(tokenRetrieved, forKey: "token");
+    @IBInspectable var userFieldURL: String! //recuperation de l'attribut du user (ex: recup mail ou recup prenom etc..)
+    //var Mytoken : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //affichage de la valeur actuelle
-        let baseUrl = URL(string: self.userFieldURL!)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
-        let request = URLRequest(url: baseUrl)
-        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
-            if let myData = String(data: data!, encoding: .utf8) {
-                print(myData)
-                self.myValue = myData
-            }
-        })
-        session.resume()
+        if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
+            //on met dans la variable myToken le token enregistrer dans l'appli
+            let Mytoken = tokenIsValid
+            let baseUrl = URL(string: self.userFieldURL!+"/"+Mytoken)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
+            let request = URLRequest(url: baseUrl)
+            let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+                if let myData = String(data: data!, encoding: .utf8) {
+                    print(myData)
+                    self.myValue = myData
+                    print("Mytoken: "+Mytoken)
+                }
+            })
+            session.resume()
+        }else {
+            print("aucun token");
+        }
     }
     
     override func didReceiveMemoryWarning() {
