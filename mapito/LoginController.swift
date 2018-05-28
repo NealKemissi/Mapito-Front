@@ -30,7 +30,8 @@ class LoginController : UIViewController {
                 return;
             }
             //Si les champs ne sont pas vide, alors appel methode d'authentification
-            let baseUrl = URL(string: self.loginURL+userEmail!+"/"+userMdp!)!
+            let stringUrl = self.loginURL+userEmail!+"/"+userMdp!
+            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! //pour ne pas avoir de probleme d'encodage
              let _: [String] = [
              userEmail!,
              userMdp!

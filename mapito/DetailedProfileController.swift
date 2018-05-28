@@ -27,7 +27,8 @@ class DetailedProfileController: UIViewController {
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             let Mytoken = tokenIsValid
-            let baseUrl = URL(string: self.userFieldURL!+"/"+Mytoken)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
+            let stringUrl = self.userFieldURL!+"/"+Mytoken
+            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
             let request = URLRequest(url: baseUrl)
             let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
                 if let myData = String(data: data!, encoding: .utf8) {
@@ -58,7 +59,8 @@ class DetailedProfileController: UIViewController {
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d' inscription
-        let baseUrl = URL(string: self.modifURL+"/"+confirm!)! // en param token field et value
+        let stringUrl = self.modifURL+"/"+confirm!
+        let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
         var request = URLRequest(url: baseUrl)
         request.httpMethod = "PUT"
         let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in

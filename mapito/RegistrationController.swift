@@ -42,7 +42,8 @@ class RegistrationController : UIViewController {
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d' inscription
-        let baseUrl = URL(string: self.registerURL+userEmail!+"/"+userMdp!+"/"+userNom!+"/"+userPrenom!)
+        let stringUrl = self.registerURL+userEmail!+"/"+userMdp!+"/"+userNom!+"/"+userPrenom!
+        let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
          let query: [String : String] = [
             "nom" : userNom!,
             "prenom" : userPrenom!,
