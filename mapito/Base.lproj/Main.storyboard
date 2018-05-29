@@ -367,10 +367,10 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7o-gm-5vg">
                                                 <rect key="frame" x="8" y="0.0" width="41" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.0" green="0.70980392156862748" blue="0.56862745098039214" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NK8-8Y-PWc">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NK8-8Y-PWc" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
                                                 <rect key="frame" x="8" y="23.5" width="292" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -392,10 +392,12 @@
                                     <constraint firstAttribute="width" constant="300" id="UOV-UW-CDQ"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-u3-xsM" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="141" y="243" width="92" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-u3-xsM" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
+                                <rect key="frame" x="37" y="226" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="i0j-1v-lIh"/>
+                                </constraints>
                                 <state key="normal" title="Ajouter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -406,8 +408,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QhD-u3-xsM" firstAttribute="trailing" secondItem="TZr-Nf-WCn" secondAttribute="trailing" id="eLW-hZ-rDF"/>
+                            <constraint firstItem="QhD-u3-xsM" firstAttribute="top" secondItem="TZr-Nf-WCn" secondAttribute="bottom" constant="80" id="f82-Ae-Xrb"/>
                             <constraint firstItem="TZr-Nf-WCn" firstAttribute="centerX" secondItem="H6f-Hh-abl" secondAttribute="centerX" id="fy5-Hn-DNk"/>
                             <constraint firstItem="TZr-Nf-WCn" firstAttribute="top" secondItem="7WU-gS-bSL" secondAttribute="bottom" constant="66" id="nOA-nG-mYQ"/>
+                            <constraint firstItem="QhD-u3-xsM" firstAttribute="leading" secondItem="TZr-Nf-WCn" secondAttribute="leading" id="viX-hx-ITr"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ajouter amis" id="843-xV-bfT"/>
