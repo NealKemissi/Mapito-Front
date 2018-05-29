@@ -34,7 +34,8 @@ class ForgotPasswordController: UIViewController {
             return;
         }
         //Si email renseigné alors appel de la methode reset password du mot de passe
-        let baseUrl = URL(string: self.resetPasswordURL)!
+        let stringUrl = self.resetPasswordURL+userEmail!
+        let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         /*
          let query: [String : String] = [
          "mail" : userEmail!
