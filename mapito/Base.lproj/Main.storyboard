@@ -49,7 +49,7 @@
                 <navigationController title="NavigationProfile" id="DeY-Qq-dSu" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="r3O-kF-r4i"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ag1-ox-mze">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -247,7 +247,7 @@
                 <navigationController title="NavigationFriends" id="XYk-aa-dwc" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Friends" image="002-add-friend" id="mid-TX-fSb"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GHa-2A-isv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -355,7 +355,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NK8-8Y-PWc">
-                                                <rect key="frame" x="8" y="23.5" width="232" height="30"/>
+                                                <rect key="frame" x="8" y="24" width="232" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
