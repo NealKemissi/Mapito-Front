@@ -227,12 +227,13 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="userFieldURL" value="http://c6f53ee2.ngrok.io/api/users/getField/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="http://965d97c9.ngrok.io/api/users/update/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="userFieldURL" value="http://965d97c9.ngrok.io/api/users/getField/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="confirmNewValueTextField" destination="lZ4-Tg-Mkk" id="Dc1-m4-Qzc"/>
                         <outlet property="newValueTextField" destination="qNM-Yv-HfT" id="Ra9-YN-Vcg"/>
+                        <outlet property="valueField" destination="0G3-5K-hcE" id="Lz2-5C-esQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzd-Mx-rUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -321,6 +322,9 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Friends" image="002-add-friend" id="cPa-gy-q4n"/>
                     <navigationItem key="navigationItem" title="Amis" id="ObJ-FN-YIn"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="http://965d97c9.ngrok.io/api/users/getFriends/"/>
+                    </userDefinedRuntimeAttributes>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -339,13 +343,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TZr-Nf-WCn">
-                                <rect key="frame" x="67" y="166" width="240" height="140"/>
+                                <rect key="frame" x="67" y="166" width="240" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCA-WC-J6w">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7o-gm-5vg">
-                                                <rect key="frame" x="8" y="0.0" width="36.5" height="20.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7o-gm-5vg">
+                                                <rect key="frame" x="8" y="0.0" width="45" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -365,32 +369,6 @@
                                             <constraint firstItem="F7o-gm-5vg" firstAttribute="leading" secondItem="NK8-8Y-PWc" secondAttribute="leading" id="OPV-cY-NGJ"/>
                                             <constraint firstAttribute="height" constant="60" id="U7A-qK-uNH"/>
                                             <constraint firstItem="NK8-8Y-PWc" firstAttribute="top" secondItem="F7o-gm-5vg" secondAttribute="bottom" constant="3.5" id="sSU-lI-mJT"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gs-TV-ESO">
-                                        <rect key="frame" x="0.0" y="80" width="240" height="60"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prénom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Xz-jf-dWW">
-                                                <rect key="frame" x="8" y="0.0" width="59.5" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PKt-qe-2iN">
-                                                <rect key="frame" x="8" y="23.5" width="232" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="PKt-qe-2iN" firstAttribute="top" secondItem="8Xz-jf-dWW" secondAttribute="bottom" constant="3.5" id="AA6-U4-2WA"/>
-                                            <constraint firstItem="8Xz-jf-dWW" firstAttribute="top" secondItem="7gs-TV-ESO" secondAttribute="top" id="M56-Di-RkV"/>
-                                            <constraint firstAttribute="height" constant="60" id="Xxc-gs-bZm"/>
-                                            <constraint firstItem="8Xz-jf-dWW" firstAttribute="leading" secondItem="PKt-qe-2iN" secondAttribute="leading" id="bNv-tB-lLq"/>
-                                            <constraint firstAttribute="trailing" secondItem="PKt-qe-2iN" secondAttribute="trailing" id="c0s-54-Sl6"/>
-                                            <constraint firstItem="8Xz-jf-dWW" firstAttribute="leading" secondItem="7gs-TV-ESO" secondAttribute="leadingMargin" id="zjv-Bl-bdo"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -418,16 +396,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ajouter amis" id="843-xV-bfT"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://633dd7bf.ngrok.io/api/users/addFriend"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="NomFriendTextField" destination="NK8-8Y-PWc" id="2b6-lj-9Oq"/>
-                        <outlet property="PrenomFriendTextField" destination="PKt-qe-2iN" id="8qa-BR-Ew1"/>
+                        <outlet property="EmailFriendTextField" destination="NK8-8Y-PWc" id="mvb-LR-ebM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcR-zJ-GBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3518" y="757"/>
+            <point key="canvasLocation" x="3517.5999999999999" y="756.97151424287858"/>
         </scene>
         <!--Mot de passe oublié-->
         <scene sceneID="2K1-2k-9MY">
@@ -632,7 +609,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fvi-KP-C6Q"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="loginURL" value="http://c6f53ee2.ngrok.io/api/users/authenticate/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="loginURL" value="http://965d97c9.ngrok.io/api/users/authenticate/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="HoP-iv-GvK" id="RL1-Lg-Bhj"/>
@@ -784,7 +761,7 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="http://c6f53ee2.ngrok.io/api/users/new/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="http://965d97c9.ngrok.io/api/users/new/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="GrH-6e-Kj6" id="gww-l9-Hzb"/>

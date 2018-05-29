@@ -11,10 +11,30 @@ import UIKit
 class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var amis = ["Arthur","Héloise","Neal","Robin"]
+    @IBInspectable var myFriendsURL : String!
+    var Mytoken : String = "test"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
+            //on met dans la variable myToken le token enregistrer dans l'appli
+            self.Mytoken = tokenIsValid
+            let stringUrl = self.myFriendsURL!+"/"+Mytoken
+            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
+            let request = URLRequest(url: baseUrl)
+            let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+                if let myData = String(data: data!, encoding: .utf8) {
+                    print(myData)
+                    //self.myValue = myData //recup liste friends
+                    print("Mytoken: "+self.Mytoken)
+                }
+            })
+            session.resume()
+        }else {
+            print("aucun token");
+        }
+
     }
 
     override func didReceiveMemoryWarning() {

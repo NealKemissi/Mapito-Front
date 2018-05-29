@@ -59,6 +59,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let deCV = mainStory.instantiateViewController(withIdentifier: "DetailedProfileController") as! DetailedProfileController
+        deCV.field = "le test du field"
         self.navigationController?.pushViewController(deCV, animated: true)
         //self.present(deCV, animated: true);
     }
