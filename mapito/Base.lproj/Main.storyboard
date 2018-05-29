@@ -271,7 +271,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0nx-2X-pFN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="529"/>
+                                <rect key="frame" x="0.0" y="109" width="375" height="509"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCell" id="LGw-Dc-pyh" customClass="TableCell" customModule="mapito" customModuleProvider="target">
@@ -300,23 +300,36 @@
                                     <outlet property="delegate" destination="8rJ-Kc-sve" id="Xd0-mz-MbH"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exT-D4-aKa">
-                                <rect key="frame" x="139" y="565" width="96" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Ajouter Amis">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="magnifying-glass" translatesAutoresizingMaskIntoConstraints="NO" id="BUu-93-60d">
+                                <rect key="frame" x="21" y="114" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="D3m-nS-W8e"/>
+                                    <constraint firstAttribute="width" constant="20" id="RBv-ax-a8q"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Ajouter un ami" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Ft-XP-EeW" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                <rect key="frame" x="59" y="109" width="300" height="30"/>
+                                <accessibility key="accessibilityConfiguration" label="test"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="HQW-Tr-z5v"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <segue destination="kJS-wT-1MX" kind="show" id="5x2-ue-4eQ"/>
+                                    <action selector="editchange:forEvent:" destination="8rJ-Kc-sve" eventType="editingChanged" id="zu7-Rk-9Qx"/>
                                 </connections>
-                            </button>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="0nx-2X-pFN" secondAttribute="bottom" constant="89" id="5Dm-XF-gLz"/>
-                            <constraint firstItem="0nx-2X-pFN" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" id="T98-Ao-uYN"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="0nx-2X-pFN" secondAttribute="bottom" id="5Dm-XF-gLz"/>
+                            <constraint firstItem="6Ft-XP-EeW" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="45" id="Ffa-DX-NM1"/>
+                            <constraint firstItem="6Ft-XP-EeW" firstAttribute="leading" secondItem="BUu-93-60d" secondAttribute="trailing" constant="18" id="QIF-Iv-7HM"/>
+                            <constraint firstItem="0nx-2X-pFN" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="top" constant="109" id="T98-Ao-uYN"/>
+                            <constraint firstItem="0nx-2X-pFN" firstAttribute="top" secondItem="BUu-93-60d" secondAttribute="bottom" constant="-25" id="YZ2-dE-3CF"/>
                             <constraint firstItem="0nx-2X-pFN" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="bEu-s4-Rug"/>
+                            <constraint firstItem="BUu-93-60d" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="5" id="fXA-tI-nti"/>
                             <constraint firstAttribute="trailing" secondItem="0nx-2X-pFN" secondAttribute="trailing" id="jb6-jf-oAj"/>
                         </constraints>
                     </view>
@@ -325,15 +338,18 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="http://965d97c9.ngrok.io/api/users/getFriends/"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="findFriendTextField" destination="6Ft-XP-EeW" id="65X-eB-dy2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="757"/>
+            <point key="canvasLocation" x="2752.8000000000002" y="756.97151424287858"/>
         </scene>
         <!--Ajouter amis-->
         <scene sceneID="ydT-ta-Lg4">
             <objects>
-                <viewController id="kJS-wT-1MX" customClass="NewFriendController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewFriendController" id="kJS-wT-1MX" customClass="NewFriendController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7WU-gS-bSL"/>
                         <viewControllerLayoutGuide type="bottom" id="9ad-Hw-ULP"/>
@@ -343,19 +359,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="TZr-Nf-WCn">
-                                <rect key="frame" x="67" y="166" width="240" height="60"/>
+                                <rect key="frame" x="37" y="86" width="300" height="60"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCA-WC-J6w">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7o-gm-5vg">
-                                                <rect key="frame" x="8" y="0.0" width="45" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7o-gm-5vg">
+                                                <rect key="frame" x="8" y="0.0" width="41" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NK8-8Y-PWc">
-                                                <rect key="frame" x="8" y="24" width="232" height="30"/>
+                                                <rect key="frame" x="8" y="23.5" width="292" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -373,11 +389,11 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="UOV-UW-CDQ"/>
+                                    <constraint firstAttribute="width" constant="300" id="UOV-UW-CDQ"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-u3-xsM">
-                                <rect key="frame" x="141" y="318" width="92" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QhD-u3-xsM" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
+                                <rect key="frame" x="141" y="243" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Ajouter">
@@ -391,15 +407,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="TZr-Nf-WCn" firstAttribute="centerX" secondItem="H6f-Hh-abl" secondAttribute="centerX" id="fy5-Hn-DNk"/>
-                            <constraint firstItem="TZr-Nf-WCn" firstAttribute="top" secondItem="7WU-gS-bSL" secondAttribute="bottom" constant="102" id="nOA-nG-mYQ"/>
+                            <constraint firstItem="TZr-Nf-WCn" firstAttribute="top" secondItem="7WU-gS-bSL" secondAttribute="bottom" constant="66" id="nOA-nG-mYQ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Ajouter amis" id="843-xV-bfT"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://633dd7bf.ngrok.io/api/users/addFriend"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://965d97c9.ngrok.io/api/users/addFriend"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="EmailFriendTextField" destination="NK8-8Y-PWc" id="mvb-LR-ebM"/>
+                        <outlet property="friendResearchTextField" destination="NK8-8Y-PWc" id="hcV-7b-Yaw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcR-zJ-GBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -836,5 +853,6 @@
         <image name="002-add-friend" width="32" height="32"/>
         <image name="003-placeholder-on-map-paper-in-perspective" width="32" height="32"/>
         <image name="logo_mapito" width="317" height="240"/>
+        <image name="magnifying-glass" width="32" height="32"/>
     </resources>
 </document>

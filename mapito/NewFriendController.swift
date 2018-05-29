@@ -15,10 +15,15 @@ class NewFriendController: UIViewController {
     //path de la methode modification ajout amis
     @IBInspectable var addFriendURL: String!
     var Mytoken : String = "test"
+    var friendResearchValue = ""
+    @IBOutlet weak var friendResearchTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.friendResearchTextField.text = self.friendResearchValue
+        self.friendResearchTextField.becomeFirstResponder();
+        
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid

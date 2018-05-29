@@ -16,6 +16,15 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     var Mytoken : String = "test"
     var demandes = ["Florent", "Edouard"]
 
+    @IBOutlet weak var findFriendTextField: MapitoTextField!
+    
+    @IBAction func editchange(_ sender: MapitoTextField, forEvent event: UIEvent) {
+        let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let deFC = mainStory.instantiateViewController(withIdentifier: "NewFriendController") as! NewFriendController
+        deFC.friendResearchValue = self.findFriendTextField.text!
+        self.navigationController?.pushViewController(deFC, animated: true)
+        findFriendTextField.text = ""
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -58,9 +58,9 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     //une fois cliquer sur un label on est redirigé vers la page DetailedProfileController
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let deCV = mainStory.instantiateViewController(withIdentifier: "DetailedProfileController") as! DetailedProfileController
-        deCV.field = "le test du field"
-        self.navigationController?.pushViewController(deCV, animated: true)
+        let dePC = mainStory.instantiateViewController(withIdentifier: "DetailedProfileController") as! DetailedProfileController
+        dePC.field = "le test du field"
+        self.navigationController?.pushViewController(dePC, animated: true)
         //self.present(deCV, animated: true);
     }
     
