@@ -27,7 +27,10 @@ class User {
         self.password = password;
         self.friends = friends;
         self.pos = MKUserLocation() ;
-    }*/    
+    }*/
+    
+    init(){
+    }
     
     //A utiliser
     init?(data: Data) {
