@@ -14,6 +14,8 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     var amis = ["Arthur","Héloise","Neal","Robin"]
     @IBInspectable var myFriendsURL : String!
     var Mytoken : String = "test"
+    private var friends : Array<Friend>? // Will be an array of Friend
+    private var user = User()
     var demandes = ["Florent", "Edouard"]
 
     
@@ -23,17 +25,17 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid
-            let stringUrl = self.myFriendsURL!+"/"+Mytoken
-            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
-            let request = URLRequest(url: baseUrl)
-            let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
-                if let myData = String(data: data!, encoding: .utf8) {
-                    print(myData)
-                    //self.myValue = myData //recup liste friends
-                    print("Mytoken: "+self.Mytoken)
+            print("Mytoken: "+self.Mytoken)
+            let stringUrl = self.myFriendsURL!+Mytoken
+            //recup liste friends
+            self.friends = self.user.getFriends(url: stringUrl, closure: {
+                for friend in self.friends! {
+                //on veut juste les prenom
+                self.amis.append(friend.prenom)
                 }
             })
-            session.resume()
+            print("mes amis: ")
+            print(self.amis)
         }else {
             print("aucun token");
         }

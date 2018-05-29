@@ -12,14 +12,16 @@ import MapKit
 
 class Friend: CustomStringConvertible {
     
-    var id : Int;
+    var mail : String;
+    var prenom: String;
     var pos : CLLocationCoordinate2D;
     var lastpos : CLLocationCoordinate2D?;
     
-    public var description: String { return "id: \(id), pos: \(pos)" }
+    public var description: String { return "mail: \(mail), prenom: \(prenom), pos: \(pos)" }
     
-    init(id: Int, latitude: Double, longitude: Double){
-        self.id = id
+    init(mail: String, prenom: String, latitude: Double, longitude: Double){
+        self.mail = mail
+        self.prenom = prenom
         self.pos = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

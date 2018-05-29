@@ -396,7 +396,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ajouter amis" id="843-xV-bfT"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://633dd7bf.ngrok.io/api/users/addFriend"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://965d97c9.ngrok.io/api/users/addFriend"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="EmailFriendTextField" destination="NK8-8Y-PWc" id="mvb-LR-ebM"/>

@@ -270,6 +270,7 @@
 				TargetAttributes = {
 					D6A941B8207F78D00022FD29 = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 8RZC7DS4Q3;
 						ProvisioningStyle = Automatic;
 					};
 					D6A941CE207F78D10022FD29 = {
@@ -506,6 +507,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8RZC7DS4Q3;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
@@ -518,6 +520,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 8RZC7DS4Q3;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;

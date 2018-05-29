@@ -51,17 +51,17 @@ class User {
         return auth;
     }
     
-    func getFriends(url: String) -> [Friend]{
+    func getFriends(url: String, closure:@escaping ()-> Void) -> [Friend]{
         var friend: Friend?
-        var friends: [Friend]? = []
+        var friends: [Friend] = []
         let dataTemplate = "[" +
             "{\n" +
-            "\"id\":1,\n" +
+            "\"email\":neal.k@hotmail.fr,\n" +
             "\"latitude\":48.851164,\n" +
             "\"longitude\":2.348156,\n" +
             "},\n" +
             "{\n" +
-            "\"id\":2,\n" +
+            "\"email\":ch@gmail.com,\n" +
             "\"latitude\":48.850164,\n" +
             "\"longitude\":2.349156,\n" +
             "}\n" +
@@ -83,47 +83,45 @@ class User {
          */
         
         //HTTP Request, penser à passer le token en paramètres
-        /*let request = URLRequest(url: URL(string: url)!)
+        let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         let session = URLSession.shared.dataTask(with: request ,completionHandler:
         { (data, response, error) in
-            if let usableData = data{
-                let feed = (try? JSONSerialization.jsonObject(with: jsonData , options: .mutableContainers)) as? NSDictionary,
-                let id = feed.value(forKeyPath: "id") as? String,
-                let latitude = feed.value(forKeyPath: "latitude") as? String ,
-                let longitude = feed.value(forKeyPath: "longitude") as? String {
-                    //Stocker ami dans [Friend]
+            print("data : ")
+            let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+            print(dataStringified ?? "Data could not be printed")
+            if let usableData = data {
+                var mail : String = ""
+                var prenom = ""
+                var latitude : Double = 0
+                var longitude : Double = 0
+                do {
+                    let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
+                    if let friendsJSON = jsonArray as? [[String: AnyObject]] {
+                        for index in 0..<friendsJSON.count {
+                            //let id = parseJSONArray[0]["id"] as? String
+                            mail = (friendsJSON[index]["mail"] as? String)!
+                            prenom = (friendsJSON[index]["prenom"] as? String)!
+                            latitude = (friendsJSON[index]["latitude"] as? Double)!
+                            longitude = (friendsJSON[index]["longitude"] as? Double)!
+                            friend = Friend(mail: mail, prenom: prenom, latitude: latitude, longitude: longitude)
+//                            print(mail)
+//                            print(prenom)
+//                            print(latitude)
+//                            print(longitude)
+//                            print("friend")
+//                            print(friend!)
+                            friends.append(friend!)
+                        }
+                    }
+                    closure()
+                } catch {
+                    print("JSON serialisation failed")
                 }
             }
         })
-        session.resume()*/
-        print("data : ")
-        let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
-        print(dataStringified ?? "Data could not be printed")
-        if let usableData = data {
-            var id : Int = 0
-            var latitude : Double = 0
-            var longitude : Double = 0
-            do {
-                let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
-                if let friendsJSON = jsonArray as? [[String: AnyObject]] {
-                    for index in 0..<friendsJSON.count {
-                        //let id = parseJSONArray[0]["id"] as? String
-                        id = (friendsJSON[index]["id"] as? Int)!
-                        latitude = (friendsJSON[index]["latitude"] as? Double)!
-                        longitude = (friendsJSON[index]["longitude"] as? Double)!
-                        friend = Friend(id: id, latitude: latitude, longitude: longitude)
-                        print(id)
-                        print(latitude)
-                        print(longitude)
-                        print("friend")
-                        print(friend!)
-                        friends?.append(friend!)
-                    }
-                }
-            } catch {
-                print("JSON serialisation failed")
-            }
-        }        
-        return friends!
+        session.resume()
+        
+        return friends
+        
     }
 }

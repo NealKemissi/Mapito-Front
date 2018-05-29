@@ -18,6 +18,7 @@ class MapController : UIViewController, MKMapViewDelegate {
     var lastPin: Pin?
     private var friends : Array<Friend>? // Will be an array of Friend
     private var user = User()
+    var Mytoken : String = "test"
     
     override func viewDidLoad() {
         updateFriendsPosition()
@@ -25,6 +26,13 @@ class MapController : UIViewController, MKMapViewDelegate {
         super.viewDidLoad()
         mapView.setUserTrackingMode(.follow, animated: true)
         // Do any additional setup after loading the view, typically from a nib.
+        if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
+            //on met dans la variable myToken le token enregistrer dans l'appli
+            self.Mytoken = tokenIsValid
+            print("Mytoken: "+self.Mytoken)
+        }else {
+            print("aucun token");
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,16 +70,18 @@ class MapController : UIViewController, MKMapViewDelegate {
         
         // Get friends of user -> call api/friends
         print("---test recupération friends---")
-        friends = user.getFriends(url: "poet")
-        for friend in friends! {
-            if (friend.lastpos != nil) {
-                let lastPin = Pin(coordinate: friend.lastpos!, title: "Pin", subtitle: "Best pin ever")
-                mapView.removeAnnotation(lastPin)
-            }
-            let coordinate = friend.pos
-            let pin = Pin(coordinate: coordinate, title: "Pin", subtitle: "Best pin ever")
-            mapView.addAnnotation(pin)
-        }
+//        friends = user.getFriends(url: "http://965d97c9.ngrok.io/api/users/getFriends/"+self.Mytoken)
+//        if(friends?.isEmpty==false){
+//            for friend in friends! {
+//                if (friend.lastpos != nil) {
+//                    let lastPin = Pin(coordinate: friend.lastpos!, title: "Pin", subtitle: "Best pin ever")
+//                    mapView.removeAnnotation(lastPin)
+//                }
+//                let coordinate = friend.pos
+//                let pin = Pin(coordinate: coordinate, title: "Pin", subtitle: "Best pin ever")
+//                mapView.addAnnotation(pin)
+//            }
+//        }
     }
     
     func updateUserPos(){
