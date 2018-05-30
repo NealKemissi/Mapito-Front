@@ -10,14 +10,16 @@ import UIKit
 
 class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var table: UITableView!
     // To be retrieved from back
-    var amis = ["Arthur","Héloise","Neal","Robin", "toto"]
+    var amis = ["Arthur","Héloise","Neal","Robin", "Toto"]
     @IBInspectable var myFriendsURL : String!
     var Mytoken : String = "test"
-    private var friends : Array<Friend>? // Will be an array of Friend
+    private var friends : [Friend] = [] // Will be an array of Friend
     private var user = User()
     var demandes = ["Florent", "Edouard"]
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
+    //var items = [["Florent", "Edouard"], ["Arthur","Héloise","Neal","Robin", "Toto"]]
     
     @IBOutlet weak var findFriendTextField: MapitoTextField!
     
@@ -40,18 +42,21 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             //recup liste friends
             self.user.getFriends(url: stringUrl, callback: { (response) in
                 for friend in response {
-                    //on veut juste les prenom
-                    print(friend.prenom)
                     self.amis.append(friend.prenom)
-                    print(self.amis)
                 }
+                self.friends = response
+                print(self.amis)
+                print("test liste friends")
+                print(self.friends)
+                self.table.reloadData()
             })
             print("mes amis: ")
             print(self.amis)
+            //print("test liste friends")
+            //print(self.friends)
         }else {
             print("aucun token");
         }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,12 +80,12 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    //nb de labels
+    //nb de labels ( section correspond au num de la section 0=demandes amis et 1=amis)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 0){
             return demandes.count
         } else if(section == 1){
-            return amis.count
+            return friends.count
         } else {
             return 0
         }
@@ -90,15 +95,14 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
         
-        if(indexPath.row == 0){
+        if(indexPath.section == 0){
             cell.textLabel?.text = demandes[indexPath.row]
-        } else if(indexPath.row == 1){
+        } else if(indexPath.section == 1){
+            cell.textLabel?.text = friends[indexPath.row].prenom
+        } else if(indexPath.row>1){
             cell.textLabel?.text = amis[indexPath.row]
-        } else {
-            cell.textLabel?.text = "else"
         }
-        
-        
+        //cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
         return cell
     }
 }
