@@ -44,7 +44,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ok9-9I-nHH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="-758"/>
+            <point key="canvasLocation" x="1974" y="-886"/>
         </scene>
         <!--NavigationProfile-->
         <scene sceneID="22h-Ds-eJi">
@@ -61,7 +61,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oDL-JI-jXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="0.0"/>
+            <point key="canvasLocation" x="1974" y="-209"/>
         </scene>
         <!--Profil-->
         <scene sceneID="hNz-n2-bh7">
@@ -130,7 +130,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="0.0"/>
+            <point key="canvasLocation" x="2753" y="-209"/>
         </scene>
         <!--Detailed Profile Controller-->
         <scene sceneID="isI-RS-jNU">
@@ -242,7 +242,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzd-Mx-rUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationItem title="Modifier profil" id="K2G-L0-iJ3"/>
             </objects>
-            <point key="canvasLocation" x="3518" y="0.0"/>
+            <point key="canvasLocation" x="3518" y="-209"/>
         </scene>
         <!--NavigationFriends-->
         <scene sceneID="wMW-21-Klk">
@@ -259,7 +259,62 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OaX-rN-nto" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1974" y="757"/>
+            <point key="canvasLocation" x="1974" y="461"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="10k-pY-ytv">
+            <objects>
+                <viewController id="fcv-Mm-HnA" customClass="NotificationsController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Jf-hW-5fM"/>
+                        <viewControllerLayoutGuide type="bottom" id="fCQ-QS-6yW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dxR-PM-eDk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BLQ-mR-VKa">
+                                <rect key="frame" x="0.0" y="20" width="375" height="590"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCell" id="g6w-GW-Gs7" customClass="TableCell" customModule="mapito" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g6w-GW-Gs7" id="uaa-V5-q5j">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FB4-l2-evH">
+                                                    <rect key="frame" x="38" y="12" width="42" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="Champs" destination="FB4-l2-evH" id="K1J-qz-REA"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="bGx-vU-uSG"/>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="aP6-XS-suQ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="notification" id="Yer-dT-Ntl"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="MyNotifsURL" value="/api/users/getNotifications/"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z5K-jR-5px" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1973.5999999999999" y="1131.1844077961021"/>
         </scene>
         <!--Amis-->
         <scene sceneID="wg7-f3-ORb">
@@ -343,11 +398,12 @@
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="findFriendTextField" destination="6Ft-XP-EeW" id="65X-eB-dy2"/>
+                        <outlet property="table" destination="0nx-2X-pFN" id="WBa-CL-3ab"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2752.8000000000002" y="756.97151424287858"/>
+            <point key="canvasLocation" x="2753" y="460"/>
         </scene>
         <!--Ajouter amis-->
         <scene sceneID="ydT-ta-Lg4">
@@ -429,7 +485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JcR-zJ-GBS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3517.5999999999999" y="756.97151424287858"/>
+            <point key="canvasLocation" x="3518" y="459"/>
         </scene>
         <!--Mot de passe oublié-->
         <scene sceneID="2K1-2k-9MY">
@@ -813,6 +869,7 @@
                         <segue destination="jJ3-Jo-jWj" kind="relationship" relationship="viewControllers" id="SD0-WN-4Z1"/>
                         <segue destination="DeY-Qq-dSu" kind="relationship" relationship="viewControllers" id="OEL-h1-FeT"/>
                         <segue destination="XYk-aa-dwc" kind="relationship" relationship="viewControllers" id="Mup-4P-bMD"/>
+                        <segue destination="fcv-Mm-HnA" kind="relationship" relationship="viewControllers" id="srq-QP-PUh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -862,5 +919,6 @@
         <image name="003-placeholder-on-map-paper-in-perspective" width="32" height="32"/>
         <image name="logo_mapito" width="317" height="240"/>
         <image name="magnifying-glass" width="32" height="32"/>
+        <image name="notification" width="32" height="32"/>
     </resources>
 </document>
