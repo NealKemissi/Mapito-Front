@@ -89,12 +89,12 @@ class User {
         /*
          [
          {
-         "id": 1,
+         "id": ch,
          "latitude": 48.851164,
          "longitude": 2.348156,
          },
          {
-         "id": 2,
+         "id": gen3, poet,
          "latitude": 48.850164,
          "longitude": 2.349156,
          }
@@ -109,31 +109,12 @@ class User {
             let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
             print(dataStringified ?? "Data could not be printed")
             if let usableData = data {
-                var mail : String = ""
-                var prenom = ""
-                var latitude : Double = 0
-                var longitude : Double = 0
                 do {
                     let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
                     if let friendsJSON = jsonArray as? [[String: AnyObject]] {
                         //A tester ci-dessous
-                        //friends = friendsJSON.map { Friend(json: $0) }
-                        //print(friends)
-                        for index in 0..<friendsJSON.count {
-                            mail = (friendsJSON[index]["mail"] as? String)!
-                            prenom = (friendsJSON[index]["prenom"] as? String)!
-                            latitude = (friendsJSON[index]["latitude"] as? Double)!
-                            longitude = (friendsJSON[index]["longitude"] as? Double)!
-                            
-                            friend = Friend(mail: mail, prenom: prenom, latitude: latitude, longitude: longitude)
-//                            print(mail)
-//                            print(prenom)
-//                            print(latitude)
-//                            print(longitude)
-//                            print("friend")
-//                            print(friend!)
-                            friends.append(friend!)
-                        }
+                        friends = friendsJSON.map { Friend(json: $0) }
+                        print(friends)
                     }
                     callback(friends)
                 } catch {

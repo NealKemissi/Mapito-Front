@@ -35,6 +35,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="003-placeholder-on-map-paper-in-perspective" id="BUZ-lg-1PU"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/users/getFriends/"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="MapView" destination="e7y-1g-NhI" id="LEt-TR-kUj"/>
                     </connections>
@@ -489,7 +492,7 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="resetPasswordURL" value="/api/users/test"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="resetPasswordURL" value="/api/users/resetUserMdp/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="jQX-ZF-vEJ" id="D0b-um-kDb"/>

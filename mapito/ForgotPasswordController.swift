@@ -42,14 +42,15 @@ class ForgotPasswordController: UIViewController {
          let query: [String : String] = [
          "mail" : userEmail!
          ]*/
-        let request = URLRequest(url: baseUrl)
+        var request = URLRequest(url: baseUrl)
+        request.httpMethod = "PUT"
         let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
             if let jsonData = String(data: data!, encoding: .utf8) {
                 print(jsonData)
             }
         })
         session.resume()
-        displayMessage(header: "Mot de passe réinitialisé", userMessage: "Vous allez recevoir un email contenant votre nouveaux mot de passe, consultez votre boite mail");
+        displayMessage(header: "Mot de passe réinitialisé", userMessage: "Vous allez recevoir un email contenant votre nouveau mot de passe, consultez votre boîte mail");
         //retour a la page d'accueil (connexion)
        
     }
