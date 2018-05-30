@@ -11,13 +11,14 @@ import UIKit
 class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // To be retrieved from back
-    var amis = ["Arthur","Héloise","Neal","Robin"]
+    var amis = ["Arthur","Héloise","Neal","Robin", "toto"]
     @IBInspectable var myFriendsURL : String!
     var Mytoken : String = "test"
     private var friends : Array<Friend>? // Will be an array of Friend
     private var user = User()
     var demandes = ["Florent", "Edouard"]
-
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
+    
     @IBOutlet weak var findFriendTextField: MapitoTextField!
     
     @IBAction func editchange(_ sender: MapitoTextField, forEvent event: UIEvent) {
@@ -35,13 +36,14 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid
             print("Mytoken: "+self.Mytoken)
-            let stringUrl = self.myFriendsURL!+Mytoken
+            let stringUrl = env+self.myFriendsURL!+Mytoken
             //recup liste friends
             self.user.getFriends(url: stringUrl, callback: { (response) in
                 for friend in response {
                     //on veut juste les prenom
                     print(friend.prenom)
-                    //self.amis.append(friend.prenom)
+                    self.amis.append(friend.prenom)
+                    print(self.amis)
                 }
             })
             print("mes amis: ")

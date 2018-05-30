@@ -17,6 +17,7 @@ class NewFriendController: UIViewController {
     var Mytoken : String = "test"
     var friendResearchValue = ""
     @IBOutlet weak var friendResearchTextField: UITextField!
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +49,7 @@ class NewFriendController: UIViewController {
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode ajouter amis
-        let stringUrl = self.addFriendURL+"/"+self.Mytoken+"/"+emailFriend!
+        let stringUrl = env+self.addFriendURL+"/"+self.Mytoken+"/"+emailFriend!
         let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
         var request = URLRequest(url: baseUrl)
         request.httpMethod = "PUT"

@@ -227,8 +227,8 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="http://965d97c9.ngrok.io/api/users/update/"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="userFieldURL" value="http://965d97c9.ngrok.io/api/users/getField/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="/api/users/update/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="userFieldURL" value="/api/users/getField/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="confirmNewValueTextField" destination="lZ4-Tg-Mkk" id="Dc1-m4-Qzc"/>
@@ -336,7 +336,7 @@
                     <tabBarItem key="tabBarItem" title="Friends" image="002-add-friend" id="cPa-gy-q4n"/>
                     <navigationItem key="navigationItem" title="Amis" id="ObJ-FN-YIn"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="http://965d97c9.ngrok.io/api/users/getFriends/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/users/getFriends/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="findFriendTextField" destination="6Ft-XP-EeW" id="65X-eB-dy2"/>
@@ -417,7 +417,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ajouter amis" id="843-xV-bfT"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="http://965d97c9.ngrok.io/api/users/addFriend"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="/api/users/addFriend"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="EmailFriendTextField" destination="NK8-8Y-PWc" id="mvb-LR-ebM"/>
@@ -489,7 +489,7 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="resetPasswordURL" value="http://633dd7bf.ngrok.io/api/users/test"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="resetPasswordURL" value="/api/users/test"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="jQX-ZF-vEJ" id="D0b-um-kDb"/>
@@ -631,7 +631,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fvi-KP-C6Q"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="loginURL" value="http://965d97c9.ngrok.io/api/users/authenticate/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="loginURL" value="/api/users/authenticate/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="HoP-iv-GvK" id="RL1-Lg-Bhj"/>
@@ -783,7 +783,7 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="http://965d97c9.ngrok.io/api/users/new/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="/api/users/new/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="GrH-6e-Kj6" id="gww-l9-Hzb"/>

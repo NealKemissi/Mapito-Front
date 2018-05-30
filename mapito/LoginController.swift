@@ -16,7 +16,7 @@ class LoginController : UIViewController {
     //path de la methode d'authentification
     @IBInspectable var loginURL: String!
     var Mytoken : String = "test"
-    
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     @IBAction func loginBtnPressed(_ sender: Any) {
         
@@ -30,7 +30,7 @@ class LoginController : UIViewController {
                 return;
             }
             //Si les champs ne sont pas vide, alors appel methode d'authentification
-            let stringUrl = self.loginURL+userEmail!+"/"+userMdp!
+            let stringUrl = env+self.loginURL+userEmail!+"/"+userMdp!
             let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! //pour ne pas avoir de probleme d'encodage
              let _: [String] = [
              userEmail!,

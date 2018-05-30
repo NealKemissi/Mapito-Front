@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class DetailedProfileController: UIViewController {
-    
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     @IBOutlet weak var newValueTextField: UITextField!
     @IBOutlet weak var confirmNewValueTextField: UITextField!
@@ -30,7 +30,7 @@ class DetailedProfileController: UIViewController {
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid
-            let stringUrl = self.userFieldURL!+"/"+Mytoken
+            let stringUrl = env+self.userFieldURL!+"/"+Mytoken
             let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
             let request = URLRequest(url: baseUrl)
             let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
@@ -65,7 +65,7 @@ class DetailedProfileController: UIViewController {
             return;
         } else {
             //Si les champs ne sont pas vide et correspondent, alors appel methode d' inscription
-            let stringUrl = self.modifURL+self.Mytoken+"/prenom/"+confirm! //test avec le nom
+            let stringUrl = env+self.modifURL+self.Mytoken+"/prenom/"+confirm! //test avec le nom
             let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
             var request = URLRequest(url: baseUrl)
             request.httpMethod = "PUT"

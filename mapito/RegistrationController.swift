@@ -19,6 +19,8 @@ class RegistrationController : UIViewController {
     //path de la methode d'inscription
     @IBInspectable var registerURL: String!
     
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -42,7 +44,7 @@ class RegistrationController : UIViewController {
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d' inscription
-        let stringUrl = self.registerURL+userEmail!+"/"+userMdp!+"/"+userNom!+"/"+userPrenom!
+        let stringUrl = env+self.registerURL+userEmail!+"/"+userMdp!+"/"+userNom!+"/"+userPrenom!
         let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
          let query: [String : String] = [
             "nom" : userNom!,

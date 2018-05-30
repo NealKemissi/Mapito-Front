@@ -15,6 +15,8 @@ class ForgotPasswordController: UIViewController {
     //path de la methode reset password
     @IBInspectable var resetPasswordURL: String!
     
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,7 +36,7 @@ class ForgotPasswordController: UIViewController {
             return;
         }
         //Si email renseigné alors appel de la methode reset password du mot de passe
-        let stringUrl = self.resetPasswordURL+userEmail!
+        let stringUrl = env+self.resetPasswordURL+userEmail!
         let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         /*
          let query: [String : String] = [
