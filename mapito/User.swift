@@ -13,11 +13,12 @@ import MapKit
 class User {
     
     
-    var nom : String = "";
-    var prenom : String = "";
-    var mail : String = "";
-    var password : String = "";
-    var friends : [Friend] = [];
+    var nom: String = "";
+    var prenom: String = "";
+    var mail: String = "";
+    var password: String = "";
+    var friends: [Friend] = [];
+    var appNotifications: [AppNotification] = []
     //var pos : MKUserLocation;
     
     /*init(nom: String, prenom: String, mail: String, password: String, friends: [Friend]){
@@ -50,10 +51,6 @@ class User {
     
     func loginWithUsername(username : String, password : String) {
         //Valide le user et notifie root controller
-        NotificationCenter.default.post(
-            name: Notification.Name(rawValue: "loginActionFinished"),
-            object: self,
-            userInfo: nil)
     }
     
     func register(nom: String, prenom: String, pseudo:String, mail: String, password: String) {
@@ -71,21 +68,6 @@ class User {
     }
     
     func getFriends(url: String, callback: @escaping ([Friend])-> ()){
-        var friend: Friend?
-        var friends: [Friend] = []
-        let dataTemplate = "[" +
-            "{\n" +
-            "\"email\":neal.k@hotmail.fr,\n" +
-            "\"latitude\":48.851164,\n" +
-            "\"longitude\":2.348156,\n" +
-            "},\n" +
-            "{\n" +
-            "\"email\":ch@gmail.com,\n" +
-            "\"latitude\":48.850164,\n" +
-            "\"longitude\":2.349156,\n" +
-            "}\n" +
-        "]"
-        let data = dataTemplate.data(using: .utf8)
         /*
          [
          {
@@ -101,7 +83,6 @@ class User {
          ]
          */
         
-        //HTTP Request, penser à passer le token en paramètres
         let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         let session = URLSession.shared.dataTask(with: request ,completionHandler:
         { (data, response, error) in
@@ -112,11 +93,33 @@ class User {
                 do {
                     let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
                     if let friendsJSON = jsonArray as? [[String: AnyObject]] {
-                        //A tester ci-dessous
-                        friends = friendsJSON.map { Friend(json: $0) }
-                        print(friends)
+                        self.friends = friendsJSON.map { Friend(json: $0) }
+                        print(self.friends)
                     }
-                    callback(friends)
+                    callback(self.friends)
+                } catch {
+                    print("JSON serialisation failed")
+                }
+            }
+        })
+        session.resume()
+    }
+    
+    func getAppNotifications(url: String, callback: @escaping ([AppNotification])-> ()){
+        let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        let session = URLSession.shared.dataTask(with: request ,completionHandler:
+        { (data, response, error) in
+            print("data : ")
+            let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+            print(dataStringified ?? "Data could not be printed")
+            if let usableData = data {
+                do {
+                    let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
+                    if let notificationsJSON = jsonArray as? [[String: AnyObject]] {
+                        self.appNotifications = notificationsJSON.map { AppNotification(json: $0) }
+                        print(self.appNotifications)
+                    }
+                    callback(self.appNotifications)
                 } catch {
                     print("JSON serialisation failed")
                 }

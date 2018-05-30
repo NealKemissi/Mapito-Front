@@ -19,4 +19,8 @@ class Pin: NSObject, MKAnnotation {
         self.title = title
         self.subtitle = subtitle
     }
+    
+    init(coordinate: CLLocationCoordinate2D) {
+        self.coordinate = coordinate
+    }
 }

@@ -14,17 +14,18 @@ class Friend: CustomStringConvertible {
     
     var mail : String = ""
     var prenom: String = ""
-    var inTheArea :  Bool = false
+    var inTheArea:  Bool = false
+    //var lastInTheArea: Bool = false
     var pos : CLLocationCoordinate2D = CLLocationCoordinate2D()
     var lastpos : CLLocationCoordinate2D? = CLLocationCoordinate2D()    
     
     public var description: String { return "mail: \(mail), prenom: \(prenom), pos: \(pos)" }
     
-    //A utiliser
     init(json: [String: Any]) {
         self.mail = (json["mail"] as? String)!
         self.prenom = (json["prenom"] as? String)!
         self.inTheArea = (json["inTheArea"] as? Bool)!
+        //self.lastInTheArea = (json["lastInTheArea"] as? Bool)!
         let latitude = (json["latitude"] as? Double)!
         let longitude = (json["longitude"] as? Double)!
         let lastLatitude = (json["lastlatitude"] as? Double)!
@@ -39,7 +40,15 @@ class Friend: CustomStringConvertible {
         self.pos = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    func sendProxNotif(token: String, email: String){
-    
+    func sendProxNotif(url: String){
+        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
+        var request = URLRequest(url: baseUrl)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            if let myData = String(data: data!, encoding: .utf8) {
+                print(myData)
+            }
+        })
+        session.resume()
     }
 }

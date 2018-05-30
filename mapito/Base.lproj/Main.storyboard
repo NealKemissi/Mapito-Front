@@ -37,6 +37,8 @@
                     <tabBarItem key="tabBarItem" title="Map" image="003-placeholder-on-map-paper-in-perspective" id="BUZ-lg-1PU"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/users/getFriends/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="sendProxNotifURL" value="/api/users/sendProxNotif/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="getNotificationsURL" value="/api/users/getNotifications/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="MapView" destination="e7y-1g-NhI" id="LEt-TR-kUj"/>

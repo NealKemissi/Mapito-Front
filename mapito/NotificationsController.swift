@@ -31,4 +31,13 @@ class NotificationsController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // Demander au prof
+    override func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.addObserver(self, selector: Selector(("loadList:")), name: Notification.Name(rawValue: "mapControllerRefresh"), object: nil)
+    }
+    
+    func loadList(notification: Notification){
+        //notification.
+    }
 }

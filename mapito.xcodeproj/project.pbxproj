@@ -26,6 +26,8 @@
 		D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EC207F7E3A0022FD29 /* MapController.swift */; };
 		D6A941EF207FA15D0022FD29 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EE207FA15D0022FD29 /* LoginController.swift */; };
 		D6A941F1207FA1B40022FD29 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941F0207FA1B40022FD29 /* RegistrationController.swift */; };
+		D6ABAEED20BEF2CD007DD0E5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABAEEC20BEF2CD007DD0E5 /* Alert.swift */; };
+		D6ABAEEF20BF0047007DD0E5 /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABAEEE20BF0047007DD0E5 /* AppNotification.swift */; };
 		D6BBAA38208B3D7200FA58FA /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA37208B3D7200FA58FA /* TableCell.swift */; };
 		D6BBAA3C208B460A00FA58FA /* DetailedProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA3B208B460A00FA58FA /* DetailedProfileController.swift */; };
 		D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */; };
@@ -75,6 +77,8 @@
 		D6A941EC207F7E3A0022FD29 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		D6A941EE207FA15D0022FD29 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D6A941F0207FA1B40022FD29 /* RegistrationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		D6ABAEEC20BEF2CD007DD0E5 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		D6ABAEEE20BF0047007DD0E5 /* AppNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
 		D6BBAA37208B3D7200FA58FA /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
 		D6BBAA3B208B460A00FA58FA /* DetailedProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedProfileController.swift; sourceTree = "<group>"; };
 		D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFriendController.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 				D63B3F1320B6D91200E2C104 /* Pin.swift */,
 				D66366F7208B46BB000DCAC3 /* User.swift */,
 				D633CCE620AF0B5B00D92884 /* Friend.swift */,
+				D6ABAEEC20BEF2CD007DD0E5 /* Alert.swift */,
+				D6ABAEEE20BF0047007DD0E5 /* AppNotification.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -344,6 +350,7 @@
 				D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */,
 				D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */,
 				D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */,
+				D6ABAEED20BEF2CD007DD0E5 /* Alert.swift in Sources */,
 				D6A941EF207FA15D0022FD29 /* LoginController.swift in Sources */,
 				D63B3F1220B6B3A300E2C104 /* StoryboardHelper.swift in Sources */,
 				D6BBAA38208B3D7200FA58FA /* TableCell.swift in Sources */,
@@ -354,6 +361,7 @@
 				D687EA0F20BEEC65002AC5D1 /* NotificationsController.swift in Sources */,
 				D6A941F1207FA1B40022FD29 /* RegistrationController.swift in Sources */,
 				D66E3D5220B5A42A009208EA /* MapitoTextField.swift in Sources */,
+				D6ABAEEF20BF0047007DD0E5 /* AppNotification.swift in Sources */,
 				D6A941BF207F78D00022FD29 /* ProfileController.swift in Sources */,
 				D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */,
 				D66366F8208B46BB000DCAC3 /* User.swift in Sources */,

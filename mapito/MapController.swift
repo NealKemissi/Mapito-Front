@@ -13,31 +13,35 @@ import MapKit
 class MapController : UIViewController, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
-    //path de la methode modification ajout amis
-    @IBInspectable var myFriendsURL: String!
     
+    // API paths
+    @IBInspectable var myFriendsURL: String!
+    @IBInspectable var sendProxNotifURL: String!
+    @IBInspectable var getNotificationsURL: String!
+    
+    // API url
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     var timer = Timer()
     var cpt: Double = 0.0
-    var lastPin: Pin?
-    private var friends : Array<Friend>? // Will be an array of Friend
-    private var user = User()
-    var Mytoken : String = "test"
+    let user = User()
+    var Mytoken : String = ""
     
     override func viewDidLoad() {
-        //scheduledTimerWithTimeInterval()
         super.viewDidLoad()
+        
         mapView.setUserTrackingMode(.follow, animated: true)
         
+        //Replace with method, singleton? Or put it in User --> See with teacher
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid
             print("Mytoken: "+self.Mytoken)
         }else {
-            print("aucun token");
+            print("No token found");
         }
         
+        //scheduledTimerWithTimeInterval()
         updateFriendsPosition()
     }
     
@@ -73,15 +77,19 @@ class MapController : UIViewController, MKMapViewDelegate {
             if(friends.isEmpty==false){
                 for friend in friends {
                     if (friend.lastpos != nil) {
-                        let lastPin = Pin(coordinate: friend.lastpos!, title: "Pin", subtitle: "Best pin ever")
+                        let lastPin = Pin(coordinate: friend.lastpos!)
                             self.mapView.removeAnnotation(lastPin)
                     }
-                    if(friend.inTheArea){
-                        friend.sendProxNotif(token: self.Mytoken, email: friend.mail)
+                    if(friend.inTheArea /*&& friend.lastInTheArea == false*/){
+                        let urlSendProxNotif = self.env + self.sendProxNotifURL + self.Mytoken + "/" + friend.mail
+                        let urlGetNotifications = self.env + self.getNotificationsURL + self.Mytoken
+                        friend.sendProxNotif(url: urlSendProxNotif)
+                        self.user.getAppNotifications(url: urlGetNotifications, callback: { (appNotifications) in
+                            print(appNotifications)
+                            //Refresh Notification tab with notifications array
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "mapControllerRefresh"), object: appNotifications)
+                        })
                     }
-                    
-                    print("---friend pos---")
-                    print(friend.pos)
                     let coordinate = friend.pos
                     let pin = Pin(coordinate: coordinate, title: friend.prenom, subtitle: friend.mail)
                     self.mapView.addAnnotation(pin)
