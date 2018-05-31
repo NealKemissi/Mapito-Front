@@ -56,6 +56,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        /*
         print("---locations---")
         print(locations)
         let longitude = locations[0].coordinate.longitude
@@ -67,7 +68,8 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         user.updatePosition(url: url, callback: { (friends) in
             print("---friends---")
             print(friends)
-        }
+
+        }*/
         
     }
     
