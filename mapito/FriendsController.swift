@@ -14,6 +14,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     // To be retrieved from back
     var amis = ["Arthur","Héloise","Neal","Robin", "Toto"]
     @IBInspectable var myFriendsURL : String!
+    @IBInspectable var suppMyFriendsURL : String!
     var Mytoken : String = "test"
     private var friends : [Friend] = [] // Will be an array of Friend
     private var user = User()
@@ -33,6 +34,9 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            }
+    //view will apear pour executer ce code a chaque chargement de la page
+    override func viewWillAppear(_ animated: Bool) {
         // Do any additional setup after loading the view, typically from a nib.
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
@@ -57,6 +61,8 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }else {
             print("aucun token");
         }
+        self.table.reloadData();
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,17 +99,53 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     //initialisation de la tableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
+        
         
         if(indexPath.section == 0){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
             cell.textLabel?.text = demandes[indexPath.row]
+            return cell
+            
         } else if(indexPath.section == 1){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellFriends", for: indexPath) as! TableCellFriends
             cell.textLabel?.text = friends[indexPath.row].prenom
-        } else if(indexPath.row>1){
+            //cell.textLabel?.text = amis[indexPath.row]
+            // on appel la closure dans TableCellFriends
+            cell.displayMessage = { (message) in
+                let myAlert = UIAlertController(title: "Attention", message: message, preferredStyle: UIAlertControllerStyle.alert);
+                //on ajoute les buttonAction oui et non
+                myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
+                    print("test reussie")
+                    let emailFriend = self.friends[indexPath.row].mail
+                    let mySuppUrl = self.env+self.suppMyFriendsURL!+self.Mytoken+"/"+emailFriend
+                    self.user.deleteFriend(url: mySuppUrl, callback: { (response) in
+                        self.table.reloadData()
+                        print("mes nouveaux amis :")
+                        print(self.friends)
+                        self.table.reloadData()
+                    })
+                    
+                }))
+                myAlert.addAction(UIAlertAction(title: "Non", style: .default, handler: { (action: UIAlertAction!) in
+                    print("suppression annulée")
+                }))
+                //on affiche le myAlert
+                self.present(myAlert, animated: true, completion: nil)
+            }
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
             cell.textLabel?.text = amis[indexPath.row]
+            return cell
         }
+        /*else if(indexPath.row>1){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
+            cell.textLabel?.text = amis[indexPath.row]
+            return cell
+        }*/
         //cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
-        return cell
+        
     }
 }
 
