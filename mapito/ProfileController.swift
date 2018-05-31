@@ -8,8 +8,10 @@
 
 import UIKit
 
-class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataSource {    
+    let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
     
+    @IBOutlet weak var profileImageView: UIImageView!
     //deconnexion
     @IBAction func deconnexion(_ sender: UIButton) {        
         let defaults = UserDefaults.standard;
@@ -19,12 +21,14 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
         let navigationAuthentication = storyboard.instantiateViewController(withIdentifier: "NavigationAuthentication") as! UINavigationController;
         self.present(navigationAuthentication, animated: true);
+        locationManager.stopUpdatingLocation()
     }
     //var indexArray = ["Info personnelles","Info Connexion"]
     var champs = ["Modifier Nom","Modifier Prénom","Modifier Email","Modifier Mot de passe"]
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        profileImageView.setRounded()
+        profileImageView.setImageColor(color: UIColor.purple)
     }
 
     override func didReceiveMemoryWarning() {

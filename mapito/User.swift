@@ -116,7 +116,7 @@ class User {
                 do {
                     let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
                     if let notificationsJSON = jsonArray as? [[String: AnyObject]] {
-                        self.appNotifications = notificationsJSON.map { AppNotification(json: $0) }
+                        self.appNotifications = notificationsJSON.map { AppNotification(json: $0)! }
                         print(self.appNotifications)
                     }
                     callback(self.appNotifications)

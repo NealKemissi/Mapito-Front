@@ -39,6 +39,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/users/getFriends/"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="sendProxNotifURL" value="/api/users/sendProxNotif/"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="getNotificationsURL" value="/api/users/getNotifications/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="updatePosURL" value="/api/users/updatePos"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="MapView" destination="e7y-1g-NhI" id="LEt-TR-kUj"/>
@@ -78,7 +79,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ue9-q1-1qA">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="532"/>
+                                <rect key="frame" x="0.0" y="171" width="375" height="376"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCell" id="cnR-eB-MDN" customClass="TableCell" customModule="mapito" customModuleProvider="target">
@@ -118,21 +119,28 @@
                                     <action selector="deconnexion:" destination="9pv-A4-QxB" eventType="touchUpInside" id="mah-a5-Amd"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pinata-profil" translatesAutoresizingMaskIntoConstraints="NO" id="Uw7-Fz-UUG">
+                                <rect key="frame" x="16" y="92" width="91" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ue9-q1-1qA" secondAttribute="trailing" id="5r3-PI-p5Q"/>
                             <constraint firstItem="ue9-q1-1qA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Xtx-xr-LjU"/>
-                            <constraint firstItem="ue9-q1-1qA" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="dOT-0S-LXb"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ue9-q1-1qA" secondAttribute="bottom" constant="86" id="n4d-Mv-IZd"/>
+                            <constraint firstItem="ue9-q1-1qA" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="171" id="dOT-0S-LXb"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ue9-q1-1qA" secondAttribute="bottom" constant="71" id="n4d-Mv-IZd"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="acW-dT-cKf"/>
                     <navigationItem key="navigationItem" title="Profil" id="qp6-Ie-VrI"/>
+                    <connections>
+                        <outlet property="profileImageView" destination="Uw7-Fz-UUG" id="rGr-9Q-UG4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="-209"/>
+            <point key="canvasLocation" x="2752.8000000000002" y="-209.14542728635683"/>
         </scene>
         <!--Detailed Profile Controller-->
         <scene sceneID="isI-RS-jNU">
@@ -922,5 +930,6 @@
         <image name="logo_mapito" width="317" height="240"/>
         <image name="magnifying-glass" width="32" height="32"/>
         <image name="notification" width="32" height="32"/>
+        <image name="pinata-profil" width="512" height="512"/>
     </resources>
 </document>

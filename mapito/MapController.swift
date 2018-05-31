@@ -10,28 +10,33 @@ import Foundation
 import UIKit
 import MapKit
 
-class MapController : UIViewController, MKMapViewDelegate {
-    
+class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     // API paths
     @IBInspectable var myFriendsURL: String!
     @IBInspectable var sendProxNotifURL: String!
     @IBInspectable var getNotificationsURL: String!
+    @IBInspectable var updatePosURL: String!
     
     // API url
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
-    
+
     var timer = Timer()
     var cpt: Double = 0.0
     let user = User()
     var Mytoken : String = ""
+    let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.setUserTrackingMode(.follow, animated: true)
         
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        
+        mapView.setUserTrackingMode(.follow, animated: true)
         //Replace with method, singleton? Or put it in User --> See with teacher
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
@@ -50,14 +55,26 @@ class MapController : UIViewController, MKMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("---locations---")
+        print(locations)
+        let longitude = locations[0].coordinate.longitude
+        let latitude = locations[0].coordinate.latitude
+        print(longitude)
+        print(latitude)
+        let url = env + updatePosURL + self.Mytoken + "/" + longitude + "/" + latitude
+        print(url)
+        user.updatePosition(url: url, callback: { (friends) in
+            print("---friends---")
+            print(friends)
+        }
+        
+    }
+    
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapView.setRegion(region, animated: true)
-    }
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        updateUserPos()
     }
     
     func scheduledTimerWithTimeInterval(){
@@ -80,8 +97,19 @@ class MapController : UIViewController, MKMapViewDelegate {
                         let lastPin = Pin(coordinate: friend.lastpos!)
                             self.mapView.removeAnnotation(lastPin)
                     }
-                    if(friend.inTheArea /*&& friend.lastInTheArea == false*/){
-                        let urlSendProxNotif = self.env + self.sendProxNotifURL + self.Mytoken + "/" + friend.mail
+                    //Faire enum
+                    if(friend.inTheArea && friend.lastInTheArea == false){
+                        let urlSendProxNotif = self.env + self.sendProxNotifURL + self.Mytoken + "/" + friend.mail + "/se trouve près de vous"
+                        let urlGetNotifications = self.env + self.getNotificationsURL + self.Mytoken
+                        friend.sendProxNotif(url: urlSendProxNotif)
+                        self.user.getAppNotifications(url: urlGetNotifications, callback: { (appNotifications) in
+                            print(appNotifications)
+                            //Refresh Notification tab with notifications array
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "mapControllerRefresh"), object: appNotifications)
+                        })
+                    }
+                    if(friend.inTheArea == false && friend.lastInTheArea == true){
+                        let urlSendProxNotif = self.env + self.sendProxNotifURL + self.Mytoken + "/" + friend.mail + "/vient de partir"
                         let urlGetNotifications = self.env + self.getNotificationsURL + self.Mytoken
                         friend.sendProxNotif(url: urlSendProxNotif)
                         self.user.getAppNotifications(url: urlGetNotifications, callback: { (appNotifications) in

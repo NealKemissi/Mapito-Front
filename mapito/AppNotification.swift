@@ -15,7 +15,7 @@ class AppNotification: CustomStringConvertible {
     
     public var description: String { return "title: \(title), description: \(message)" }
     
-    init(json: [String: Any]) {
+    init?(json: [String: Any]) {
         self.title = (json["titre"] as? String)!
         self.message = (json["message"] as? String)!
     }

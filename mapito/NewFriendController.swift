@@ -50,6 +50,8 @@ class NewFriendController: UIViewController {
         }
         //Si les champs ne sont pas vide, alors appel methode ajouter amis
         let stringUrl = env+self.addFriendURL+"/"+self.Mytoken+"/"+emailFriend!
+        print("addFriend")
+        print(stringUrl)
         let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
         var request = URLRequest(url: baseUrl)
         request.httpMethod = "PUT"

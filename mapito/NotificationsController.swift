@@ -15,6 +15,11 @@ class NotificationsController: UIViewController {
     @IBInspectable var MyNotifsURL: String!
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
+    // Triggered when diplayed
+    override func awakeFromNib() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList(notification:)), name: Notification.Name(rawValue: "mapControllerRefresh"), object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,12 +37,9 @@ class NotificationsController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // Demander au prof
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: Selector(("loadList:")), name: Notification.Name(rawValue: "mapControllerRefresh"), object: nil)
-    }
-    
     func loadList(notification: Notification){
         //notification.
+        print("notificationcontroller")
+        print(notification)
     }
 }

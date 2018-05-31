@@ -15,7 +15,7 @@ class Friend: CustomStringConvertible {
     var mail : String = ""
     var prenom: String = ""
     var inTheArea:  Bool = false
-    //var lastInTheArea: Bool = false
+    var lastInTheArea: Bool = false
     var pos : CLLocationCoordinate2D = CLLocationCoordinate2D()
     var lastpos : CLLocationCoordinate2D? = CLLocationCoordinate2D()    
     
@@ -25,7 +25,7 @@ class Friend: CustomStringConvertible {
         self.mail = (json["mail"] as? String)!
         self.prenom = (json["prenom"] as? String)!
         self.inTheArea = (json["inTheArea"] as? Bool)!
-        //self.lastInTheArea = (json["lastInTheArea"] as? Bool)!
+        self.lastInTheArea = (json["lastInTheArea"] as? Bool)!
         let latitude = (json["latitude"] as? Double)!
         let longitude = (json["longitude"] as? Double)!
         let lastLatitude = (json["lastlatitude"] as? Double)!

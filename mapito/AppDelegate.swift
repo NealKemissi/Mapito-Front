@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        locationManager.requestWhenInUseAuthorization()
+        
         
         // Changing the navigation controller's background colour
         UINavigationBar.appearance().barTintColor = UIColor(red: 0, green: 181/255, blue: 145/255, alpha: 1)
