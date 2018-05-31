@@ -218,7 +218,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Valeur Actuelle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G3-5K-hcE">
-                                <rect key="frame" x="124" y="78" width="127" height="21"/>
+                                <rect key="frame" x="124" y="78" width="149" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -244,7 +244,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzd-Mx-rUS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationItem title="Modifier profil" id="K2G-L0-iJ3"/>
             </objects>
-            <point key="canvasLocation" x="3518" y="-209"/>
+            <point key="canvasLocation" x="3517.5999999999999" y="-209.14542728635683"/>
         </scene>
         <!--NavigationFriends-->
         <scene sceneID="wMW-21-Klk">
@@ -354,6 +354,37 @@
                                             <outlet property="Champs" destination="o5h-Le-FfL" id="jGW-nY-2aG"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="TableCellFriends" id="sGK-ZQ-7yj" customClass="TableCellFriends" customModule="mapito" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="66" width="375" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sGK-ZQ-7yj" id="jQc-zB-DS0">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="op3-UL-ARV">
+                                                    <rect key="frame" x="76" y="1" width="42" height="29"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLn-p7-arf">
+                                                    <rect key="frame" x="302" y="0.0" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" backgroundImage="delete">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="friendSuppressionAction:" destination="sGK-ZQ-7yj" eventType="touchDownRepeat" id="4X5-Sg-rNM"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ButtonSuppFriend" destination="aLn-p7-arf" id="Bv2-km-ni7"/>
+                                            <outlet property="ChampsFriends" destination="op3-UL-ARV" id="vrB-y4-okH"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="8rJ-Kc-sve" id="k48-ZR-1HR"/>
@@ -397,6 +428,7 @@
                     <navigationItem key="navigationItem" title="Amis" id="ObJ-FN-YIn"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/users/getFriends/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="suppMyFriendsURL" value="/api/friends/deleteFriend/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="findFriendTextField" destination="6Ft-XP-EeW" id="65X-eB-dy2"/>
@@ -405,7 +437,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2753" y="460"/>
+            <point key="canvasLocation" x="2752.8000000000002" y="459.22038980509751"/>
         </scene>
         <!--Ajouter amis-->
         <scene sceneID="ydT-ta-Lg4">
@@ -919,6 +951,7 @@
         <image name="001-man-user" width="32" height="32"/>
         <image name="002-add-friend" width="32" height="32"/>
         <image name="003-placeholder-on-map-paper-in-perspective" width="32" height="32"/>
+        <image name="delete" width="24" height="24"/>
         <image name="logo_mapito" width="317" height="240"/>
         <image name="magnifying-glass" width="32" height="32"/>
         <image name="notification" width="32" height="32"/>

@@ -15,6 +15,7 @@ class DetailedProfileController: UIViewController {
     @IBOutlet weak var newValueTextField: UITextField!
     @IBOutlet weak var confirmNewValueTextField: UITextField!
     var myValue : String?
+    private var user = User()
     var field : String = ""
     @IBOutlet weak var valueField: UILabel!
     //path de la methode modification attributs
@@ -25,22 +26,19 @@ class DetailedProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         //affichage de la valeur actuelle
-        valueField?.text = field
+        valueField?.text = "Modifier "+field
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid
-            let stringUrl = env+self.userFieldURL!+"/"+Mytoken
-            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // trouver comment faire pour envoyer le field (qui differe selon chaque page)
-            let request = URLRequest(url: baseUrl)
-            let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
-                if let myData = String(data: data!, encoding: .utf8) {
-                    print(myData)
-                    self.myValue = myData
-                    print("Mytoken: "+self.Mytoken)
-                }
+            let stringUrl = env+self.userFieldURL!+Mytoken+"/"+field
+            self.user.getFieldValue(url: stringUrl, callback: { (response) in
+                self.myValue = response
+                print(self.myValue)
             })
-            session.resume()
         }else {
             print("aucun token");
         }
@@ -65,7 +63,7 @@ class DetailedProfileController: UIViewController {
             return;
         } else {
             //Si les champs ne sont pas vide et correspondent, alors appel methode d' inscription
-            let stringUrl = env+self.modifURL+self.Mytoken+"/prenom/"+confirm! //test avec le nom
+            let stringUrl = env+self.modifURL+self.Mytoken+"/"+self.field+"/"+confirm! //test avec le nom
             let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
             var request = URLRequest(url: baseUrl)
             request.httpMethod = "PUT"

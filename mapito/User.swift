@@ -17,6 +17,7 @@ class User {
     var prenom: String = "";
     var mail: String = "";
     var password: String = "";
+    var valueField : String = "";
     var friends: [Friend] = [];
     var appNotifications: [AppNotification] = []
     //var pos : MKUserLocation;
@@ -105,6 +106,29 @@ class User {
         session.resume()
     }
     
+    //recup la valeur d'un attribut du user ex: recup mdp, nom, prenom
+    func getFieldValue(url: String, callback: @escaping (String)-> ()){
+        let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        let session = URLSession.shared.dataTask(with: request ,completionHandler:
+        { (data, response, error) in
+            print("valueField : ")
+            let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+            print(dataStringified ?? "Data could not be printed")
+            if let usableData = data {
+                do {
+                    let jsonData = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
+                    if let valueJSON = jsonData as? String {
+                        self.valueField = valueJSON
+                    }
+                    callback(self.valueField)
+                } catch {
+                    print("JSON serialisation failed")
+                }
+            }
+        })
+        session.resume()
+    }
+    
     func getAppNotifications(url: String, callback: @escaping ([AppNotification])-> ()){
         let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         let session = URLSession.shared.dataTask(with: request ,completionHandler:
@@ -124,6 +148,25 @@ class User {
                     print("JSON serialisation failed")
                 }
             }
+        })
+        session.resume()
+    }
+    
+    //suppression d'ami
+    func deleteFriend(url: String, callback: @escaping ([Friend])-> ()) {
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            if let myData = String(data: data!, encoding: .utf8) {
+                print(myData)
+                DispatchQueue.main.async {
+                    if(myData == "200"){
+                        print("user supprimé")
+                    }
+                callback(self.friends)
+                }
+            }
+            //si la valeur existe deja
         })
         session.resume()
     }

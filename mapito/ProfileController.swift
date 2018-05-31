@@ -21,7 +21,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.present(navigationAuthentication, animated: true);
     }
     //var indexArray = ["Info personnelles","Info Connexion"]
-    var champs = ["Modifier Nom","Modifier Prénom","Modifier Email","Modifier Mot de passe"]
+    var champs = ["nom","prenom","mail","password"]
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -50,7 +50,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! TableCell
         
-        cell.textLabel?.text = champs[indexPath.row]
+        cell.textLabel?.text = "Modifier "+champs[indexPath.row]
         
         return cell
     }
@@ -59,7 +59,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let dePC = mainStory.instantiateViewController(withIdentifier: "DetailedProfileController") as! DetailedProfileController
-        dePC.field = "le test du field"
+        dePC.field = champs[indexPath.row]
         self.navigationController?.pushViewController(dePC, animated: true)
         //self.present(deCV, animated: true);
     }
