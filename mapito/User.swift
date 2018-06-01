@@ -204,4 +204,19 @@ class User {
         })
         session.resume()
     }
+    
+    func updatePosition(url: String, callback: @escaping (String)-> ()){
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            print("updatePos : ")
+            let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+            print(dataStringified ?? "Data could not be printed")
+            if let usableData = dataStringified {
+                print(usableData)
+                callback(usableData)
+            }
+        })
+        session.resume()
+    }
 }
