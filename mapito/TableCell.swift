@@ -13,4 +13,6 @@ class TableCell : UITableViewCell {
     
     @IBOutlet weak var Champs: UILabel!
     @IBOutlet weak var Amis: UILabel!
+    
+    
 }

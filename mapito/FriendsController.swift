@@ -103,8 +103,20 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         
         
         if(indexPath.section == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellRequest", for: indexPath) as! TableCellRequest//as! UITableViewCell
             cell.textLabel?.text = demandes[indexPath.row]
+            cell.displayMessage = { (message) in
+                let myAlert = UIAlertController(title: "Accepter ?", message: message, preferredStyle: UIAlertControllerStyle.alert);
+                //on ajoute les buttonAction oui et non
+                myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
+                    print("acceptation reussie")
+                }))
+                myAlert.addAction(UIAlertAction(title: "Annuler", style: .default, handler: { (action: UIAlertAction!) in
+                    print("acceptation annulée")
+                }))
+                //on affiche le myAlert
+                self.present(myAlert, animated: true, completion: nil)
+            }
             return cell
             
         } else if(indexPath.section == 1){
@@ -135,7 +147,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             }
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellRequest", for: indexPath) //as! UITableViewCell
             cell.textLabel?.text = amis[indexPath.row]
             return cell
         }

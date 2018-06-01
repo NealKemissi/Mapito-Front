@@ -342,7 +342,7 @@
                                 <rect key="frame" x="0.0" y="109" width="375" height="509"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCell" id="LGw-Dc-pyh" customClass="TableCell" customModule="mapito" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCellRequest" id="LGw-Dc-pyh" customClass="TableCellRequest" customModule="mapito" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="38"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LGw-Dc-pyh" id="apJ-pX-phv">
@@ -356,10 +356,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQn-0E-6wR">
+                                                    <rect key="frame" x="305" y="8" width="23" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" backgroundImage="check"/>
+                                                    <connections>
+                                                        <action selector="AcceptRequestAction:" destination="LGw-Dc-pyh" eventType="touchDownRepeat" id="X6U-IN-bMh"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="Champs" destination="o5h-Le-FfL" id="jGW-nY-2aG"/>
+                                            <outlet property="ButtonAcceptRequest" destination="dQn-0E-6wR" id="H1X-I1-KwL"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="TableCellFriends" id="sGK-ZQ-7yj" customClass="TableCellFriends" customModule="mapito" customModuleProvider="target">
@@ -959,6 +967,7 @@
         <image name="001-man-user" width="32" height="32"/>
         <image name="002-add-friend" width="32" height="32"/>
         <image name="003-placeholder-on-map-paper-in-perspective" width="32" height="32"/>
+        <image name="check" width="24" height="24"/>
         <image name="delete" width="24" height="24"/>
         <image name="logo_mapito" width="317" height="240"/>
         <image name="magnifying-glass" width="32" height="32"/>

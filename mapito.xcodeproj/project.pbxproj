@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = D633CCE620AF0B5B00D92884 /* Friend.swift */; };
 		D63842D220BFE9EF00A4C769 /* TableCellFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63842D120BFE9EF00A4C769 /* TableCellFriends.swift */; };
+		D63842D420C0291D00A4C769 /* TableCellRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63842D320C0291D00A4C769 /* TableCellRequest.swift */; };
 		D63B3F1220B6B3A300E2C104 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */; };
 		D63B3F1420B6D91200E2C104 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63B3F1320B6D91200E2C104 /* Pin.swift */; };
 		D653780F20B565CB00217E96 /* MapitoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653780E20B565CB00217E96 /* MapitoButton.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		D633CCE620AF0B5B00D92884 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		D63842D120BFE9EF00A4C769 /* TableCellFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellFriends.swift; sourceTree = "<group>"; };
+		D63842D320C0291D00A4C769 /* TableCellRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellRequest.swift; sourceTree = "<group>"; };
 		D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		D63B3F1320B6D91200E2C104 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		D653780E20B565CB00217E96 /* MapitoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoButton.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				D66E3D5120B5A42A009208EA /* MapitoTextField.swift */,
 				D6BBAA37208B3D7200FA58FA /* TableCell.swift */,
 				D63842D120BFE9EF00A4C769 /* TableCellFriends.swift */,
+				D63842D320C0291D00A4C769 /* TableCellRequest.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */,
+				D63842D420C0291D00A4C769 /* TableCellRequest.swift in Sources */,
 				D63B3F1420B6D91200E2C104 /* Pin.swift in Sources */,
 				D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */,
 				D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */,
@@ -529,7 +533,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5c687748.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://f79d120d.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -544,7 +548,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5c687748.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://f79d120d.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -664,7 +668,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5c687748.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://f79d120d.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

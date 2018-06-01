@@ -65,6 +65,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let position = "/" + String(longitude) + "/" + String(latitude)
         let url = env + updatePosURL + self.Mytoken + position
         print(url)
+
         self.user.updatePosition(url: url, callback: { (response) in
             print("---Code de retour---")
             print(response)
