@@ -13,6 +13,7 @@ class NotificationsController: UIViewController {
     
     var Mytoken : String = "test"
     @IBInspectable var MyNotifsURL: String!
+    private var user = User()
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     // Triggered when diplayed
@@ -22,7 +23,9 @@ class NotificationsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid

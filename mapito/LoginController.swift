@@ -15,7 +15,7 @@ class LoginController : UIViewController {
     @IBOutlet weak var userMdpTextField: UITextField!
     //path de la methode d'authentification
     @IBInspectable var loginURL: String!
-    var Mytoken : String = "test"
+    var Mytoken : String = "leToken"
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     @IBAction func loginBtnPressed(_ sender: Any) {
@@ -30,38 +30,40 @@ class LoginController : UIViewController {
                 return;
             }
             //Si les champs ne sont pas vide, alors appel methode d'authentification
-            let stringUrl = env+self.loginURL+userEmail!+"/"+userMdp!
-            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! //pour ne pas avoir de probleme d'encodage
-             let _: [String] = [
-             userEmail!,
-             userMdp!
-             ]
+            let jsonString = ["mail": userEmail!,
+                            "password": userMdp!
+                                                    ]
+            let jsonData = try? JSONSerialization.data(withJSONObject: jsonString)
+            let stringUrl = env+self.loginURL!
+            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
             //let url = baseUrl.withQueries(query)!
             var url = URLRequest(url: baseUrl)
             url.httpMethod = "PUT"
+            url.httpBody = jsonData
             //let url = baseUrl //url en dur
             let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let jsonData = String(data: data!, encoding: .utf8) {
-                    print(baseUrl)
-                    self.Mytoken = jsonData
+                if let myData = data {
+                    print(String(data: jsonData!, encoding: .utf8))
+                    do {
+                        print("--------------------myTest--------------------------")
+                        print(String(data: myData, encoding: .utf8))
+                        let jsonArray = try JSONSerialization.jsonObject(with: myData, options: .mutableContainers) as? [String:AnyObject]
+                        print("--------------------myTest--------------------------")
+                        //print(jsonArray)
+                        if let tokenJSON = jsonArray {
+                            print(String(describing: tokenJSON))
+                            //self.Mytoken = String(describing: tokenJSON)
+                        }
+                    } catch {
+                        print("JSON serialisation failed")
+                    }
+                    //print(baseUrl)
+                    //self.Mytoken = myData
                     
                 }
                 DispatchQueue.main.async {
                     self.loginActionFinished();
                 }
-                /*
-                 let feed = (try? JSONSerialization.jsonObject(with:
-                 jsonData , options: .mutableContainers)) as? NSDictionary ,
-                 let nom = feed.value(forKeyPath: "feed.entry.im:nom.label") as? String ,
-                 let prenom = feed.value(forKeyPath: "feed.entry.im:prenom.label") as? String ,
-                 let mail = feed.value(forKeyPath: "feed.entry.im:mail.label") as? String ,
-                 let password = feed.value(forKeyPath: "feed.entry.im:password.label") as? String ,
-                 let friends = feed.value(forKeyPath: "feed.entry.im:friends.label") as? [Friend] {
-                 let MyUser = User(nom: nom, prenom: prenom, mail: mail, password: password, friends: friends)
-                 self.loginActionFinished();
-                 //self.titleLabel.text = title; self.artistLabel.text = artist
-                 }*/
-                //si l'email et le mdp ne sont incorrect (si jsonData = null)
             }
                 session.resume()
             
