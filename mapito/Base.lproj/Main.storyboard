@@ -123,6 +123,20 @@
                                 <rect key="frame" x="16" y="92" width="91" height="91"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="iLi-HA-aG6">
+                                <rect key="frame" x="286" y="182" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="switchIsChanged:forEvent:" destination="9pv-A4-QxB" eventType="valueChanged" id="u5Q-wy-ZCm"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mode invisible" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eeb-dh-k9G">
+                                <rect key="frame" x="146" y="187" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -135,6 +149,7 @@
                     <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="acW-dT-cKf"/>
                     <navigationItem key="navigationItem" title="Profil" id="qp6-Ie-VrI"/>
                     <connections>
+                        <outlet property="invisibleMode" destination="iLi-HA-aG6" id="ACq-RE-dYA"/>
                         <outlet property="profileImageView" destination="Uw7-Fz-UUG" id="rGr-9Q-UG4"/>
                     </connections>
                 </viewController>
@@ -892,7 +907,7 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="/api/users/new/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="registerURL" value="/api/users/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="GrH-6e-Kj6" id="gww-l9-Hzb"/>

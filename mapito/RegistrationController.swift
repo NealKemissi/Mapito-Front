@@ -31,8 +31,7 @@ class RegistrationController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     //lors du clique pour l'inscription
-    @IBAction func inscriptionButtonAction(_ sender: Any) {
-        
+    @IBAction func inscriptionButtonAction(_ sender: Any) {        
         let userNom = userNomTextField.text;
         let userPrenom = userPrenomTextField.text;
         let userEmail = userEmailTextField.text;
@@ -43,36 +42,41 @@ class RegistrationController : UIViewController {
             displayMessage(Mytitle: "Attention", userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
-        //Si les champs ne sont pas vide, alors appel methode d' inscription
-        let stringUrl = env+self.registerURL+userEmail!+"/"+userMdp!+"/"+userNom!+"/"+userPrenom!
-        let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-         let query: [String : String] = [
-            "nom" : userNom!,
-            "prenom" : userPrenom!,
-            "mail" : userEmail!,
-            "password" : userMdp!
-         
-         ]
+        //To do in user model
+        let userDict = ["mail": userEmail, "password": userMdp, "nom": userNom, "prenom": userPrenom] as [String: AnyObject]
+        
+        let stringUrl = env + self.registerURL
+        let baseUrl = URL(string: stringUrl)
         var request = URLRequest(url: baseUrl!)
-        //let request = baseUrl.withQueries(query)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
         let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let data = data, error == nil else {
-                print("error=\(error)")
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
                 return
             }
-            let responseString = String(data : data, encoding: .utf8)
             DispatchQueue.main.async {
-                if(responseString == "500"){
-                    self.displayMessage(Mytitle: "Attention", userMessage: "Cet email existe deja, Veuillez recommencer");
-                    return;
-                } else {
-                    self.displayMessage(Mytitle: "Félicitations", userMessage: "Bienvenue sur Mapito, vous pouvez maintenant vous connecter");
-                    return;
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        self.displayMessage(Mytitle: "Félicitations", userMessage: "Bienvenue sur Mapito, vous pouvez maintenant vous connecter");
+                        return;
+                    } else if (httpResponse.statusCode == 403) {
+                        self.displayMessage(Mytitle: "Attention", userMessage: "Cet email existe déjà, veuillez recommencer");
+                        return;
+                    } else {
+                        self.displayMessage(Mytitle: "Attention", userMessage: "Problème inconnu");
+                        return;
+                    }
                 }
             }
-            print("reponse = \(responseString)")
-            //si l'email existe deja
         }
         session.resume()
     }

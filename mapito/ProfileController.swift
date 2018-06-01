@@ -8,10 +8,12 @@
 
 import UIKit
 
-class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataSource {    
+class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
     
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var invisibleMode: UISwitch!
+    
     //deconnexion
     @IBAction func deconnexion(_ sender: UIButton) {        
         let defaults = UserDefaults.standard;
@@ -22,6 +24,11 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         let navigationAuthentication = storyboard.instantiateViewController(withIdentifier: "NavigationAuthentication") as! UINavigationController;
         self.present(navigationAuthentication, animated: true);
         locationManager.stopUpdatingLocation()
+    }
+    
+    @IBAction func switchIsChanged(_ sender: Any, forEvent event: UIEvent) {
+        print("--invisibleMode--")
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "switchStatus"), object: invisibleMode.isOn)
     }
     //var indexArray = ["Info personnelles","Info Connexion"]
     var champs = ["nom","prenom","mail","password"]

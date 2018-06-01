@@ -27,6 +27,18 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let user = User()
     var Mytoken : String = ""
     let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
+    let invisibleMode: Bool = false
+    
+    // Triggered when diplayed
+    override func awakeFromNib() {
+        NotificationCenter.default.addObserver(self, selector: #selector(setInvisibleMode), name: Notification.Name(rawValue: "switchStatus"), object: nil)
+    }
+    
+    func setInvisibleMode(notification: Notification){
+        print("setInvisibleMode")
+        print(notification.object as Any)
+        print(type(of: notification.object))
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,11 +77,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let position = "/" + String(longitude) + "/" + String(latitude)
         let url = env + updatePosURL + self.Mytoken + position
         print(url)
-
-        self.user.updatePosition(url: url, callback: { (response) in
-            print("---Code de retour---")
-            print(response)
-        })
+        updateUserPos(url: url)
         updateFriendsPosition()
     }
     
@@ -96,8 +104,11 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
             if(friends.isEmpty==false){
                 for friend in friends {
                     if (friend.lastpos != nil) {
+                        print("--friend.lastpos--")
+                        print(friend.lastpos!)
                         let lastPin = Pin(coordinate: friend.lastpos!)
-                            self.mapView.removeAnnotation(lastPin)
+                        self.mapView.removeAnnotation(lastPin)
+                        self.mapView.removeAnnotation(lastPin)
                     }
                     //Faire enum
                     if(friend.inTheArea && friend.lastInTheArea == false){
@@ -128,8 +139,11 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         })
     }
     
-    func updateUserPos(){
-        print("didupdate user location")
+    func updateUserPos(url:String){
+        self.user.updatePosition(url: url, callback: { (response) in
+            print("---Code de retour---")
+            print(response)
+        })
     }
 }
 
