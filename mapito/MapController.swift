@@ -62,13 +62,14 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let latitude = locations[0].coordinate.latitude
         print(longitude)
         print(latitude)
-        let url = env + updatePosURL + self.Mytoken + "/" + longitude + "/" + latitude
+        let position = "/" + String(longitude) + "/" + String(latitude)
+        let url = env + updatePosURL + self.Mytoken + position
         print(url)
-        user.updatePosition(url: url, callback: { (friends) in
-            print("---friends---")
-            print(friends)
-        }
-        
+        self.user.updatePosition(url: url, callback: { (response) in
+            print("---Code de retour---")
+            print(response)
+        })
+        updateFriendsPosition()
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -109,7 +110,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         })
                     }
                     if(friend.inTheArea == false && friend.lastInTheArea == true){
-                        let urlSendProxNotif = self.env + self.sendProxNotifURL + self.Mytoken + "/" + friend.mail + "/vient de partir"
+                        let urlSendProxNotif = self.env + self.sendProxNotifURL + self.Mytoken + "/" + friend.mail + "/n'est plus près de vous"
                         let urlGetNotifications = self.env + self.getNotificationsURL + self.Mytoken
                         friend.sendProxNotif(url: urlSendProxNotif)
                         self.user.getAppNotifications(url: urlGetNotifications, callback: { (appNotifications) in
