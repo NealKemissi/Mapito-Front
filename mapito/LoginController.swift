@@ -49,19 +49,6 @@ class LoginController : UIViewController {
                 DispatchQueue.main.async {
                     self.loginActionFinished();
                 }
-                /*
-                 let feed = (try? JSONSerialization.jsonObject(with:
-                 jsonData , options: .mutableContainers)) as? NSDictionary ,
-                 let nom = feed.value(forKeyPath: "feed.entry.im:nom.label") as? String ,
-                 let prenom = feed.value(forKeyPath: "feed.entry.im:prenom.label") as? String ,
-                 let mail = feed.value(forKeyPath: "feed.entry.im:mail.label") as? String ,
-                 let password = feed.value(forKeyPath: "feed.entry.im:password.label") as? String ,
-                 let friends = feed.value(forKeyPath: "feed.entry.im:friends.label") as? [Friend] {
-                 let MyUser = User(nom: nom, prenom: prenom, mail: mail, password: password, friends: friends)
-                 self.loginActionFinished();
-                 //self.titleLabel.text = title; self.artistLabel.text = artist
-                 }*/
-                //si l'email et le mdp ne sont incorrect (si jsonData = null)
             }
                 session.resume()
             

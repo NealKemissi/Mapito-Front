@@ -16,6 +16,7 @@ class NewFriendController: UIViewController {
     @IBInspectable var addFriendURL: String!
     var Mytoken : String = "test"
     var friendResearchValue = ""
+    private var user = User()
     @IBOutlet weak var friendResearchTextField: UITextField!
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
@@ -52,26 +53,30 @@ class NewFriendController: UIViewController {
         let stringUrl = env+self.addFriendURL+"/"+self.Mytoken+"/"+emailFriend!
         print("addFriend")
         print(stringUrl)
-        let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
-        var request = URLRequest(url: baseUrl)
-        request.httpMethod = "PUT"
-        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
-            if let myData = String(data: data!, encoding: .utf8) {
-                print(myData)
-                DispatchQueue.main.async {
-                    if(myData == "200"){
-                        self.displayMessage(myTitle: "Félicitations", userMessage: "Demande d'amis envoyée");
-                        return;
-                    } else if(myData == "400"){
-                        self.displayMessage(myTitle: "Désolé", userMessage: "Cette personne n'existe pas");
-                        return;
-                    }
+        self.user.sendRequest(url: stringUrl) { (response) in
+            DispatchQueue.main.async {
+                if(response == "200"){
+                    self.displayMessage(myTitle: "Félicitations", userMessage: "Demande d'amis envoyée");
+                    return;
+                } else if(response == "400"){
+                    self.displayMessage(myTitle: "Désolé", userMessage: "Cette personne n'existe pas");
+                    return;
                 }
             }
-            //si la valeur existe deja
-        })
-        session.resume()
+        }
+        
     }
+    /*
+     DispatchQueue.main.async {
+     if(myData == "200"){
+     self.displayMessage(myTitle: "Félicitations", userMessage: "Demande d'amis envoyée");
+     return;
+     } else if(myData == "400"){
+     self.displayMessage(myTitle: "Désolé", userMessage: "Cette personne n'existe pas");
+     return;
+     }
+     }
+     */
     
     //message info
     func displayMessage(myTitle: String, userMessage: String)

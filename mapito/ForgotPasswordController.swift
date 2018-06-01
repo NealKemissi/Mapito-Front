@@ -14,6 +14,7 @@ class ForgotPasswordController: UIViewController {
     @IBOutlet weak var userEmailTextField: UITextField!
     //path de la methode reset password
     @IBInspectable var resetPasswordURL: String!
+    private var user = User()
     
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
@@ -37,19 +38,7 @@ class ForgotPasswordController: UIViewController {
         }
         //Si email renseigné alors appel de la methode reset password du mot de passe
         let stringUrl = env+self.resetPasswordURL+userEmail!
-        let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-        /*
-         let query: [String : String] = [
-         "mail" : userEmail!
-         ]*/
-        var request = URLRequest(url: baseUrl)
-        request.httpMethod = "PUT"
-        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
-            if let jsonData = String(data: data!, encoding: .utf8) {
-                print(jsonData)
-            }
-        })
-        session.resume()
+        self.user.resetPWD(url: stringUrl)
         displayMessage(header: "Mot de passe réinitialisé", userMessage: "Vous allez recevoir un email contenant votre nouveau mot de passe, consultez votre boîte mail");
         //retour a la page d'accueil (connexion)
        

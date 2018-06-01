@@ -152,6 +152,28 @@ class User {
         session.resume()
     }
     
+    //envoyer requete d'amis
+    func sendRequest(url: String, callback: @escaping (String)-> ()){
+        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: baseUrl)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            if let myData = String(data: data!, encoding: .utf8) {
+                print(myData)
+                DispatchQueue.main.async {
+                    if(myData == "200"){
+                        print("request send ok")
+                    } else if(myData == "400"){
+                        print("request send notOK")
+                    }
+                    callback(myData)
+                }
+            }
+        })
+        session.resume()
+        
+    }
+    
     //suppression d'ami
     func deleteFriend(url: String, callback: @escaping ([Friend])-> ()) {
         var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
@@ -166,7 +188,19 @@ class User {
                 callback(self.friends)
                 }
             }
-            //si la valeur existe deja
+        })
+        session.resume()
+    }
+    
+    //resetPassword
+    func resetPWD(url: String){
+        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: baseUrl)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            if let myData = String(data: data!, encoding: .utf8) {
+                print(myData)
+            }
         })
         session.resume()
     }

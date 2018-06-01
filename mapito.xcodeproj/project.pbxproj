@@ -12,6 +12,7 @@
 		D63842D420C0291D00A4C769 /* TableCellRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63842D320C0291D00A4C769 /* TableCellRequest.swift */; };
 		D63B3F1220B6B3A300E2C104 /* StoryboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */; };
 		D63B3F1420B6D91200E2C104 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63B3F1320B6D91200E2C104 /* Pin.swift */; };
+		D64CD78220C159DC00E0359E /* TableCellNotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64CD78120C159DC00E0359E /* TableCellNotif.swift */; };
 		D653780F20B565CB00217E96 /* MapitoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D653780E20B565CB00217E96 /* MapitoButton.swift */; };
 		D66366F8208B46BB000DCAC3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66366F7208B46BB000DCAC3 /* User.swift */; };
 		D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */; };
@@ -60,6 +61,7 @@
 		D63842D320C0291D00A4C769 /* TableCellRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellRequest.swift; sourceTree = "<group>"; };
 		D63B3F1120B6B3A300E2C104 /* StoryboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardHelper.swift; sourceTree = "<group>"; };
 		D63B3F1320B6D91200E2C104 /* Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
+		D64CD78120C159DC00E0359E /* TableCellNotif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellNotif.swift; sourceTree = "<group>"; };
 		D653780E20B565CB00217E96 /* MapitoButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoButton.swift; sourceTree = "<group>"; };
 		D66366F7208B46BB000DCAC3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D667AE5D20B5A122006A797C /* ForgotPasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordController.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				D6BBAA37208B3D7200FA58FA /* TableCell.swift */,
 				D63842D120BFE9EF00A4C769 /* TableCellFriends.swift */,
 				D63842D320C0291D00A4C769 /* TableCellRequest.swift */,
+				D64CD78120C159DC00E0359E /* TableCellNotif.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				D6A941BF207F78D00022FD29 /* ProfileController.swift in Sources */,
 				D633CCE720AF0B5B00D92884 /* Friend.swift in Sources */,
 				D66366F8208B46BB000DCAC3 /* User.swift in Sources */,
+				D64CD78220C159DC00E0359E /* TableCellNotif.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +537,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5c687748.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://f79d120d.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -548,7 +552,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5c687748.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://f79d120d.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -668,7 +672,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5c687748.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://f79d120d.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
