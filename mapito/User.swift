@@ -192,6 +192,19 @@ class User {
         session.resume()
     }
     
+    //recup les notifs pour la page notif (a completer)
+    func getAllNotifs(url: String, callback: @escaping ([AppNotification])-> ()) {
+        let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
+            if let myData = String(data: data!, encoding: .utf8) {
+                print(myData)
+                callback(self.appNotifications)
+            }
+        })
+        session.resume()
+    }
+    
+    
     //resetPassword
     func resetPWD(url: String){
         let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!

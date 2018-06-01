@@ -292,7 +292,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g6w-GW-Gs7" id="uaa-V5-q5j">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="93.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -735,7 +735,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fvi-KP-C6Q"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="loginURL" value="/api/users/authenticate/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="loginURL" value="/api/users/authenticate"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="userEmailTextField" destination="HoP-iv-GvK" id="RL1-Lg-Bhj"/>

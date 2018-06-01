@@ -54,7 +54,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    /*
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("---locations---")
         print(locations)
@@ -71,7 +71,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print(response)
         })
         updateFriendsPosition()
-    }
+    }*/
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
