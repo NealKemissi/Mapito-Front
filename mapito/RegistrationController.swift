@@ -31,7 +31,7 @@ class RegistrationController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     //lors du clique pour l'inscription
-    @IBAction func inscriptionButtonAction(_ sender: Any) {        
+    @IBAction func inscriptionButtonAction(_ sender: Any) {
         let userNom = userNomTextField.text;
         let userPrenom = userPrenomTextField.text;
         let userEmail = userEmailTextField.text;

@@ -19,69 +19,53 @@ class LoginController : UIViewController {
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     @IBAction func loginBtnPressed(_ sender: Any) {
+        let userEmail = self.userEmailTextField.text;
+        let userMdp = self.userMdpTextField.text;
+        //let user = User();
         
-            let userEmail = self.userEmailTextField.text;
-            let userMdp = self.userMdpTextField.text;
-            //let user = User();
-            
-            //verif champs vide
-            if((userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
-                displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
-                return;
+        //verif champs vide
+        if((userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
+            displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
+            return;
+        }
+        //Si les champs ne sont pas vide, alors appel methode d'authentification
+        //To do in user model
+        let userDict = ["mail": userEmail!, "password": userMdp!] as [String: AnyObject]
+        
+        let stringUrl = env+self.loginURL!
+        let baseUrl = URL(string: stringUrl)
+        var request = URLRequest(url: baseUrl!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
             }
-            //Si les champs ne sont pas vide, alors appel methode d'authentification
-            let jsonString = ["mail": userEmail!,
-                            "password": userMdp!
-                                                    ]
-            let jsonData = try? JSONSerialization.data(withJSONObject: jsonString)
-            let stringUrl = env+self.loginURL!
-            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-            //let url = baseUrl.withQueries(query)!
-            var url = URLRequest(url: baseUrl)
-            url.httpMethod = "PUT"
-            url.httpBody = jsonData
-            //let url = baseUrl //url en dur
-            let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let myData = data {
-                    print(String(data: jsonData!, encoding: .utf8))
-                    do {
-                        print("--------------------myTest--------------------------")
-                        print(String(data: myData, encoding: .utf8))
-                        let jsonArray = try JSONSerialization.jsonObject(with: myData, options: .mutableContainers) as? [String:AnyObject]
-                        print("--------------------myTest--------------------------")
-                        //print(jsonArray)
-                        if let tokenJSON = jsonArray {
-                            print(String(describing: tokenJSON))
-                            //self.Mytoken = String(describing: tokenJSON)
-                        }
-                    } catch {
-                        print("JSON serialisation failed")
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        self.loginActionFinished();
+                        return;
+                    } else if (httpResponse.statusCode == 403) {
+                        self.displayMessage(userMessage: "Le mot de passe ou l'identifiant ne sont pas corrects (à vérifier avec le back)");
+                        return;
+                    } else {
+                        self.displayMessage(userMessage: "Problème inconnu");
+                        return;
                     }
-                    //print(baseUrl)
-                    //self.Mytoken = myData
-                    
-                }
-                DispatchQueue.main.async {
-                    self.loginActionFinished();
                 }
             }
-                session.resume()
-            
-            //loginActionFinished();
-        
-        
-        /*
-         * Si non alors l'utilisateur se connecte
-         */
-        //user.loginWithUsername(username: userEmail!, password: userMdp!);
-        
-        /*NotificationCenter.default.addObserver(
-            forName: Notification.Name(rawValue:"loginActionFinished"),
-            object: nil,
-            queue: nil,
-            using: loginActionFinished(notification:))*/
-        //loginActionFinished();
-        
+        }
+        session.resume()        
     }
     
     override func viewDidLoad() {
