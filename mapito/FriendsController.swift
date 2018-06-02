@@ -15,7 +15,6 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     var amis = ["Arthur","Héloise","Neal","Robin", "Toto"]
     @IBInspectable var myFriendsURL : String!
     @IBInspectable var suppMyFriendsURL : String!
-    var Mytoken : String = "test"
     private var friends : [Friend] = [] // Will be an array of Friend
     private var user = User()
     var demandes = ["Florent", "Edouard"]
@@ -40,9 +39,9 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         // Do any additional setup after loading the view, typically from a nib.
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
-            self.Mytoken = tokenIsValid
-            print("Mytoken: "+self.Mytoken)
-            let stringUrl = env+self.myFriendsURL!+Mytoken
+            self.user.token = tokenIsValid
+            print("Mytoken: "+self.user.token)
+            let stringUrl = env+self.myFriendsURL!+self.user.token
             //recup liste friends
             self.user.getFriends(url: stringUrl, callback: { (response) in
                 for friend in response {
@@ -130,7 +129,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
                     print("test reussie")
                     let emailFriend = self.friends[indexPath.row].mail
-                    let mySuppUrl = self.env+self.suppMyFriendsURL!+self.Mytoken+"/"+emailFriend
+                    let mySuppUrl = self.env+self.suppMyFriendsURL!+self.user.token+"/"+emailFriend
                     self.user.deleteFriend(url: mySuppUrl, callback: { (response) in
                         self.table.reloadData()
                         print("mes nouveaux amis :")

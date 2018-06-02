@@ -18,6 +18,7 @@ class RegistrationController : UIViewController {
     @IBOutlet weak var userMdpTextField: UITextField!
     //path de la methode d'inscription
     @IBInspectable var registerURL: String!
+    let user = User()
     
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
@@ -44,41 +45,21 @@ class RegistrationController : UIViewController {
         }
         //To do in user model
         let userDict = ["mail": userEmail, "password": userMdp, "nom": userNom, "prenom": userPrenom] as [String: AnyObject]
-        
         let stringUrl = env + self.registerURL
-        let baseUrl = URL(string: stringUrl)
-        var request = URLRequest(url: baseUrl!)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        do {
-            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
-            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
-            print(bodyJSONStringified!)
-            request.httpBody = bodyJSON
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let _ = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
-            }
+        self.user.register(url: stringUrl, userDict: userDict) { (response) in
             DispatchQueue.main.async {
-                if let httpResponse = response as? HTTPURLResponse {
-                    if(httpResponse.statusCode == 200){
-                        self.displayMessage(Mytitle: "Félicitations", userMessage: "Bienvenue sur Mapito, vous pouvez maintenant vous connecter");
-                        return;
-                    } else if (httpResponse.statusCode == 403) {
-                        self.displayMessage(Mytitle: "Attention", userMessage: "Cet email existe déjà, veuillez recommencer");
-                        return;
-                    } else {
-                        self.displayMessage(Mytitle: "Attention", userMessage: "Problème inconnu");
-                        return;
-                    }
+                if(response == "200"){
+                    self.displayMessage(Mytitle: "Félicitations", userMessage: "Bienvenue sur Mapito, vous pouvez maintenant vous connecter");
+                    return;
+                } else if(response=="403"){
+                    self.displayMessage(Mytitle: "Attention", userMessage: "Cet email existe déjà, veuillez recommencer");
+                    return;
+                } else {
+                    self.displayMessage(Mytitle: "Oups", userMessage: "Un problème est survenue");
+                    return;
                 }
             }
         }
-        session.resume()
     }
     
     //message info

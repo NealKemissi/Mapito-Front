@@ -14,7 +14,6 @@ class NewFriendController: UIViewController {
     @IBOutlet weak var EmailFriendTextField: UITextField!
     //path de la methode modification ajout amis
     @IBInspectable var addFriendURL: String!
-    var Mytoken : String = "test"
     var friendResearchValue = ""
     private var user = User()
     @IBOutlet weak var friendResearchTextField: UITextField!
@@ -28,8 +27,8 @@ class NewFriendController: UIViewController {
         
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
-            self.Mytoken = tokenIsValid
-            print("Mytoken: "+self.Mytoken)
+            self.user.token = tokenIsValid
+            print("Mytoken: "+self.user.token)
         }else {
             print("aucun token");
         }
@@ -50,7 +49,7 @@ class NewFriendController: UIViewController {
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode ajouter amis
-        let userDict = ["token": self.Mytoken, "mail": emailFriend!] as [String: AnyObject]
+        let userDict = ["token": self.user.token, "mail": emailFriend!] as [String: AnyObject]
         let stringUrl = env+self.addFriendURL
         print("addFriend")
         print(stringUrl)

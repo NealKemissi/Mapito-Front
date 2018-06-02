@@ -21,7 +21,6 @@ class DetailedProfileController: UIViewController {
     //path de la methode modification attributs
     @IBInspectable var modifURL: String!
     @IBInspectable var userFieldURL: String! //recuperation de l'attribut du user (ex: recup mail ou recup prenom etc..)
-    var Mytoken : String = "test"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +32,8 @@ class DetailedProfileController: UIViewController {
         valueField?.text = "Modifier "+field
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
-            self.Mytoken = tokenIsValid
-            let userDict = ["token": self.Mytoken, "field": field] as [String: AnyObject]
+            self.user.token = tokenIsValid
+            let userDict = ["token": self.user.token, "field": field] as [String: AnyObject]
             
             let stringUrl = env+self.userFieldURL!
             
@@ -66,7 +65,7 @@ class DetailedProfileController: UIViewController {
             return;
         } else {
             //Si les champs ne sont pas vide et correspondent, alors appel methode d' inscription
-            let userDict = ["token": self.Mytoken, "field": self.field, "value": confirm!] as [String: AnyObject]
+            let userDict = ["token": self.user.token, "field": self.field, "value": confirm!] as [String: AnyObject]
             let stringUrl = env+self.modifURL!
             self.user.updateUser(url: stringUrl, userDict: userDict) { (response) in
                 DispatchQueue.main.async {

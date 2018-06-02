@@ -103,10 +103,6 @@ class User {
         session.resume()
     }
     
-    func register(nom: String, prenom: String, pseudo:String, mail: String, password: String) {
-        
-    }
-    
     func logout() {
         //Delete the account
     }
@@ -177,6 +173,41 @@ class User {
         })
         session.resume()
     }
+    
+    func register(url: String, userDict: [String: AnyObject], callback: @escaping (String)-> ()){
+        let baseUrl = URL(string: url)
+        var request = URLRequest(url: baseUrl!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        callback("200")
+                    } else if (httpResponse.statusCode == 403) {
+                        callback("403")
+                    } else {
+                        callback("error")
+                        return;
+                    }
+                }
+            }
+        }
+        session.resume()
+    }
+    
     
     //modification de la valeur du user
     func updateUser(url : String, userDict: [String: AnyObject], callback: @escaping (String)-> ()){
