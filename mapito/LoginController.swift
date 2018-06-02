@@ -53,6 +53,7 @@ class LoginController : UIViewController {
             DispatchQueue.main.async {
                 if let httpResponse = response as? HTTPURLResponse {
                     if(httpResponse.statusCode == 200){
+                        self.Mytoken = String(data: data!, encoding: String.Encoding.utf8)!
                         self.loginActionFinished();
                         return;
                     } else if (httpResponse.statusCode == 403) {

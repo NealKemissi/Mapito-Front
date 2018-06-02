@@ -255,8 +255,8 @@
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="/api/users/update/"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="userFieldURL" value="/api/users/getField/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="/api/users"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="userFieldURL" value="/api/users/field"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="confirmNewValueTextField" destination="lZ4-Tg-Mkk" id="Dc1-m4-Qzc"/>

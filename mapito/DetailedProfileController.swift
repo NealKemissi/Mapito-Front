@@ -34,7 +34,10 @@ class DetailedProfileController: UIViewController {
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid
-            let stringUrl = env+self.userFieldURL!+Mytoken+"/"+field
+            let userDict = ["token": self.Mytoken, "field": field] as [String: AnyObject]
+            
+            let stringUrl = env+self.userFieldURL!
+            
             self.user.getFieldValue(url: stringUrl, callback: { (response) in
                 self.myValue = response
                 print(self.myValue)
@@ -63,25 +66,23 @@ class DetailedProfileController: UIViewController {
             return;
         } else {
             //Si les champs ne sont pas vide et correspondent, alors appel methode d' inscription
-            let stringUrl = env+self.modifURL+self.Mytoken+"/"+self.field+"/"+confirm! //test avec le nom
-            let baseUrl = URL(string: stringUrl.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
-            var request = URLRequest(url: baseUrl)
-            request.httpMethod = "PUT"
-            let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
-                if let jsonData = String(data: data!, encoding: .utf8) {
-                    print(jsonData)
-                    DispatchQueue.main.async {
-                        if(jsonData == "200"){
-                            self.displayMessage(Mytitle: "Félicitations", userMessage: "Vous avez changé votre profil");
-                            return;
-                        }
+            let userDict = ["token": self.Mytoken, "field": self.field, "value": confirm!] as [String: AnyObject]
+            let stringUrl = env+self.modifURL!
+            self.user.updateUser(url: stringUrl, userDict: userDict) { (response) in
+                DispatchQueue.main.async {
+                    if(response == "200"){
+                        self.displayMessage(Mytitle: "Félicitations", userMessage: "Vous avez changé votre profil");
+                        return;
+                    } else if(response == "403") {
+                        self.displayMessage(Mytitle: "Désolé", userMessage: "Ce mail existe déja");
+                        return;
+                    } else {
+                        self.displayMessage(Mytitle: "Oups", userMessage: "Problème inconnu");
+                        return;
                     }
                 }
-                //si la valeur existe deja
-            })
-            session.resume()
+            }
         }
-        
     }
     
     //message info

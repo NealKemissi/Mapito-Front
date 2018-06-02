@@ -50,16 +50,23 @@ class NewFriendController: UIViewController {
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode ajouter amis
-        let stringUrl = env+self.addFriendURL+"/"+self.Mytoken+"/"+emailFriend!
+        let userDict = ["token": self.Mytoken, "mail": emailFriend!] as [String: AnyObject]
+        let stringUrl = env+self.addFriendURL
         print("addFriend")
         print(stringUrl)
-        self.user.sendRequest(url: stringUrl) { (response) in
+        self.user.sendRequest(url: stringUrl, userDict: userDict) { (response) in
             DispatchQueue.main.async {
                 if(response == "200"){
                     self.displayMessage(myTitle: "Félicitations", userMessage: "Demande d'amis envoyée");
                     return;
-                } else if(response == "400"){
+                } else if(response == "403"){
                     self.displayMessage(myTitle: "Désolé", userMessage: "Cette personne n'existe pas");
+                    return;
+                } else if(response == "401"){
+                    self.displayMessage(myTitle: "Désolé", userMessage: "Cette personne fait deja partie de vos amis");
+                    return;
+                } else {
+                    self.displayMessage(myTitle: "Oups", userMessage: "Une erreur est survenue");
                     return;
                 }
             }

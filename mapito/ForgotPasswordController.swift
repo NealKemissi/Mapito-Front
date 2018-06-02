@@ -37,11 +37,19 @@ class ForgotPasswordController: UIViewController {
             return;
         }
         //Si email renseigné alors appel de la methode reset password du mot de passe
+        let userDict = ["mail": userEmail!] as [String: AnyObject]
         let stringUrl = env+self.resetPasswordURL+userEmail!
-        self.user.resetPWD(url: stringUrl)
-        displayMessage(header: "Mot de passe réinitialisé", userMessage: "Vous allez recevoir un email contenant votre nouveau mot de passe, consultez votre boîte mail");
-        //retour a la page d'accueil (connexion)
-       
+        self.user.resetPWD(url: stringUrl, userDict: userDict) { (response) in
+            DispatchQueue.main.async {
+                if(response == "200"){
+                    self.displayMessage(header: "Mot de passe réinitialisé", userMessage: "Vous allez recevoir un email contenant votre nouveau mot de passe, consultez votre boîte mail");
+                    return;
+                } else {
+                    self.displayMessage(header: "Désolé", userMessage: "Email incorrect");
+                    return;
+                }
+            }
+        }
     }
     
     //message info
