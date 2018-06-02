@@ -43,7 +43,6 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
@@ -59,15 +58,14 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         }
         
         //scheduledTimerWithTimeInterval()
-        updateFriendsPosition()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    /*
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    
+    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("---locations---")
         print(locations)
         let longitude = locations[0].coordinate.longitude

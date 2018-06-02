@@ -586,7 +586,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-TR-DgA" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="294" width="300" height="45"/>
+                                <rect key="frame" x="37.5" y="294" width="300" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Réinitialiser mot de passe">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -631,14 +631,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2we-5b-aKC" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="538" width="300" height="45"/>
+                                <rect key="frame" x="37" y="538" width="300" height="34"/>
                                 <state key="normal" title="Connexion"/>
                                 <connections>
                                     <action selector="loginBtnPressed:" destination="xHc-fY-BUV" eventType="touchUpInside" id="oSw-QY-ewh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="bCV-Vp-xp9" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="623" width="300" height="45"/>
+                                <rect key="frame" x="37" y="612" width="300" height="34"/>
                                 <state key="normal" title="Inscription"/>
                                 <connections>
                                     <segue destination="Nrf-zu-L9x" kind="show" id="VUm-bL-acX"/>
@@ -882,7 +882,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnq-Lf-Go4" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="524" width="300" height="45"/>
+                                <rect key="frame" x="37" y="524" width="300" height="34"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Inscription">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
