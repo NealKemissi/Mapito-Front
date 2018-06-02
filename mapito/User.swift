@@ -20,6 +20,7 @@ class User {
     var valueField : String = "";
     var friends: [Friend] = [];
     var appNotifications: [AppNotification] = []
+    var token = ""
     //var pos : MKUserLocation;
     
     /*init(nom: String, prenom: String, mail: String, password: String, friends: [Friend]){
@@ -34,7 +35,7 @@ class User {
     init(){
     }
     
-    //A utiliser
+    //A utiliser ?
     init?(data: Data) {
         do {
             if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
@@ -50,8 +51,56 @@ class User {
     }
 
     
-    func loginWithUsername(username : String, password : String) {
-        //Valide le user et notifie root controller
+    func loginWithUsername(url: String, callback: @escaping (String, String)-> ()) {
+        let userDict = ["mail": self.mail, "password": self.password] as [String: AnyObject]
+        
+        let baseUrl = URL(string: url)
+        var request = URLRequest(url: baseUrl!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        print("data : ")
+                        let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                        print(dataStringified ?? "Data could not be printed")
+                        if let usableData = data {
+                            do {
+                                let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
+                                if let token = jsonArray as? [String: AnyObject] {
+                                    self.token = (token["token"] as? String)!
+                                    print(self.token)
+                                }
+                            } catch {
+                                print("JSON serialisation failed")
+                            }
+                        }
+                        callback("", self.token)
+                        return;
+                    } else if (httpResponse.statusCode == 403) {
+                        callback("Le mot de passe est incorrect", "")
+                        return;
+                    } else {
+                        callback("Problème inconnu", "")
+                        return;
+                    }
+                }
+            }
+        }
+        session.resume()
     }
     
     func register(nom: String, prenom: String, pseudo:String, mail: String, password: String) {

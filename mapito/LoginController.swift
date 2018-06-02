@@ -15,7 +15,7 @@ class LoginController : UIViewController {
     @IBOutlet weak var userMdpTextField: UITextField!
     //path de la methode d'authentification
     @IBInspectable var loginURL: String!
-    var Mytoken : String = "leToken"
+    let user = User()
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     @IBAction func loginBtnPressed(_ sender: Any) {
@@ -29,43 +29,16 @@ class LoginController : UIViewController {
             return;
         }
         //Si les champs ne sont pas vide, alors appel methode d'authentification
-        //To do in user model
-        let userDict = ["mail": userEmail!, "password": userMdp!] as [String: AnyObject]
-        
-        let stringUrl = env+self.loginURL!
-        let baseUrl = URL(string: stringUrl)
-        var request = URLRequest(url: baseUrl!)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "PUT"
-        do {
-            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
-            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
-            print(bodyJSONStringified!)
-            request.httpBody = bodyJSON
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let _ = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
+        let url = env+self.loginURL!
+        user.mail = userEmail!
+        user.password = userMdp!
+        user.loginWithUsername(url: url, callback: { (message, token) in
+            if(message != ""){
+                self.displayMessage(userMessage: message)
             }
-            DispatchQueue.main.async {
-                if let httpResponse = response as? HTTPURLResponse {
-                    if(httpResponse.statusCode == 200){
-                        self.loginActionFinished();
-                        return;
-                    } else if (httpResponse.statusCode == 403) {
-                        self.displayMessage(userMessage: "Le mot de passe ou l'identifiant ne sont pas corrects (à vérifier avec le back)");
-                        return;
-                    } else {
-                        self.displayMessage(userMessage: "Problème inconnu");
-                        return;
-                    }
-                }
-            }
-        }
-        session.resume()        
+            self.user.token = token
+            self.loginActionFinished()
+        })
     }
     
     override func viewDidLoad() {
@@ -81,8 +54,8 @@ class LoginController : UIViewController {
     
     //recuperer le token et passer a l'autre page
     func loginActionFinished() -> Void{
-        print("Mytoken : "+self.Mytoken)
-        let tokenRetrieved = self.Mytoken; //"test"
+        print("Mytoken : "+self.user.token)
+        let tokenRetrieved = self.user.token; //"test"
         if(tokenRetrieved == ""){
             displayMessage(userMessage: "Email ou mot de passe incorrect");
             return;
