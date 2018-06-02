@@ -41,7 +41,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.user.token = tokenIsValid
             print("Mytoken: "+self.user.token)
-            let stringUrl = env+self.myFriendsURL!+self.user.token
+            let stringUrl = env+self.myFriendsURL!
             //recup liste friends
             self.user.getFriends(url: stringUrl, callback: { (response) in
                 for friend in response {

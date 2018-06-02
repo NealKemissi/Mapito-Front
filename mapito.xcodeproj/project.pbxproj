@@ -540,7 +540,7 @@
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MY_API_BASE_URL_ENDPOINT = "http://5025e89f.ngrok.io";
-				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
+				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -556,7 +556,7 @@
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MY_API_BASE_URL_ENDPOINT = "http://5025e89f.ngrok.io";
-				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
+				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -677,7 +677,7 @@
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MY_API_BASE_URL_ENDPOINT = "http://5025e89f.ngrok.io";
-				PRODUCT_BUNDLE_IDENTIFIER = mapito.mapito;
+				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

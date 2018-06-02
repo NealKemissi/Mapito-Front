@@ -91,7 +91,7 @@ class User {
                         callback("", self.token)
                         return;
                     } else if (httpResponse.statusCode == 403) {
-                        callback("Le mot de passe est incorrect", "")
+                        callback("Le mot de passe ou l'email est incorrect", "")
                         return;
                     } else {
                         callback("Problème inconnu", "")
