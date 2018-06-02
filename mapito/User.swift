@@ -128,9 +128,22 @@ class User {
          }
          ]
          */
-        
-        let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
-        let session = URLSession.shared.dataTask(with: request ,completionHandler:
+        print(url)
+        let userDict = ["token": self.token] as [String: AnyObject]
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        //request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.addValue(self.token, forHTTPHeaderField: "Authorization")
+        //request.httpMethod="GET"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print("------------------------body-------------------------:")
+            print(bodyJSONStringified!)
+            //request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request)
         { (data, response, error) in
             print("data : ")
             let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
@@ -147,7 +160,7 @@ class User {
                     print("JSON serialisation failed")
                 }
             }
-        })
+        }
         session.resume()
     }
     
@@ -303,20 +316,33 @@ class User {
     }
     
     //suppression d'ami
-    func deleteFriend(url: String, callback: @escaping ([Friend])-> ()) {
+    func deleteFriend(url: String, userDict: [String: AnyObject], callback: @escaping (String)-> ()) {
         var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "PUT"
-        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
-            if let myData = String(data: data!, encoding: .utf8) {
-                print(myData)
-                DispatchQueue.main.async {
-                    if(myData == "200"){
-                        print("user supprimé")
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        callback("200")
+                    } else {
+                        callback("error")
                     }
-                callback(self.friends)
                 }
             }
-        })
+        }
         session.resume()
     }
     
