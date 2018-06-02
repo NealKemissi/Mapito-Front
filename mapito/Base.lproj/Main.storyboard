@@ -314,13 +314,25 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCell" rowHeight="94" id="g6w-GW-Gs7" customClass="TableCellNotif" customModule="mapito" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCellNotif" rowHeight="94" id="g6w-GW-Gs7" customClass="TableCellNotif" customModule="mapito" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g6w-GW-Gs7" id="uaa-V5-q5j">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnq-oD-Nxo">
+                                                    <rect key="frame" x="35" y="37" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="Champs" destination="rnq-oD-Nxo" id="d8T-Td-JJd"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -469,6 +481,8 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/friends/getFriends"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="suppMyFriendsURL" value="/api/friends/deleteFriend"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="acceptMyFriendsURL" value="/api/friends/addFriends"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="MyRequestsURL" value="/api/notifications/getFriendRequest"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="findFriendTextField" destination="6Ft-XP-EeW" id="65X-eB-dy2"/>
@@ -550,7 +564,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Ajouter amis" id="843-xV-bfT"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="/api/friends/addFriend"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="/api/friends/friendRequest"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="EmailFriendTextField" destination="NK8-8Y-PWc" id="mvb-LR-ebM"/>

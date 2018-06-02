@@ -10,11 +10,13 @@ import Foundation
 
 class AppNotification: CustomStringConvertible {
     
+    var mail: String = ""
     var message: String = ""
+    var type: String = ""
     
-    public var description: String { return "message: \(message)" }
+    public var description: String { return "mail: \(mail)" }
     
     init?(json: [String: Any]) {
-        self.message = (json["message"] as? String)!
+        self.mail = (json["mail"] as? String)!
     }
 }

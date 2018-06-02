@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class NotificationsController: UIViewController {
+class NotificationsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBOutlet weak var table: UITableView!
@@ -24,6 +24,12 @@ class NotificationsController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadList(notification:)), name: Notification.Name(rawValue: "mapControllerRefresh"), object: nil)
     }
     
+     func loadList(notification: Notification){
+        //notification.
+        print("notificationcontroller")
+        print(notification)
+     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -32,7 +38,18 @@ class NotificationsController: UIViewController {
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.user.token = tokenIsValid
+            let stringUrl = env+self.MyNotifsURL!
             print("Mytoken: "+self.user.token)
+            self.user.getAppNotifications(url: stringUrl, callback: { (response) in
+                self.allNotifs = response
+                print(self.allNotifs)
+                print("test liste notifs")
+                print(self.allNotifs)
+                self.table.reloadData()
+
+            })
+            print("test liste notifs avant")
+            print(self.allNotifs)
         }else {
             print("aucun token");
         }
@@ -43,45 +60,20 @@ class NotificationsController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func loadList(notification: Notification){
-        //notification.
-        print("notificationcontroller")
-        print(notification)
-    }
-    
-    //Grouped tableview
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    //Titles of sections
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section==0){
-            return "Toutes mes notifs"
-        } else {
-            return ""
-        }
-    }
-    
-    //nb de labels ( section correspond au num de la section 0=demandes amis et 1=amis)
+    //nb de label par cell
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section == 0){
-            return testNotifs.count
-        } else {
-            return 0
-        }
+        return testNotifs.count
+    }
+    //initialisation de la tableView
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellNotif", for: indexPath) //as! TableCell
+        
+        cell.textLabel?.text = testNotifs[indexPath.row]
+        
+        return cell
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if(indexPath.section == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellNotif", for: indexPath) as! TableCellRequest//as! UITableViewCell
-            cell.textLabel?.text = testNotifs[indexPath.row]
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellNotif", for: indexPath) as! TableCellRequest//as! UITableViewCell
-            cell.textLabel?.text = testNotifs[indexPath.row]
-            return cell
-        }
-    }
+    
+    
     
 }

@@ -257,11 +257,54 @@ class User {
             
     }
     
+    //accepter demande amis
+    func acceptRequest(url : String, userDict: [String: AnyObject], callback: @escaping (String)-> ()){
+        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: baseUrl)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        callback("200")
+                    } else {
+                        callback("error")
+                    }
+                }
+            }}
+        session.resume()
+    }
+    
     func getAppNotifications(url: String, callback: @escaping ([AppNotification])-> ()){
-        let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
-        let session = URLSession.shared.dataTask(with: request ,completionHandler:
+        //let userDict = ["token": self.token] as [String: AnyObject]
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.addValue(self.token, forHTTPHeaderField: "Authorization")
+        /*
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print("------------------------bodyRequest-------------------------:")
+            print(bodyJSONStringified!)
+        } catch let error {
+            print(error.localizedDescription)
+        }*/
+        print("test")
+        let session = URLSession.shared.dataTask(with: request)
         { (data, response, error) in
-            print("data : ")
+            print("-------------------------------- data : ")
             let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
             print(dataStringified ?? "Data could not be printed")
             if let usableData = data {
@@ -276,7 +319,7 @@ class User {
                     print("JSON serialisation failed")
                 }
             }
-        })
+        }
         session.resume()
     }
     
