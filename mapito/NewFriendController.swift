@@ -58,10 +58,10 @@ class NewFriendController: UIViewController {
                 if(response == "200"){
                     self.displayMessage(myTitle: "Félicitations", userMessage: "Demande d'amis envoyée");
                     return;
-                } else if(response == "403"){
+                } else if(response == "401"){
                     self.displayMessage(myTitle: "Désolé", userMessage: "Cette personne n'existe pas");
                     return;
-                } else if(response == "401"){
+                } else if(response == "403"){
                     self.displayMessage(myTitle: "Désolé", userMessage: "Cette personne fait deja partie de vos amis");
                     return;
                 } else {

@@ -14,8 +14,11 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     // To be retrieved from back
     var amis = ["Arthur","Héloise","Neal","Robin", "Toto"]
     @IBInspectable var myFriendsURL : String!
+    @IBInspectable var MyRequestsURL : String!
     @IBInspectable var suppMyFriendsURL : String!
+    @IBInspectable var acceptMyFriendsURL : String!
     private var friends : [Friend] = [] // Will be an array of Friend
+    private var mesDemandes : [AppNotification] = []
     private var user = User()
     var demandes = ["Florent", "Edouard"]
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
@@ -41,13 +44,21 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.user.token = tokenIsValid
             print("Mytoken: "+self.user.token)
+            let stringUrlRequest = env+self.MyRequestsURL!
+            self.user.getAppNotifications(url: stringUrlRequest, callback: { (response) in
+                self.mesDemandes = response
+                print("test liste request")
+                print(self.mesDemandes)
+                self.table.reloadData()
+            })
+            
             let stringUrl = env+self.myFriendsURL!
             //recup liste friends
-            
             self.user.getFriends(url: stringUrl, callback: { (response) in
                 for friend in response {
                     self.amis.append(friend.prenom)
                 }
+                self.table.reloadData()
                 self.friends = response
                 print(self.amis)
                 print("test liste friends")
@@ -109,7 +120,23 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 let myAlert = UIAlertController(title: "Accepter ?", message: message, preferredStyle: UIAlertControllerStyle.alert);
                 //on ajoute les buttonAction oui et non
                 myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
-                    print("acceptation reussie")
+                    let emailFriend = self.friends[indexPath.row].mail
+                    let userDict = ["token": self.user.token, "mail": emailFriend] as [String: AnyObject]
+                    let myAcceptUrl = self.env+self.acceptMyFriendsURL!
+                    self.user.acceptRequest(url: myAcceptUrl, userDict: userDict, callback: { (response) in
+                        DispatchQueue.main.async {
+                            if(response == "200"){
+                                print("acceptation reussie")
+                                self.table.reloadData()
+                                //print("mes nouveaux amis :")
+                                //print(self.friends)
+                            } else {
+                                print("une erreur est survenue")
+                            }
+                        }
+                        self.table.reloadData()
+                    })
+                    
                 }))
                 myAlert.addAction(UIAlertAction(title: "Annuler", style: .default, handler: { (action: UIAlertAction!) in
                     print("acceptation annulée")
