@@ -36,29 +36,9 @@ class LoginController : UIViewController {
             if(message != ""){
                 self.displayMessage(userMessage: message)
             }
-<<<<<<< HEAD
-            DispatchQueue.main.async {
-                if let httpResponse = response as? HTTPURLResponse {
-                    if(httpResponse.statusCode == 200){
-                        self.Mytoken = String(data: data!, encoding: String.Encoding.utf8)!
-                        self.loginActionFinished();
-                        return;
-                    } else if (httpResponse.statusCode == 403) {
-                        self.displayMessage(userMessage: "Le mot de passe ou l'identifiant ne sont pas corrects (à vérifier avec le back)");
-                        return;
-                    } else {
-                        self.displayMessage(userMessage: "Problème inconnu");
-                        return;
-                    }
-                }
-            }
-        }
-        session.resume()        
-=======
             self.user.token = token
             self.loginActionFinished()
         })
->>>>>>> 108bb5e53d81e8c9d93f35b7ed0c8e77d3e2709a
     }
     
     override func viewDidLoad() {
