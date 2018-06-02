@@ -26,7 +26,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var cpt: Double = 0.0
     let user = User()
     let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
-    let invisibleMode: Bool = false
+    var invisibleMode: Bool = false
     
     // Triggered when diplayed
     override func awakeFromNib() {
@@ -35,8 +35,9 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func setInvisibleMode(notification: Notification){
         print("setInvisibleMode")
-        print(notification.object as Any)
-        print(type(of: notification.object))
+        let status = notification.object as! Bool
+        self.invisibleMode = status
+        print(self.invisibleMode)
     }
     
     override func viewDidLoad() {
@@ -64,19 +65,22 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Dispose of any resources that can be recreated.
     }
     
-    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("---locations---")
         print(locations)
         let longitude = locations[0].coordinate.longitude
         let latitude = locations[0].coordinate.latitude
         print(longitude)
         print(latitude)
-        let position = "/" + String(longitude) + "/" + String(latitude)
-        let url = env + updatePosURL + self.Mytoken + position
+        let url = env + updatePosURL
         print(url)
-        updateUserPos(url: url)
+        if(self.invisibleMode == false){
+            self.user.latitude = String(latitude)
+            self.user.longitude = String(longitude)
+            updateUserPos(url: url)
+        }
         updateFriendsPosition()
-    }*/
+    }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)

@@ -36,10 +36,10 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Map" image="003-placeholder-on-map-paper-in-perspective" id="BUZ-lg-1PU"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/users/getFriends/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/friends/getFriends"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="sendProxNotifURL" value="/api/users/sendProxNotif/"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="getNotificationsURL" value="/api/users/getNotifications/"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="updatePosURL" value="/api/users/updatePos/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="updatePosURL" value="/api/users/position/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="MapView" destination="e7y-1g-NhI" id="LEt-TR-kUj"/>
@@ -137,6 +137,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RB9-Ml-gCC">
+                                <rect key="frame" x="146" y="105" width="169" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -148,9 +155,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="acW-dT-cKf"/>
                     <navigationItem key="navigationItem" title="Profil" id="qp6-Ie-VrI"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="userFieldURL" value="/api/users/field"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="invisibleMode" destination="iLi-HA-aG6" id="ACq-RE-dYA"/>
                         <outlet property="profileImageView" destination="Uw7-Fz-UUG" id="rGr-9Q-UG4"/>
+                        <outlet property="userNameLabel" destination="RB9-Ml-gCC" id="svZ-Nc-NtU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>

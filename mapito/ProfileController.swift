@@ -13,6 +13,10 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var invisibleMode: UISwitch!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBInspectable var userFieldURL: String! //recuperation de
+    
+    let user = User()
     
     //deconnexion
     @IBAction func deconnexion(_ sender: UIButton) {        
@@ -36,6 +40,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.viewDidLoad()
         profileImageView.setRounded()
         profileImageView.setImageColor(color: UIColor.purple)
+        //self.user.getFieldValue(url: <#T##String#>, callback: )
     }
 
     override func didReceiveMemoryWarning() {

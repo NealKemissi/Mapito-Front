@@ -21,7 +21,8 @@ class User {
     var friends: [Friend] = [];
     var appNotifications: [AppNotification] = []
     var token = ""
-    //var pos : MKUserLocation;
+    var latitude: String = ""
+    var longitude: String = ""
     
     /*init(nom: String, prenom: String, mail: String, password: String, friends: [Friend]){
         self.nom = nom;
@@ -316,7 +317,9 @@ class User {
     }
     
     //suppression d'ami
-    func deleteFriend(url: String, userDict: [String: AnyObject], callback: @escaping (String)-> ()) {
+    func deleteFriend(url: String, emailFriend: String, callback: @escaping (String)-> ()) {
+        let userDict = ["token": self.token, "mail": emailFriend] as [String: AnyObject]
+        
         var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "PUT"
@@ -392,17 +395,35 @@ class User {
     }
     
     func updatePosition(url: String, callback: @escaping (String)-> ()){
-        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        let userDict = ["token": self.token, "lon": self.longitude, "lat": self.latitude] as [String: AnyObject]
+        
+        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: baseUrl)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "PUT"
-        let session = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            print("updatePos : ")
-            let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
-            print(dataStringified ?? "Data could not be printed")
-            if let usableData = dataStringified {
-                print(usableData)
-                callback(usableData)
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
             }
-        })
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        callback("OK")
+                    } else {
+                        callback(String(httpResponse.statusCode))
+                    }
+                }
+            }
+        }
         session.resume()
     }
 }

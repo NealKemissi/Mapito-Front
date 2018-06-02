@@ -130,13 +130,20 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
                     print("test reussie")
                     let emailFriend = self.friends[indexPath.row].mail
-                    let userDict = ["token": self.user.token, "mail": emailFriend] as [String: AnyObject]
+                    
                     let mySuppUrl = self.env+self.suppMyFriendsURL!
-                    self.user.deleteFriend(url: mySuppUrl, userDict: userDict, callback: { (response) in
+                    print(mySuppUrl)
+                    self.user.deleteFriend(url: mySuppUrl, emailFriend: emailFriend, callback: { (response) in
                         DispatchQueue.main.async {
                             if(response == "200"){
                                 print("suppression reussie")
                                 self.table.reloadData()
+                                let stringUrl = self.env+self.myFriendsURL!
+                                self.user.getFriends(url: stringUrl, callback: { (response) in
+                                    print("response")
+                                    print(response)
+                                    self.friends = response
+                                })
                                 print("mes nouveaux amis :")
                                 print(self.friends)
                             } else {
