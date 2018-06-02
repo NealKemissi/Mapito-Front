@@ -43,6 +43,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             print("Mytoken: "+self.user.token)
             let stringUrl = env+self.myFriendsURL!
             //recup liste friends
+            
             self.user.getFriends(url: stringUrl, callback: { (response) in
                 for friend in response {
                     self.amis.append(friend.prenom)
@@ -53,10 +54,10 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 print(self.friends)
                 self.table.reloadData()
             })
-            print("mes amis: ")
-            print(self.amis)
-            //print("test liste friends")
-            //print(self.friends)
+            //print("mes amis: ")
+            //print(self.amis)
+            print("test liste friends avant")
+            print(self.friends)
         }else {
             print("aucun token");
         }
@@ -129,11 +130,19 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
                     print("test reussie")
                     let emailFriend = self.friends[indexPath.row].mail
-                    let mySuppUrl = self.env+self.suppMyFriendsURL!+self.user.token+"/"+emailFriend
-                    self.user.deleteFriend(url: mySuppUrl, callback: { (response) in
-                        self.table.reloadData()
-                        print("mes nouveaux amis :")
-                        print(self.friends)
+                    let userDict = ["token": self.user.token, "mail": emailFriend] as [String: AnyObject]
+                    let mySuppUrl = self.env+self.suppMyFriendsURL!
+                    self.user.deleteFriend(url: mySuppUrl, userDict: userDict, callback: { (response) in
+                        DispatchQueue.main.async {
+                            if(response == "200"){
+                                print("suppression reussie")
+                                self.table.reloadData()
+                                print("mes nouveaux amis :")
+                                print(self.friends)
+                            } else {
+                                print("une erreur est survenue")
+                            }
+                        }
                         self.table.reloadData()
                     })
                     
