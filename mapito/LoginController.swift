@@ -13,46 +13,49 @@ class LoginController : UIViewController {
     
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userMdpTextField: UITextField!
-    //path de la methode d'authentification
+    
+    // API paths
     @IBInspectable var loginURL: String!
-    let user = User()
+    
+    // API URL
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
+    
+    // Local variables
+    let user = User()    
     
     @IBAction func loginBtnPressed(_ sender: Any) {
         let userEmail = self.userEmailTextField.text;
         let userMdp = self.userMdpTextField.text;
-        //let user = User();
         
-        //verif champs vide
+        // Fields empty
         if((userEmail?.isEmpty)! || (userMdp?.isEmpty)!){
             displayMessage(userMessage: "Veuillez remplir correctement tous les champs");
             return;
         }
-        //Si les champs ne sont pas vide, alors appel methode d'authentification
+        
+        // If fields not empty
         let url = env+self.loginURL!
         user.mail = userEmail!
         user.password = userMdp!
-        user.loginWithUsername(url: url, callback: { (message, token) in
-            if(message != ""){
-                self.displayMessage(userMessage: message)
+        user.loginWithUsername(url: url, callback: { (response, data) in
+            if(response == 200){
+                self.user.token = data
+                self.loginActionFinished()
+                return
             }
-            self.user.token = token
-            self.loginActionFinished()
+            self.displayMessage(userMessage: data)
         })
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    
-    //recuperer le token et passer a l'autre page
+    // Retrieve token and change page
     func loginActionFinished() -> Void{
         print("Mytoken : "+self.user.token)
         let tokenRetrieved = self.user.token; //"test"
@@ -66,30 +69,18 @@ class LoginController : UIViewController {
         defaults.synchronize();
     }
     
-    //message info
+    // Go to ProfileController when user connected successfully
+    func dismissLoginAndShowProfile() {
+        let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
+        let mainTabBar = mainStory.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController;
+        self.present(mainTabBar, animated: true);
+    }
+    
     func displayMessage(userMessage: String)
     {
         let myAlert = UIAlertController(title: "Attention", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
         let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);
-    }
-    // methode pour se rendre sur le controller du profil du user lorsque celui ci s'est connecter
-    func dismissLoginAndShowProfile() {
-        let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil);
-        let mainTabBar = mainStory.instantiateViewController(withIdentifier: "MainTabBar") as! UITabBarController;
-        self.present(mainTabBar, animated: true);
-    }
-
-}
-//extension de la classe URL pour pouvoir utiliser les queries
-extension URL {
-    func withQueries(_ queries: [String: String]) -> URL? {
-        var components = URLComponents(url: self,
-                                       resolvingAgainstBaseURL: true)
-        components?.queryItems = queries.flatMap {
-            URLQueryItem(name: $0.0, value: $0.1)
-        }
-        return components?.url
     }
 }

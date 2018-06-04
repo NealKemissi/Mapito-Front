@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G1314" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="C6Z-BF-9As">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G1408" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="C6Z-BF-9As">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -116,7 +116,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="deconnexion:" destination="9pv-A4-QxB" eventType="touchUpInside" id="mah-a5-Amd"/>
+                                    <action selector="logout:" destination="9pv-A4-QxB" eventType="touchUpInside" id="w3J-XU-oNI"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pinata-profil" translatesAutoresizingMaskIntoConstraints="NO" id="Uw7-Fz-UUG">
@@ -392,18 +392,37 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQn-0E-6wR">
-                                                    <rect key="frame" x="305" y="8" width="23" height="22"/>
+                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zyh-Zh-nNm">
+                                                    <rect key="frame" x="275" y="-15" width="92" height="45"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" backgroundImage="check"/>
-                                                    <connections>
-                                                        <action selector="AcceptRequestAction:" destination="LGw-Dc-pyh" eventType="touchDownRepeat" id="X6U-IN-bMh"/>
-                                                    </connections>
-                                                </button>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQn-0E-6wR">
+                                                            <rect key="frame" x="5" y="19" width="23" height="22"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" backgroundImage="check"/>
+                                                            <connections>
+                                                                <action selector="AcceptRequestAction:" destination="LGw-Dc-pyh" eventType="touchDownRepeat" id="X6U-IN-bMh"/>
+                                                            </connections>
+                                                        </button>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEc-us-tdo">
+                                                            <rect key="frame" x="46" y="15" width="30" height="30"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" backgroundImage="delete">
+                                                                <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="DenyRequestAction:" destination="LGw-Dc-pyh" eventType="touchDownRepeat" id="SDO-4Q-5Wp"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ButtonAcceptRequest" destination="dQn-0E-6wR" id="H1X-I1-KwL"/>
+                                            <outlet property="ButtonDenyRequest" destination="DEc-us-tdo" id="MXa-Ej-TYk"/>
+                                            <outlet property="buttonsView" destination="zyh-Zh-nNm" id="ZkV-Ig-w6b"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="TableCellFriends" id="sGK-ZQ-7yj" customClass="TableCellFriends" customModule="mapito" customModuleProvider="target">
@@ -421,7 +440,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aLn-p7-arf">
-                                                    <rect key="frame" x="302" y="0.0" width="30" height="30"/>
+                                                    <rect key="frame" x="322" y="4" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" backgroundImage="delete">
                                                         <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -481,8 +500,9 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/friends/getFriends"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="suppMyFriendsURL" value="/api/friends/deleteFriend"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="acceptMyFriendsURL" value="/api/friends/addFriends"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="MyRequestsURL" value="/api/notifications/getFriendRequest"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="acceptMyFriendsURL" value="/api/friends/addFriend"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="MyRequestsURL" value="/api/notifications/getFriendRequests"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="DeleteRequestURL" value="/api/notifications/delete"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="findFriendTextField" destination="6Ft-XP-EeW" id="65X-eB-dy2"/>

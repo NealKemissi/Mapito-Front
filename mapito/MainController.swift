@@ -10,11 +10,9 @@ import Foundation
 import UIKit
 
 // Decide whether MapController or LoginController is called
-
 class MainController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -30,14 +28,12 @@ class MainController : UIViewController {
         // If no token -> NavigationAuthentication
         else{
             let navigationAuthentication = storyboard.instantiateViewController(withIdentifier: "NavigationAuthentication") as! UINavigationController;
-            //let navC = UINavigationController(rootViewController: LoginController)
             self.present(navigationAuthentication, animated: false);
         }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 }

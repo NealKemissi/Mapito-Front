@@ -22,8 +22,9 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     // API url
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
 
+    // Local variables
     var timer = Timer()
-    var cpt: Double = 0.0
+    var cpt: Int = 0
     let user = User()
     let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
     var invisibleMode: Bool = false
@@ -31,13 +32,6 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     // Triggered when diplayed
     override func awakeFromNib() {
         NotificationCenter.default.addObserver(self, selector: #selector(setInvisibleMode), name: Notification.Name(rawValue: "switchStatus"), object: nil)
-    }
-    
-    func setInvisibleMode(notification: Notification){
-        print("setInvisibleMode")
-        let status = notification.object as! Bool
-        self.invisibleMode = status
-        print(self.invisibleMode)
     }
     
     override func viewDidLoad() {
@@ -62,24 +56,6 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("---locations---")
-        print(locations)
-        let longitude = locations[0].coordinate.longitude
-        let latitude = locations[0].coordinate.latitude
-        print(longitude)
-        print(latitude)
-        let url = env + updatePosURL
-        print(url)
-        if(self.invisibleMode == false){
-            self.user.latitude = String(latitude)
-            self.user.longitude = String(longitude)
-            updateUserPos(url: url)
-        }
-        updateFriendsPosition()
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -87,6 +63,35 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapView.setRegion(region, animated: true)
     }
+    
+    func setInvisibleMode(notification: Notification){
+        print("setInvisibleMode")
+        let status = notification.object as! Bool
+        self.invisibleMode = status
+        print(self.invisibleMode)
+    }
+    
+    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+     if(cpt==6){
+     print("---locations---")
+     print(locations)
+     let longitude = locations[0].coordinate.longitude
+     let latitude = locations[0].coordinate.latitude
+     print(longitude)
+     print(latitude)
+     let url = env + updatePosURL
+     print(url)
+     if(self.invisibleMode == false){
+     self.user.latitude = String(latitude)
+     self.user.longitude = String(longitude)
+     updateUserPos(url: url)
+     }
+     updateFriendsPosition()
+     cpt = 0
+     }
+     
+     cpt = cpt + 1
+     }*/
     
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
@@ -99,10 +104,10 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("---test recupération friends---")
         let url = env + myFriendsURL
         print(url)
-        user.getFriends(url: url, callback: { (friends) in
+        user.getFriends(url: url, callback: { (response, friends) in
             print("---friends---")
             print(friends)
-            if(friends.isEmpty==false){
+            if(response == 200){
                 for friend in friends {
                     if (friend.lastpos != nil) {
                         print("--friend.lastpos--")
@@ -145,6 +150,14 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
             print("---Code de retour---")
             print(response)
         })
+    }
+    
+    func displayMessage(userMessage: String)
+    {
+        let myAlert = UIAlertController(title: "Attention", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
+        myAlert.addAction(Ok);
+        self.present(myAlert, animated: true, completion: nil);
     }
 }
 

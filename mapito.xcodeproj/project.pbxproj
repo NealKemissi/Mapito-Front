@@ -539,7 +539,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5025e89f.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -555,7 +555,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5025e89f.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -676,7 +676,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://5025e89f.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

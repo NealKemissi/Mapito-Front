@@ -10,14 +10,18 @@ import Foundation
 import UIKit
 
 class NotificationsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
     @IBOutlet weak var table: UITableView!
+    
+    // API paths
     @IBInspectable var MyNotifsURL: String!
+    
+    // API URL
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String   
+    
+    // Local variables
     private var user = User()
     private var allNotifs : [AppNotification] = []
     var testNotifs = ["Votre ami se trouvait a coté de vous hier", "Votre amis a accepté votre invitations"]
-    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     // Triggered when diplayed
     override func awakeFromNib() {
@@ -57,14 +61,14 @@ class NotificationsController: UIViewController, UITableViewDelegate, UITableVie
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    //nb de label par cell
+    // Number of labels per cell
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return testNotifs.count
     }
-    //initialisation de la tableView
+    
+    // initialization of tableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellNotif", for: indexPath) //as! TableCell
         
@@ -72,8 +76,4 @@ class NotificationsController: UIViewController, UITableViewDelegate, UITableVie
         
         return cell
     }
-    
-    
-    
-    
 }

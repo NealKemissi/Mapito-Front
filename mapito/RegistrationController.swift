@@ -10,28 +10,20 @@ import Foundation
 import UIKit
 
 class RegistrationController : UIViewController {
-    
-    // les textes fields
     @IBOutlet weak var userNomTextField: UITextField!
     @IBOutlet weak var userPrenomTextField: UITextField!
     @IBOutlet weak var userEmailTextField: UITextField!
     @IBOutlet weak var userMdpTextField: UITextField!
-    //path de la methode d'inscription
-    @IBInspectable var registerURL: String!
-    let user = User()
     
+    //API paths
+    @IBInspectable var registerURL: String!
+    
+    // API URL
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
+    // Local variables
+    var user = User()  
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    //lors du clique pour l'inscription
     @IBAction func inscriptionButtonAction(_ sender: Any) {
         let userNom = userNomTextField.text;
         let userPrenom = userPrenomTextField.text;
@@ -44,25 +36,29 @@ class RegistrationController : UIViewController {
             return;
         }
         //To do in user model
-        let userDict = ["mail": userEmail, "password": userMdp, "nom": userNom, "prenom": userPrenom] as [String: AnyObject]
+        self.user = User(nom: userNom!, prenom: userPrenom!, mail: userEmail!, password: userMdp!)
         let stringUrl = env + self.registerURL
-        self.user.register(url: stringUrl, userDict: userDict) { (response) in
+        self.user.register(url: stringUrl) { (response, data) in
             DispatchQueue.main.async {
-                if(response == "200"){
-                    self.displayMessage(Mytitle: "Félicitations", userMessage: "Bienvenue sur Mapito, vous pouvez maintenant vous connecter");
-                    return;
-                } else if(response=="403"){
-                    self.displayMessage(Mytitle: "Attention", userMessage: "Cet email existe déjà, veuillez recommencer");
+                if(response == 200){
+                    self.displayMessage(Mytitle: "Félicitations", userMessage: data);
                     return;
                 } else {
-                    self.displayMessage(Mytitle: "Oups", userMessage: "Un problème est survenue");
+                    self.displayMessage(Mytitle: "Attention", userMessage: data);
                     return;
                 }
             }
         }
     }
     
-    //message info
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     func displayMessage(Mytitle: String ,userMessage: String)
     {
         let myAlert = UIAlertController(title: Mytitle, message: userMessage, preferredStyle: UIAlertControllerStyle.alert);

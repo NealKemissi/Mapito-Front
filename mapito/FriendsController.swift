@@ -9,23 +9,26 @@
 import UIKit
 
 class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
     @IBOutlet weak var table: UITableView!
-    // To be retrieved from back
-    var amis = ["Arthur","Héloise","Neal","Robin", "Toto"]
-    @IBInspectable var myFriendsURL : String!
-    @IBInspectable var MyRequestsURL : String!
-    @IBInspectable var suppMyFriendsURL : String!
-    @IBInspectable var acceptMyFriendsURL : String!
-    private var friends : [Friend] = [] // Will be an array of Friend
-    private var mesDemandes : [AppNotification] = []
-    private var user = User()
-    var demandes = ["Florent", "Edouard"]
-    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
-    //var items = [["Florent", "Edouard"], ["Arthur","Héloise","Neal","Robin", "Toto"]]
-    
     @IBOutlet weak var findFriendTextField: MapitoTextField!
     
+    // API paths
+    @IBInspectable var myFriendsURL: String!
+    @IBInspectable var MyRequestsURL: String!
+    @IBInspectable var suppMyFriendsURL: String!
+    @IBInspectable var acceptMyFriendsURL: String!
+    @IBInspectable var DeleteRequestURL: String!
+    
+    // API URL
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
+    
+    // Local variables
+    private var friends: [Friend] = []
+    private var friendRequests: [AppNotification] = []
+    private var friendRequestsMails: [String] = []
+    private var user = User()    
+    
+    // Voir si fonctionne
     @IBAction func editchange(_ sender: MapitoTextField, forEvent event: UIEvent) {
         let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let deFC = mainStory.instantiateViewController(withIdentifier: "NewFriendController") as! NewFriendController
@@ -36,57 +39,46 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            }
-    //view will apear pour executer ce code a chaque chargement de la page
-    override func viewWillAppear(_ animated: Bool) {
-        // Do any additional setup after loading the view, typically from a nib.
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
-            //on met dans la variable myToken le token enregistrer dans l'appli
             self.user.token = tokenIsValid
-            print("Mytoken: "+self.user.token)
-            let stringUrlRequest = env+self.MyRequestsURL!
-            self.user.getAppNotifications(url: stringUrlRequest, callback: { (response) in
-                self.mesDemandes = response
-                print("test liste request")
-                print(self.mesDemandes)
-                self.table.reloadData()
-            })
-            
-            let stringUrl = env+self.myFriendsURL!
-            //recup liste friends
-            self.user.getFriends(url: stringUrl, callback: { (response) in
-                for friend in response {
-                    self.amis.append(friend.prenom)
-                }
-                self.table.reloadData()
-                self.friends = response
-                print(self.amis)
-                print("test liste friends")
-                print(self.friends)
-                self.table.reloadData()
-            })
-            //print("mes amis: ")
-            //print(self.amis)
-            print("test liste friends avant")
-            print(self.friends)
-        }else {
-            print("aucun token");
         }
+    }
+    
+    // viewWillAppear -> to execute code at each page loading
+    override func viewWillAppear(_ animated: Bool) {
+        // Get friendRequests
+        let friendRequestsURL = env + self.MyRequestsURL!
+        self.user.getAppNotifications(url: friendRequestsURL, callback: { (response) in
+            self.friendRequests = response
+            self.friendRequestsMails = response.map( { (appNotification: AppNotification) in appNotification.mail} )
+            self.table.reloadData()
+            print("test liste friendrequests")
+            print(self.friendRequests)
+        })
+        
+        // Get friends
+        let getFriendsURL = env+self.myFriendsURL!
+        // à gérer cas 404
+        self.user.getFriends(url: getFriendsURL, callback: { (response, friends) in
+            self.friends = friends
+            self.table.reloadData()
+            print("test liste friends")
+            print(self.friends)
+        })
+    
         self.table.reloadData();
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    //Grouped tableview
+    // Grouped tableview
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
-    //Titles of sections
+    // Titles of sections
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if(section==0){
             return "Demandes d'amis"
@@ -97,10 +89,10 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    //nb de labels ( section correspond au num de la section 0=demandes amis et 1=amis)
+    // Number of labels (section corresponds to section id: 0 = friendRequests et 1 = friends)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(section == 0){
-            return demandes.count
+            return friendRequestsMails.count
         } else if(section == 1){
             return friends.count
         } else {
@@ -108,89 +100,111 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }
     }
     
-    //initialisation de la tableView
+    // Initialization of tableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! UITableViewCell
         
-        
+        // Action in friendRequests section
         if(indexPath.section == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellRequest", for: indexPath) as! TableCellRequest//as! UITableViewCell
-            cell.textLabel?.text = demandes[indexPath.row]
-            cell.displayMessage = { (message) in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellRequest", for: indexPath) as! TableCellRequest
+            cell.textLabel?.text = friendRequestsMails[indexPath.row]
+            
+            // Action accept request (closure in TableCellRequest)
+            cell.displayMessageAccept = { (message) in
                 let myAlert = UIAlertController(title: "Accepter ?", message: message, preferredStyle: UIAlertControllerStyle.alert);
-                //on ajoute les buttonAction oui et non
+                // Add action buttons yes and no
+                myAlert.addAction(UIAlertAction(title: "Annuler", style: .default, handler: { (action: UIAlertAction!) in
+                    print("Acceptation annulée")
+                }))
                 myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
-                    let emailFriend = self.friends[indexPath.row].mail
+                    let emailFriend = self.friendRequests[indexPath.row].mail
                     let userDict = ["token": self.user.token, "mail": emailFriend] as [String: AnyObject]
                     let myAcceptUrl = self.env+self.acceptMyFriendsURL!
-                    self.user.acceptRequest(url: myAcceptUrl, userDict: userDict, callback: { (response) in
+                    self.user.acceptFriendRequest(url: myAcceptUrl, userDict: userDict, callback: { (response, data) in
                         DispatchQueue.main.async {
-                            if(response == "200"){
-                                print("acceptation reussie")
-                                self.table.reloadData()
-                                //print("mes nouveaux amis :")
-                                //print(self.friends)
+                            if(response == 200){
+                                self.displayMessage(Mytitle: "Félicitations", userMessage: data);
+                                return;
                             } else {
-                                print("une erreur est survenue")
+                                self.displayMessage(Mytitle: "Attention", userMessage: data);
+                                return;
                             }
                         }
                         self.table.reloadData()
                     })
-                    
                 }))
+                // myAlert displayed
+                self.present(myAlert, animated: true, completion: nil)
+            }
+            
+            // Action deny request (closure in TableCellRequest)
+            cell.displayMessageDeny = { (message) in
+                let myAlert = UIAlertController(title: "Refuser ?", message: message, preferredStyle: UIAlertControllerStyle.alert);
+                // Add action buttons yes and no
                 myAlert.addAction(UIAlertAction(title: "Annuler", style: .default, handler: { (action: UIAlertAction!) in
-                    print("acceptation annulée")
+                    print("Refus annulé")
                 }))
-                //on affiche le myAlert
+                myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
+                    let emailFriendRequest = self.friendRequests[indexPath.row].mail
+                    let typeFriendRequest = self.friendRequests[indexPath.row].type
+                    let userDict = ["token": self.user.token, "type": typeFriendRequest!, "mail": emailFriendRequest] as [String: AnyObject]
+                    let myDenyUrl = self.env+self.DeleteRequestURL!
+                    self.user.denyFriendRequest(url: myDenyUrl, userDict: userDict, callback: { (response, data) in
+                        DispatchQueue.main.async {
+                            if(response == 200){
+                                self.displayMessage(Mytitle: "Félicitations", userMessage: data);
+                                return;
+                            } else {
+                                self.displayMessage(Mytitle: "Attention", userMessage: data);
+                                return;
+                            }
+                        }
+                        self.table.reloadData()
+                    })
+                }))
+                // myAlert displayed
                 self.present(myAlert, animated: true, completion: nil)
             }
             return cell
             
+        // Action in friends section
         } else if(indexPath.section == 1){
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellFriends", for: indexPath) as! TableCellFriends
             cell.textLabel?.text = friends[indexPath.row].prenom
-            //cell.textLabel?.text = amis[indexPath.row]
-            // on appel la closure dans TableCellFriends
+
+            // Action delete friend (closure in TableCellFriends)
             cell.displayMessage = { (message) in
                 let myAlert = UIAlertController(title: "Attention", message: message, preferredStyle: UIAlertControllerStyle.alert);
-                //on ajoute les buttonAction oui et non
+                // Add action buttons yes and no
+                myAlert.addAction(UIAlertAction(title: "Non", style: .default, handler: { (action: UIAlertAction!) in
+                    print("Suppression annulée")
+                }))
                 myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
-                    print("test reussie")
                     let emailFriend = self.friends[indexPath.row].mail
-                    
                     let mySuppUrl = self.env+self.suppMyFriendsURL!
-                    print(mySuppUrl)
-                    self.user.deleteFriend(url: mySuppUrl, emailFriend: emailFriend, callback: { (response) in
+                    self.user.deleteFriend(url: mySuppUrl, emailFriend: emailFriend, callback: { (response, data) in
                         DispatchQueue.main.async {
-                            if(response == "200"){
-                                print("suppression reussie")
-                                self.table.reloadData()
-                                let stringUrl = self.env+self.myFriendsURL!
-                                self.user.getFriends(url: stringUrl, callback: { (response) in
-                                    print("response")
-                                    print(response)
-                                    self.friends = response
-                                })
-                                print("mes nouveaux amis :")
-                                print(self.friends)
+                            if(response == 200){
+                                self.displayMessage(Mytitle: "Félicitations", userMessage: data)
+                                return;
                             } else {
-                                print("une erreur est survenue")
+                                self.displayMessage(Mytitle: "Attention", userMessage: data)
+                                return;
                             }
                         }
                         self.table.reloadData()
                     })
                     
                 }))
-                myAlert.addAction(UIAlertAction(title: "Non", style: .default, handler: { (action: UIAlertAction!) in
-                    print("suppression annulée")
-                }))
-                //on affiche le myAlert
+                // myAlert displayed
                 self.present(myAlert, animated: true, completion: nil)
             }
             return cell
-        } else {
+        }
+        
+        // Action in other section
+        else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellRequest", for: indexPath) //as! UITableViewCell
-            cell.textLabel?.text = amis[indexPath.row]
+            cell.textLabel?.text = friendRequestsMails[indexPath.row]
             return cell
         }
         /*else if(indexPath.row>1){
@@ -200,6 +214,14 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         }*/
         //cell.textLabel?.text = "Section \(indexPath.section) Row \(indexPath.row)"
         
+    }
+    
+    func displayMessage(Mytitle: String ,userMessage: String)
+    {
+        let myAlert = UIAlertController(title: Mytitle, message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
+        let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
+        myAlert.addAction(Ok);
+        self.present(myAlert, animated: true, completion: nil);
     }
 }
 

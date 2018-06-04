@@ -10,15 +10,16 @@ import Foundation
 import UIKit
 
 class TableCellRequest: UITableViewCell {
-
-    
+    @IBOutlet weak var buttonsView: UIView!
+    @IBOutlet weak var ButtonDenyRequest: UIButton!
     @IBOutlet weak var ButtonAcceptRequest: UIButton!
     var Mytoken : String!
-    var displayMessage: ((String)->())? = nil
+    var displayMessageAccept: ((String)->())? = nil
+    var displayMessageDeny: ((String)->())? = nil
     
     //permet d'initialiser la table view a l'affichage
     override func awakeFromNib() {
-        accessoryView = ButtonAcceptRequest
+        accessoryView = buttonsView
         imageView?.image = #imageLiteral(resourceName: "logo_mapito")
         
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
@@ -31,9 +32,12 @@ class TableCellRequest: UITableViewCell {
     }
     //clique deux fois
     @IBAction func AcceptRequestAction(_ sender: Any) {
-        //print("test reussie")
-        //lorsque l'on clique sur loe bouton on fait appel a la closure displayMessage
-        //qui sera initialiser dans le FriendController qui l'appel
-        displayMessage?("Voulez vous vraiment accepter la demande d'ami ?")
+        // When button tapped, call of displayMessage's closure
+        // Will be initialized in FriendController when called
+        displayMessageAccept?("Voulez vous vraiment accepter la demande d'ami ?")
+    }
+    
+    @IBAction func DenyRequestAction(_ sender: Any) {
+        displayMessageDeny?("Voulez vous vraiment supprimer la demande d'ami ?")
     }
 }

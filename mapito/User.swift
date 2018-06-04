@@ -24,14 +24,12 @@ class User {
     var latitude: String = ""
     var longitude: String = ""
     
-    /*init(nom: String, prenom: String, mail: String, password: String, friends: [Friend]){
+    init(nom: String, prenom: String, mail: String, password: String){
         self.nom = nom;
         self.prenom = prenom;
         self.mail = mail;
         self.password = password;
-        self.friends = friends;
-        self.pos = MKUserLocation() ;
-    }*/
+    }
     
     init(){
     }
@@ -52,7 +50,7 @@ class User {
     }
 
     
-    func loginWithUsername(url: String, callback: @escaping (String, String)-> ()) {
+    func loginWithUsername(url: String, callback: @escaping (Int, String)-> ()) {
         let userDict = ["mail": self.mail, "password": self.password] as [String: AnyObject]
         
         let baseUrl = URL(string: url)
@@ -74,10 +72,8 @@ class User {
             }
             DispatchQueue.main.async {
                 if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
                     if(httpResponse.statusCode == 200){
-                        print("data : ")
-                        let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
-                        print(dataStringified ?? "Data could not be printed")
                         if let usableData = data {
                             do {
                                 let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
@@ -89,13 +85,16 @@ class User {
                                 print("JSON serialisation failed")
                             }
                         }
-                        callback("", self.token)
+                        callback(200, self.token)
                         return;
                     } else if (httpResponse.statusCode == 403) {
-                        callback("Le mot de passe ou l'email est incorrect", "")
+                        callback(403, dataStringified!)
+                        return;
+                    } else if (httpResponse.statusCode == 404) {
+                        callback(404, dataStringified!)
                         return;
                     } else {
-                        callback("Problème inconnu", "")
+                        callback(httpResponse.statusCode, "Une erreur est survenue")
                         return;
                     }
                 }
@@ -104,68 +103,77 @@ class User {
         session.resume()
     }
     
-    func logout() {
-        //Delete the account
-    }
-    
-    func userAuthenticated() -> Bool{
-        let auth : Bool = true;
+    func register(url: String, callback: @escaping (Int, String)-> ()){
+        let userDict = ["mail": self.mail, "password": self.password, "nom": self.nom, "prenom": self.prenom] as [String: AnyObject]
         
-        return auth;
-    }
-    
-    func getFriends(url: String, callback: @escaping ([Friend])-> ()){
-        /*
-         [
-         {
-         "id": ch,
-         "latitude": 48.851164,
-         "longitude": 2.348156,
-         },
-         {
-         "id": gen3, poet,
-         "latitude": 48.850164,
-         "longitude": 2.349156,
-         }
-         ]
-         */
-        print(url)
-        let userDict = ["token": self.token] as [String: AnyObject]
-        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
-        //request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.addValue(self.token, forHTTPHeaderField: "Authorization")
-        //request.httpMethod="GET"
+        let baseUrl = URL(string: url)
+        var request = URLRequest(url: baseUrl!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
         do {
             let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
             let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
-            print("------------------------body-------------------------:")
             print(bodyJSONStringified!)
-            //request.httpBody = bodyJSON
+            request.httpBody = bodyJSON
         } catch let error {
             print(error.localizedDescription)
         }
-        let session = URLSession.shared.dataTask(with: request)
-        { (data, response, error) in
-            print("data : ")
-            let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
-            print(dataStringified ?? "Data could not be printed")
-            if let usableData = data {
-                do {
-                    let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
-                    if let friendsJSON = jsonArray as? [[String: AnyObject]] {
-                        self.friends = friendsJSON.map { Friend(json: $0) }
-                        print(self.friends)
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    if(httpResponse.statusCode == 200){
+                        callback(200, dataStringified!)
+                    } else if (httpResponse.statusCode == 403) {
+                        callback(403, dataStringified!)
+                    } else {
+                        callback(httpResponse.statusCode, "Une erreur est survenue")
+                        return;
                     }
-                    callback(self.friends)
-                } catch {
-                    print("JSON serialisation failed")
                 }
             }
         }
         session.resume()
     }
     
-    //recup la valeur d'un attribut du user ex: recup mdp, nom, prenom
+    func getFriends(url: String, callback: @escaping (Int, [Friend])-> ()){
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.addValue(self.token, forHTTPHeaderField: "Authorization")
+
+        let session = URLSession.shared.dataTask(with: request)
+        { (data, response, error) in
+            if let usableData = data {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        do {
+                            let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
+                            if let friendsJSON = jsonArray as? [[String: AnyObject]] {
+                                self.friends = friendsJSON.map { Friend(json: $0) }
+                                print(self.friends)
+                            }
+                        } catch {
+                            print("JSON serialisation failed")
+                        }
+                        callback(200, self.friends)
+                    } else if (httpResponse.statusCode == 404) {
+                        callback(404, [])
+                    } else {
+                        callback(httpResponse.statusCode, [])
+                        return;
+                    }
+                }
+            }
+        }
+        session.resume()
+    }
+    
+    // Get one value of user's attribute (email, name, firstname, password)
+    // Pas opérationnel ?
     func getFieldValue(url: String, callback: @escaping (String)-> ()){
         let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         let session = URLSession.shared.dataTask(with: request ,completionHandler:
@@ -188,43 +196,9 @@ class User {
         session.resume()
     }
     
-    func register(url: String, userDict: [String: AnyObject], callback: @escaping (String)-> ()){
-        let baseUrl = URL(string: url)
-        var request = URLRequest(url: baseUrl!)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        do {
-            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
-            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
-            print(bodyJSONStringified!)
-            request.httpBody = bodyJSON
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let _ = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
-            }
-            DispatchQueue.main.async {
-                if let httpResponse = response as? HTTPURLResponse {
-                    if(httpResponse.statusCode == 200){
-                        callback("200")
-                    } else if (httpResponse.statusCode == 403) {
-                        callback("403")
-                    } else {
-                        callback("error")
-                        return;
-                    }
-                }
-            }
-        }
-        session.resume()
-    }
     
-    
-    //modification de la valeur du user
-    func updateUser(url : String, userDict: [String: AnyObject], callback: @escaping (String)-> ()){
+    // Update one field of user (email, name, firstname, password)
+    func updateUser(url : String, userDict: [String: AnyObject], callback: @escaping (Int, String)-> ()){
         let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: baseUrl)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -243,148 +217,14 @@ class User {
                 return
             }
             DispatchQueue.main.async {
+                let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
                 if let httpResponse = response as? HTTPURLResponse {
                     if(httpResponse.statusCode == 200){
-                        callback("200")
+                        callback(200, dataStringified!)
                     } else if(httpResponse.statusCode == 403){
-                        callback("403")
+                        callback(403, dataStringified!)
                     } else {
-                        callback("error")
-                    }
-                }
-            }}
-            session.resume()
-            
-    }
-    
-    //accepter demande amis
-    func acceptRequest(url : String, userDict: [String: AnyObject], callback: @escaping (String)-> ()){
-        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-        var request = URLRequest(url: baseUrl)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "PUT"
-        do {
-            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
-            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
-            print(bodyJSONStringified!)
-            request.httpBody = bodyJSON
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let _ = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
-            }
-            DispatchQueue.main.async {
-                if let httpResponse = response as? HTTPURLResponse {
-                    if(httpResponse.statusCode == 200){
-                        callback("200")
-                    } else {
-                        callback("error")
-                    }
-                }
-            }}
-        session.resume()
-    }
-    
-    func getAppNotifications(url: String, callback: @escaping ([AppNotification])-> ()){
-        //let userDict = ["token": self.token] as [String: AnyObject]
-        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
-        request.addValue(self.token, forHTTPHeaderField: "Authorization")
-        /*
-        do {
-            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
-            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
-            print("------------------------bodyRequest-------------------------:")
-            print(bodyJSONStringified!)
-        } catch let error {
-            print(error.localizedDescription)
-        }*/
-        print("test")
-        let session = URLSession.shared.dataTask(with: request)
-        { (data, response, error) in
-            print("-------------------------------- data : ")
-            let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
-            print(dataStringified ?? "Data could not be printed")
-            if let usableData = data {
-                do {
-                    let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
-                    if let notificationsJSON = jsonArray as? [[String: AnyObject]] {
-                        self.appNotifications = notificationsJSON.map { AppNotification(json: $0)! }
-                        print(self.appNotifications)
-                    }
-                    callback(self.appNotifications)
-                } catch {
-                    print("JSON serialisation failed")
-                }
-            }
-        }
-        session.resume()
-    }
-    
-    //envoyer requete d'amis
-    func sendRequest(url: String, userDict: [String: AnyObject], callback: @escaping (String)-> ()){
-        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
-        var request = URLRequest(url: baseUrl)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "PUT"
-        do {
-            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
-            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
-            print(bodyJSONStringified!)
-            request.httpBody = bodyJSON
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let _ = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
-            }
-            DispatchQueue.main.async {
-                if let httpResponse = response as? HTTPURLResponse {
-                    if(httpResponse.statusCode == 200){
-                        callback("200")
-                    } else if(httpResponse.statusCode == 403){
-                        callback("403")
-                    } else if(httpResponse.statusCode == 401){
-                        callback("401")
-                    } else {
-                        callback("error")
-                    }
-                }
-            }}
-        session.resume()
-        
-    }
-    
-    //suppression d'ami
-    func deleteFriend(url: String, emailFriend: String, callback: @escaping (String)-> ()) {
-        let userDict = ["token": self.token, "mail": emailFriend] as [String: AnyObject]
-        
-        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "PUT"
-        do {
-            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
-            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
-            print(bodyJSONStringified!)
-            request.httpBody = bodyJSON
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            guard let _ = data, error == nil else {
-                print("error=\(String(describing: error))")
-                return
-            }
-            DispatchQueue.main.async {
-                if let httpResponse = response as? HTTPURLResponse {
-                    if(httpResponse.statusCode == 200){
-                        callback("200")
-                    } else {
-                        callback("error")
+                        callback(httpResponse.statusCode, "Une erreur est survenue")
                     }
                 }
             }
@@ -404,9 +244,64 @@ class User {
         session.resume()
     }
     
+    func getAppNotifications(url: String, callback: @escaping ([AppNotification])-> ()){
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.addValue(self.token, forHTTPHeaderField: "Authorization")
+        let session = URLSession.shared.dataTask(with: request)
+        { (data, response, error) in
+            if let usableData = data {
+                do {
+                    let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
+                    if let notificationsJSON = jsonArray as? [[String: AnyObject]] {
+                        self.appNotifications = notificationsJSON.map { AppNotification(json: $0)! }
+                    }
+                    callback(self.appNotifications)
+                } catch {
+                    print("JSON serialisation failed")
+                }
+            }
+        }
+        session.resume()
+    }
     
-    //resetPassword
-    func resetPWD(url: String, userDict: [String: AnyObject], callback: @escaping (String)-> ()){
+    func sendFriendRequest(url: String, userDict: [String: AnyObject], callback: @escaping (Int, String)-> ()){
+        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: baseUrl)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted)
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    if(httpResponse.statusCode == 200){
+                        callback(200, dataStringified!)
+                    } else if(httpResponse.statusCode == 403){
+                        callback(403, dataStringified!)
+                    } else if(httpResponse.statusCode == 404){
+                        callback(404, dataStringified!)
+                    } else {
+                        callback(httpResponse.statusCode, "Une erreur est survenue")
+                    }
+                }
+            }
+        }
+        session.resume()
+    }
+    
+    func acceptFriendRequest(url : String, userDict: [String: AnyObject], callback: @escaping (Int, String)-> ()){
+        //Put dictionary here
         let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
         var request = URLRequest(url: baseUrl)
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
@@ -426,10 +321,13 @@ class User {
             }
             DispatchQueue.main.async {
                 if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
                     if(httpResponse.statusCode == 200){
-                        callback("OK")
+                        callback(200, dataStringified!)
+                    } else if(httpResponse.statusCode == 403){
+                        callback(403, dataStringified!)
                     } else {
-                        callback("nOK")
+                        callback(httpResponse.statusCode, "Une erreur est survenue")
                     }
                 }
             }
@@ -437,7 +335,115 @@ class User {
         session.resume()
     }
     
-    func updatePosition(url: String, callback: @escaping (String)-> ()){
+    func denyFriendRequest(url : String, userDict: [String: AnyObject], callback: @escaping (Int, String)-> ()){
+        // Put dictionary here
+        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: baseUrl)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    if(httpResponse.statusCode == 200){
+                        callback(200, dataStringified!)
+                    } else if(httpResponse.statusCode == 404){
+                        callback(404, dataStringified!)
+                    } else {
+                        callback(httpResponse.statusCode, dataStringified!)
+                    }
+                }
+            }
+        }
+        session.resume()
+    }
+    
+    func deleteFriend(url: String, emailFriend: String, callback: @escaping (Int, String)-> ()) {
+        let userDict = ["token": self.token, "mail": emailFriend] as [String: AnyObject]
+        
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted)
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                     print(dataStringified ?? "Data could not be printed")
+                    if(httpResponse.statusCode == 200){
+                        callback(200, dataStringified!)
+                    } else if(httpResponse.statusCode == 404){
+                        callback(404, dataStringified!)
+                    } else {
+                        callback(httpResponse.statusCode, "Une erreur est survenue")
+                    }
+                }
+            }
+        }
+        session.resume()
+    }
+    
+    
+    func resetPWD(url: String, callback: @escaping (Int, String)-> ()){
+        let userDict = ["mail": self.mail] as [String: AnyObject]
+        
+        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
+        var request = URLRequest(url: baseUrl)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "PUT"
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: userDict, options: .prettyPrinted) //remove opt
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    if(httpResponse.statusCode == 200){
+                        callback(200, dataStringified!)
+                    } else if(httpResponse.statusCode == 404){
+                        callback(404, dataStringified!)
+                    } else {
+                        callback(httpResponse.statusCode, "Une erreur est survenue")
+                    }
+                }
+            }
+        }
+        session.resume()
+    }
+    
+    func updatePosition(url: String, callback: @escaping (Int)-> ()){
         let userDict = ["token": self.token, "lon": self.longitude, "lat": self.latitude] as [String: AnyObject]
         
         let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!
@@ -460,9 +466,9 @@ class User {
             DispatchQueue.main.async {
                 if let httpResponse = response as? HTTPURLResponse {
                     if(httpResponse.statusCode == 200){
-                        callback("OK")
+                        callback(200)
                     } else {
-                        callback(String(httpResponse.statusCode))
+                        callback(httpResponse.statusCode)
                     }
                 }
             }

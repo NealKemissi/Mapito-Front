@@ -9,17 +9,23 @@
 import UIKit
 
 class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
-    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var invisibleMode: UISwitch!
     @IBOutlet weak var userNameLabel: UILabel!
+    
+    // API paths
     @IBInspectable var userFieldURL: String! //recuperation de
     
-    let user = User()
+    // API url
+    let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
-    //deconnexion
-    @IBAction func deconnexion(_ sender: UIButton) {        
+    // Local variables
+    let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
+    let user = User()
+    var champs = ["nom", "prenom", "mail", "password"]
+    //var indexArray = ["Info personnelles", "Info Connexion"]
+    
+    @IBAction func logout(_ sender: UIButton) {
         let defaults = UserDefaults.standard;
         defaults.removeObject(forKey: "token");
         defaults.synchronize();
@@ -34,19 +40,18 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         print("--invisibleMode--")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "switchStatus"), object: invisibleMode.isOn)
     }
-    //var indexArray = ["Info personnelles","Info Connexion"]
-    var champs = ["nom","prenom","mail","password"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         profileImageView.setRounded()
         profileImageView.setImageColor(color: UIColor.purple)
-        //self.user.getFieldValue(url: <#T##String#>, callback: )
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
+    
     /*
     //nb de separation de label
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -58,11 +63,12 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     */
     
-    //nb de label par cell
+    // Number of labels per cells
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return champs.count
     }
-    //initialisation de la tableView
+    
+    // Initialisation of tableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! TableCell
         
@@ -71,7 +77,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         return cell
     }
     
-    //une fois cliquer sur un label on est redirigé vers la page DetailedProfileController
+    // When label tapped -> redirection to DetailedProfileController
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let dePC = mainStory.instantiateViewController(withIdentifier: "DetailedProfileController") as! DetailedProfileController
