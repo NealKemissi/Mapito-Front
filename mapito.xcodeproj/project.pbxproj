@@ -30,6 +30,8 @@
 		D6A941ED207F7E3A0022FD29 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EC207F7E3A0022FD29 /* MapController.swift */; };
 		D6A941EF207FA15D0022FD29 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941EE207FA15D0022FD29 /* LoginController.swift */; };
 		D6A941F1207FA1B40022FD29 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941F0207FA1B40022FD29 /* RegistrationController.swift */; };
+		D6AB73D720C681480027C2B7 /* TableCellContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB73D620C681480027C2B7 /* TableCellContact.swift */; };
+		D6AB73D920C6A3F80027C2B7 /* PhoneNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB73D820C6A3F80027C2B7 /* PhoneNumberController.swift */; };
 		D6ABAEED20BEF2CD007DD0E5 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABAEEC20BEF2CD007DD0E5 /* Alert.swift */; };
 		D6ABAEEF20BF0047007DD0E5 /* AppNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6ABAEEE20BF0047007DD0E5 /* AppNotification.swift */; };
 		D6BBAA38208B3D7200FA58FA /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BBAA37208B3D7200FA58FA /* TableCell.swift */; };
@@ -85,6 +87,8 @@
 		D6A941EC207F7E3A0022FD29 /* MapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		D6A941EE207FA15D0022FD29 /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		D6A941F0207FA1B40022FD29 /* RegistrationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
+		D6AB73D620C681480027C2B7 /* TableCellContact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCellContact.swift; sourceTree = "<group>"; };
+		D6AB73D820C6A3F80027C2B7 /* PhoneNumberController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberController.swift; sourceTree = "<group>"; };
 		D6ABAEEC20BEF2CD007DD0E5 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		D6ABAEEE20BF0047007DD0E5 /* AppNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNotification.swift; sourceTree = "<group>"; };
 		D6BBAA37208B3D7200FA58FA /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 				D6A941C0207F78D00022FD29 /* FriendsController.swift */,
 				D6BBAA3D208B92CB00FA58FA /* NewFriendController.swift */,
 				D687EA0E20BEEC65002AC5D1 /* NotificationsController.swift */,
+				D6AB73D820C6A3F80027C2B7 /* PhoneNumberController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 				D63842D120BFE9EF00A4C769 /* TableCellFriends.swift */,
 				D63842D320C0291D00A4C769 /* TableCellRequest.swift */,
 				D64CD78120C159DC00E0359E /* TableCellNotif.swift */,
+				D6AB73D620C681480027C2B7 /* TableCellContact.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -362,6 +368,7 @@
 				D63842D420C0291D00A4C769 /* TableCellRequest.swift in Sources */,
 				D63B3F1420B6D91200E2C104 /* Pin.swift in Sources */,
 				D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */,
+				D6AB73D720C681480027C2B7 /* TableCellContact.swift in Sources */,
 				D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */,
 				D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */,
 				D6ABAEED20BEF2CD007DD0E5 /* Alert.swift in Sources */,
@@ -374,6 +381,7 @@
 				D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */,
 				D63842D220BFE9EF00A4C769 /* TableCellFriends.swift in Sources */,
 				D653780F20B565CB00217E96 /* MapitoButton.swift in Sources */,
+				D6AB73D920C6A3F80027C2B7 /* PhoneNumberController.swift in Sources */,
 				D687EA0F20BEEC65002AC5D1 /* NotificationsController.swift in Sources */,
 				D6A941F1207FA1B40022FD29 /* RegistrationController.swift in Sources */,
 				D66E3D5220B5A42A009208EA /* MapitoTextField.swift in Sources */,
@@ -539,7 +547,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://0debfd31.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -555,7 +563,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://0debfd31.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -676,7 +684,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://0debfd31.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
