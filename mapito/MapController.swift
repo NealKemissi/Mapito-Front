@@ -88,7 +88,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if(cpt==6){
+        if(cpt==8){
             print("---locations---")
             print(locations)
             let longitude = locations[0].coordinate.longitude
