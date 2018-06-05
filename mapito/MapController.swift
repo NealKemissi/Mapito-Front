@@ -63,6 +63,15 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(region, animated: true)
     }
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let image = UIImage(named: "pinataprofil")!
+        print(image)
+        let pinView: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
+        pinView.image = image
+        
+        return pinView
+    }
+    
     /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         print("---test recupération friends---")
         let url = env + myFriendsURL
@@ -88,7 +97,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if(cpt==6){
+        if(cpt==8){
             print("---locations---")
             print(locations)
             let longitude = locations[0].coordinate.longitude
@@ -170,11 +179,11 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     }
                     print("--friend.lastpos--")
                     print(friend.lastpos!)
-                    let lastPin = Pin(coordinate: friend.lastpos!, title: "latPin", subtitle: "lastPin")
+                    let lastPin = Pin(coordinate: friend.lastpos!, title: "Pin", subtitle: "lastPin")
                     self.mapView.removeAnnotations(self.mapView.annotations)
                     
                     let coordinate = friend.pos
-                    let pin = Pin(coordinate: coordinate, title: friend.prenom, subtitle: friend.mail)
+                    let pin = Pin(coordinate: coordinate, title: "Pin", subtitle: friend.mail)
                     self.mapView.addAnnotation(pin)
                     
                    /*let coordinate2 = CLLocationCoordinate2D(latitude: 48.840904, longitude: 2.3603)
