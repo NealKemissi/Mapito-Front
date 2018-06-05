@@ -49,6 +49,57 @@
             </objects>
             <point key="canvasLocation" x="1974" y="-886"/>
         </scene>
+        <!--Phone Number Controller-->
+        <scene sceneID="aeI-Ie-v7z">
+            <objects>
+                <viewController id="Mav-aa-q2x" customClass="PhoneNumberController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="271-Zi-GXC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nid-HY-Gwl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oH6-Xd-YYb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon numéro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIe-28-KjK">
+                                <rect key="frame" x="128" y="99" width="118" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aeu-pO-cba">
+                                <rect key="frame" x="74" y="187" width="227" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i75-8g-HoK">
+                                <rect key="frame" x="146" y="281" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Modifier">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ModificationPhone:" destination="Mav-aa-q2x" eventType="touchUpInside" id="EBK-eh-ILb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="/api/users"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="NewPhoneNumberTextField" destination="Aeu-pO-cba" id="WEB-2G-lK9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qd0-Yc-FED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2749.5999999999999" y="-887.40629685157433"/>
+        </scene>
         <!--NavigationProfile-->
         <scene sceneID="22h-Ds-eJi">
             <objects>
@@ -79,7 +130,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ue9-q1-1qA">
-                                <rect key="frame" x="0.0" y="171" width="375" height="376"/>
+                                <rect key="frame" x="0.0" y="171" width="375" height="253"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TableCell" id="cnR-eB-MDN" customClass="TableCell" customModule="mapito" customModuleProvider="target">
@@ -144,13 +195,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABJ-Z2-NYn">
+                                <rect key="frame" x="0.0" y="498" width="223" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Mon numero de téléphone"/>
+                                <connections>
+                                    <segue destination="Mav-aa-q2x" kind="show" id="wfg-u8-351"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ue9-q1-1qA" secondAttribute="trailing" id="5r3-PI-p5Q"/>
                             <constraint firstItem="ue9-q1-1qA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Xtx-xr-LjU"/>
                             <constraint firstItem="ue9-q1-1qA" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="171" id="dOT-0S-LXb"/>
-                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ue9-q1-1qA" secondAttribute="bottom" constant="71" id="n4d-Mv-IZd"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="ue9-q1-1qA" secondAttribute="bottom" constant="194" id="n4d-Mv-IZd"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="001-man-user" id="acW-dT-cKf"/>
@@ -456,6 +515,27 @@
                                             <outlet property="ChampsFriends" destination="op3-UL-ARV" id="vrB-y4-okH"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableCellContact" id="fgT-Cb-NID" customClass="TableCellContact" customModule="mapito" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="104" width="375" height="38"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fgT-Cb-NID" id="ydB-d7-NXC">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FZR-6v-hca">
+                                                    <rect key="frame" x="328" y="8" width="23" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" backgroundImage="check"/>
+                                                    <connections>
+                                                        <action selector="acceptContactAction:" destination="fgT-Cb-NID" eventType="touchDownRepeat" id="HMb-R8-yUc"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="buttonAcceptContact" destination="FZR-6v-hca" id="YUF-qw-cNN"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="8rJ-Kc-sve" id="k48-ZR-1HR"/>
@@ -503,6 +583,8 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="acceptMyFriendsURL" value="/api/friends/addFriend"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="MyRequestsURL" value="/api/notifications/getFriendRequests"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="DeleteRequestURL" value="/api/notifications/delete"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="getPotentialFriendsURL" value="/api/users/getFriendByNumber"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="addFriendURL" value="/api/friends/friendRequest"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="findFriendTextField" destination="6Ft-XP-EeW" id="65X-eB-dy2"/>

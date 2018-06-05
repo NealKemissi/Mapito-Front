@@ -70,7 +70,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // Initialisation of tableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) //as! TableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableCell", for: indexPath) as! TableCell
         
         cell.textLabel?.text = "Modifier "+champs[indexPath.row]
         
@@ -78,8 +78,8 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     }
     
     // When label tapped -> redirection to DetailedProfileController
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let dePC = mainStory.instantiateViewController(withIdentifier: "DetailedProfileController") as! DetailedProfileController
         dePC.field = champs[indexPath.row]
         self.navigationController?.pushViewController(dePC, animated: true)

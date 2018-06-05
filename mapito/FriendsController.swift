@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Contacts
 
 class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var table: UITableView!
@@ -18,6 +19,8 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBInspectable var suppMyFriendsURL: String!
     @IBInspectable var acceptMyFriendsURL: String!
     @IBInspectable var DeleteRequestURL: String!
+    @IBInspectable var getPotentialFriendsURL: String!
+    @IBInspectable var addFriendURL: String!
     
     // API URL
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
@@ -26,7 +29,9 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     private var friends: [Friend] = []
     private var friendRequests: [AppNotification] = []
     private var friendRequestsMails: [String] = []
-    private var user = User()    
+    private var user = User()
+    //private var myContactString = ["Arthur", "Héloise", "Neal", "Robin"]
+    private var myContacts : [Friend] = []
     
     // Voir si fonctionne
     @IBAction func editchange(_ sender: MapitoTextField, forEvent event: UIEvent) {
@@ -42,6 +47,8 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             self.user.token = tokenIsValid
         }
+        //fetchContacts()
+        //self.table.reloadData()
     }
     
     // viewWillAppear -> to execute code at each page loading
@@ -61,6 +68,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         // à gérer cas 404
         self.user.getFriends(url: getFriendsURL, callback: { (response, friends) in
             self.friends = friends
+            self.fetchContacts()
             self.table.reloadData()
             print("test liste friends")
             print(self.friends)
@@ -75,7 +83,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     // Grouped tableview
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     // Titles of sections
@@ -84,6 +92,8 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             return "Demandes d'amis"
         } else if(section == 1){
             return "Amis"
+        } else if(section==2){
+            return "Vos contact"
         } else {
             return ""
         }
@@ -95,6 +105,8 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
             return friendRequestsMails.count
         } else if(section == 1){
             return friends.count
+        } else if(section == 2){
+            return myContacts.count
         } else {
             return 0
         }
@@ -199,6 +211,40 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
                 self.present(myAlert, animated: true, completion: nil)
             }
             return cell
+        } else if(indexPath.section == 2){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellContact", for: indexPath) as! TableCellContact
+            cell.textLabel?.text = myContacts[indexPath.row].mail
+            
+            cell.displayMessageAcceptC = { (message) in
+                let myAlert = UIAlertController(title: "Accepter ?", message: message, preferredStyle: UIAlertControllerStyle.alert);
+                // Add action buttons yes and no
+                myAlert.addAction(UIAlertAction(title: "Non", style: .default, handler: { (action: UIAlertAction!) in
+                    print("acceptation contact annulée")
+                }))
+                myAlert.addAction(UIAlertAction(title: "Oui", style: .default, handler: { (action: UIAlertAction!) in
+                    print("demande contact envoyé")
+                    let emailFriend = self.myContacts[indexPath.row].mail
+                    let userDict = ["token": self.user.token, "mail": emailFriend] as [String: AnyObject]
+                    let stringUrl = self.env+self.addFriendURL!
+                    print("addFriend")
+                    print(stringUrl)
+                    self.user.sendFriendRequest(url: stringUrl, userDict: userDict) { (response, data) in
+                        DispatchQueue.main.async {
+                            if(response == 200){
+                                self.displayMessage(Mytitle: "Félicitations", userMessage: data);
+                                return;
+                            } else {
+                                self.displayMessage(Mytitle: "Attention", userMessage: data);
+                                return;
+                            }
+                        }
+                    }
+                }))
+                self.table.reloadData()
+                // myAlert displayed
+                self.present(myAlert, animated: true, completion: nil)
+            }
+            return cell
         }
         
         // Action in other section
@@ -222,6 +268,53 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         let Ok = UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler:nil);
         myAlert.addAction(Ok);
         self.present(myAlert, animated: true, completion: nil);
+    }
+    
+    
+    //get my contact phone
+    private func fetchContacts() {
+        let store = CNContactStore()
+        var phoneContacts = ""
+        store.requestAccess(for: .contacts) { (granted, err) in
+            if let err = err {
+                print("failed acces contact", err)
+                return
+            }
+            if granted {
+                print("access success")
+                //clées des valeurs a recup
+                let keys = [CNContactPhoneNumbersKey]
+                //requete qui va recup les phoneNumbersKey
+                let request = CNContactFetchRequest(keysToFetch: keys as [CNKeyDescriptor])
+                
+                do {
+                    //enumeration des contacts
+                    try store.enumerateContacts(with: request, usingBlock: { (contact, stopPointerIfYouWantToStopEnumerating) in
+                        //print(contact.phoneNumbers.first?.value.stringValue ?? "")
+                        //phoneContacts.append(contact.phoneNumbers.first?.value.stringValue ?? "")
+                        phoneContacts = phoneContacts+(contact.phoneNumbers.first?.value.stringValue)!+";"
+                    })
+                } catch let err{
+                    print("failed to enumerate contact :",err)
+                }
+                print(phoneContacts)
+                self.user.getPotentialFriends(url: self.env+self.getPotentialFriendsURL, listContact: phoneContacts, callback: { (response, listResponse) in
+                    DispatchQueue.main.async {
+                        if(response == 200){
+                            self.myContacts = listResponse
+                            self.table.reloadData()
+                            print("test liste contact : ", self.myContacts)
+                        } else {
+                            print("recuperer potentiel amis echoué ", response)
+                        }
+                    }
+                    self.table.reloadData()
+                })
+                
+            } else {
+                print("access denied")
+            }
+        }
     }
 }
 

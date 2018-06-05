@@ -18,6 +18,7 @@ class User {
     var mail: String = "";
     var password: String = "";
     var valueField : String = "";
+    var numTel : String = "";
     var friends: [Friend] = [];
     var appNotifications: [AppNotification] = []
     var token = ""
@@ -171,6 +172,41 @@ class User {
         }
         session.resume()
     }
+    
+    //send my contact number and return the potential friends
+    func getPotentialFriends(url: String, listContact : String, callback: @escaping (Int, [Friend])-> ()){
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.addValue(listContact, forHTTPHeaderField: "Authorization")
+        
+        let session = URLSession.shared.dataTask(with: request)
+        { (data, response, error) in
+            if let usableData = data {
+                if let httpResponse = response as? HTTPURLResponse {
+                    if(httpResponse.statusCode == 200){
+                        let dataStringified = String(data: usableData, encoding: String.Encoding.utf8)
+                        print(dataStringified!)
+                        do {
+                            let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
+                            if let friendsJSON = jsonArray as? [[String: AnyObject]] {
+                                self.friends = friendsJSON.map { Friend(json: $0) }
+                                print(self.friends)
+                            }
+                        } catch {
+                            print("JSON serialisation failed of failed")
+                        }
+                        callback(200, self.friends)
+                    } else if (httpResponse.statusCode == 404) {
+                        callback(404, [])
+                    } else {
+                        callback(httpResponse.statusCode, [])
+                        return;
+                    }
+                }
+            }
+        }
+        session.resume()
+    }
+    
     
     // Get one value of user's attribute (email, name, firstname, password)
     // Pas opérationnel ?
