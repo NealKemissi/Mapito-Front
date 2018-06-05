@@ -12,17 +12,20 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var invisibleMode: UISwitch!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userFirstNameLabel: UILabel!
+    @IBOutlet weak var userEmailLabel: UILabel!
     
     // API paths
     @IBInspectable var userFieldURL: String!
+    @IBInspectable var getUserURL: String!
     
     // API url
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String
     
     // Local variables
     let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
-    let user = User()
-    var champs = ["nom", "prenom", "mail", "password"]
+    var user = User()
+    var champs = ["nom", "prenom", "mail", "password", "rgbProfil"]
     //var indexArray = ["Info personnelles", "Info Connexion"]
     
     @IBAction func logout(_ sender: UIButton) {
@@ -44,8 +47,28 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
+            //on met dans la variable myToken le token enregistrer dans l'appli
+            self.user.token = tokenIsValid
+        }else {
+            print("No token found");
+        }
+        
         profileImageView.setRounded()
-        profileImageView.setImageColor(color: UIColor.purple)
+        
+        let urlGetUser = self.env + self.getUserURL
+        print("---urlGetUser---")
+        print(urlGetUser)
+        user.getUser(url: urlGetUser) { (data) in
+            print(data)
+            self.user = data
+            self.userNameLabel.text = self.user.nom
+            self.userEmailLabel.text = self.user.mail
+            self.userFirstNameLabel.text = self.user.prenom
+            print(self.user.rgbProfil)
+            let color = self.profileImageView.hexStringToUIColor(hex: self.user.rgbProfil)
+            self.profileImageView.setImageColor(color: color)
+        }
     }
 
     override func didReceiveMemoryWarning() {

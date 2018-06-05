@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-class User {
+class User: CustomStringConvertible {
     
     
     var nom: String = "";
@@ -24,30 +24,46 @@ class User {
     var token = ""
     var latitude: String = ""
     var longitude: String = ""
+    var rgbProfil: String = ""
+    
+     public var description: String { return "mail: \(mail), prenom: \(prenom), nom: \(nom), rgbProfil: \(rgbProfil)" }
+    
+    init(){
+    }
     
     init(nom: String, prenom: String, mail: String, password: String){
         self.nom = nom;
         self.prenom = prenom;
         self.mail = mail;
         self.password = password;
-    }
+    }  
     
-    init(){
-    }
-    
-    //A utiliser ?
     init?(data: Data) {
         do {
-            if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
-                let body = json["data"] as? [String: Any] {
-                    self.nom = (body["nom"] as? String)!
-                    self.prenom = (body["prenom"] as? String)!
-                    self.mail = (body["mail"] as? String)!
-                }
+            if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]{
+                self.nom = (json["nom"] as? String)!
+                self.prenom = (json["prenom"] as? String)!
+                self.mail = (json["mail"] as? String)!
+                self.rgbProfil = (json["rgbProfil"] as? String)!
+            }
         } catch {
             print("Error deserializing JSON: \(error)")
             return nil
         }
+    }
+    
+    func getUser(url: String, callback: @escaping (User)-> ()){
+        var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
+        request.addValue(self.token, forHTTPHeaderField: "Authorization")
+        let session = URLSession.shared.dataTask(with: request)
+        { (data, response, error) in
+            if let usableData = data {
+                let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                print(dataStringified!)
+               callback(User(data: usableData)!)
+            }
+        }
+        session.resume()
     }
 
     
