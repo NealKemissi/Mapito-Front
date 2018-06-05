@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mapito/MapController.swift"
-            timestampString = "549910387.513369"
+            timestampString = "549911189.964342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "updateFriendsPosition()"
             landmarkType = "7">
          </BreakpointContent>

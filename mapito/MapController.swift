@@ -41,6 +41,8 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         
+        mapView.delegate = self
+        
         mapView.setUserTrackingMode(.follow, animated: true)
         //Replace with method, singleton? Or put it in User --> See with teacher
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
@@ -64,7 +66,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let image = UIImage(named: "pinataprofil")!
+        let image = UIImage(named: "pinata-profil")!
         print(image)
         let pinView: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
         pinView.image = image
