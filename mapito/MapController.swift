@@ -46,7 +46,6 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.user.token = tokenIsValid
-            print("Mytoken: "+self.user.token)
         }else {
             print("No token found");
         }
@@ -64,6 +63,23 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(region, animated: true)
     }
     
+    /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        print("---test recupération friends---")
+        let url = env + myFriendsURL
+        user.getFriends(url: url, callback: { (response, friends) in
+            if(response == 200){
+                for friend in friends {
+                    if (friend.lastpos != nil) {
+                        print("--friend.lastpos--")
+                        print(friend.lastpos!)
+                        let lastPin = Pin(coordinate: friend.lastpos!)
+                        self.mapView.removeAnnotation(lastPin)
+                    }
+                }
+            }
+        })
+    }*/
+    
     func setInvisibleMode(notification: Notification){
         print("setInvisibleMode")
         let status = notification.object as! Bool
@@ -71,27 +87,26 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print(self.invisibleMode)
     }
     
-    /*func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-     if(cpt==6){
-     print("---locations---")
-     print(locations)
-     let longitude = locations[0].coordinate.longitude
-     let latitude = locations[0].coordinate.latitude
-     print(longitude)
-     print(latitude)
-     let url = env + updatePosURL
-     print(url)
-     if(self.invisibleMode == false){
-     self.user.latitude = String(latitude)
-     self.user.longitude = String(longitude)
-     updateUserPos(url: url)
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if(cpt==6){
+            print("---locations---")
+            print(locations)
+            let longitude = locations[0].coordinate.longitude
+            let latitude = locations[0].coordinate.latitude
+            print(longitude)
+            print(latitude)
+            let url = env + updatePosURL
+            print(url)
+            if(self.invisibleMode == false){
+                self.user.latitude = String(latitude)
+                self.user.longitude = String(longitude)
+                updateUserPos(url: url)
+            }
+            updateFriendsPosition()
+            cpt = 0
+        }
+        cpt = cpt + 1
      }
-     updateFriendsPosition()
-     cpt = 0
-     }
-     
-     cpt = cpt + 1
-     }*/
     
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
@@ -103,43 +118,69 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         // Get friends of user -> call api/friends
         print("---test recupération friends---")
         let url = env + myFriendsURL
-        print(url)
         user.getFriends(url: url, callback: { (response, friends) in
-            print("---friends---")
-            print(friends)
+            print("Response updateFriendsPosition")
+            print(response)
             if(response == 200){
                 for friend in friends {
-                    if (friend.lastpos != nil) {
-                        print("--friend.lastpos--")
-                        print(friend.lastpos!)
-                        let lastPin = Pin(coordinate: friend.lastpos!)
-                        self.mapView.removeAnnotation(lastPin)
-                        self.mapView.removeAnnotation(lastPin)
-                    }
                     //Faire enum
                     if(friend.inTheArea && friend.lastInTheArea == false){
-                        let urlSendProxNotif = self.env + self.sendProxNotifURL + self.user.token + "/" + friend.mail + "/se trouve près de vous"
-                        let urlGetNotifications = self.env + self.getNotificationsURL + self.user.token
-                        friend.sendProxNotif(url: urlSendProxNotif)
+                        let urlSendProxNotif = self.env + self.sendProxNotifURL
+                        let urlGetNotifications = self.env + self.getNotificationsURL
+                        print("---urlGetNotifications---")
+                        print(urlGetNotifications)
+                        friend.sendProxNotif(url: urlSendProxNotif, token: self.user.token, contenu: "se trouve près de vous") { (response, data) in
+                            DispatchQueue.main.async {
+                                if(response == 200){
+                                    print("SendProxNotif 200")
+                                    return;
+                                } else {
+                                    print("error")
+                                    return;
+                                }
+                            }
+                        }
                         self.user.getAppNotifications(url: urlGetNotifications, callback: { (appNotifications) in
+                            print("----AppNotifications----")
                             print(appNotifications)
                             //Refresh Notification tab with notifications array
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "mapControllerRefresh"), object: appNotifications)
                         })
                     }
                     if(friend.inTheArea == false && friend.lastInTheArea == true){
-                        let urlSendProxNotif = self.env + self.sendProxNotifURL + self.user.token + "/" + friend.mail + "/n'est plus près de vous"
-                        let urlGetNotifications = self.env + self.getNotificationsURL + self.user.token
-                        friend.sendProxNotif(url: urlSendProxNotif)
+                        let urlSendProxNotif = self.env + self.sendProxNotifURL
+                        let urlGetNotifications = self.env + self.getNotificationsURL
+                        friend.sendProxNotif(url: urlSendProxNotif, token: self.user.token, contenu: "n'est plus près de vous") { (response, data) in
+                            DispatchQueue.main.async {
+                                if(response == 200){
+                                    print("SendProxNotif 200")
+                                    return;
+                                } else {
+                                    print("error")
+                                    return;
+                                }
+                            }
+                        }
                         self.user.getAppNotifications(url: urlGetNotifications, callback: { (appNotifications) in
+                            print("----AppNotifications2----")
                             print(appNotifications)
                             //Refresh Notification tab with notifications array
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "mapControllerRefresh"), object: appNotifications)
                         })
                     }
+                    print("--friend.lastpos--")
+                    print(friend.lastpos!)
+                    let lastPin = Pin(coordinate: friend.lastpos!, title: "latPin", subtitle: "lastPin")
+                    self.mapView.removeAnnotations(self.mapView.annotations)
+                    
                     let coordinate = friend.pos
                     let pin = Pin(coordinate: coordinate, title: friend.prenom, subtitle: friend.mail)
                     self.mapView.addAnnotation(pin)
+                    
+                   /*let coordinate2 = CLLocationCoordinate2D(latitude: 48.840904, longitude: 2.3603)
+                    let pinTest = Pin(coordinate: coordinate2, title: "test", subtitle: "test")
+                    self.mapView.addAnnotation(pinTest)
+                    self.mapView.removeAnnotation(pinTest)*/
                 }
             }
         })

@@ -40,15 +40,43 @@ class Friend: CustomStringConvertible {
         self.pos = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
-    func sendProxNotif(url: String){
-        let baseUrl = URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)! // en param token field et value
-        var request = URLRequest(url: baseUrl)
+    func sendProxNotif(url: String, token: String, contenu: String, callback: @escaping (Int, String)-> ()){
+        let friendDict = ["token": token, "mail": self.mail, "contenu": contenu] as [String: String]
+        
+        let baseUrl = URL(string: url)
+        var request = URLRequest(url: baseUrl!)
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "PUT"
-        let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
-            if let myData = String(data: data!, encoding: .utf8) {
-                print(myData)
+        do {
+            let bodyJSON = try JSONSerialization.data(withJSONObject: friendDict, options: .prettyPrinted)
+            let bodyJSONStringified = String(data: bodyJSON, encoding: String.Encoding.utf8)
+            print(bodyJSONStringified!)
+            request.httpBody = bodyJSON
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        let session = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let _ = data, error == nil else {
+                print("error=\(String(describing: error))")
+                return
             }
-        })
+            
+            DispatchQueue.main.async {
+                if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    print("SendProxNotif data")
+                    print(dataStringified!)
+                    if(httpResponse.statusCode == 200){
+                        callback(200, dataStringified!)
+                    } else if (httpResponse.statusCode == 404) {
+                        callback(404, dataStringified!)
+                    } else {
+                        callback(httpResponse.statusCode, "Une erreur est survenue")
+                        return;
+                    }
+                }
+            }
+        }
         session.resume()
     }
 }

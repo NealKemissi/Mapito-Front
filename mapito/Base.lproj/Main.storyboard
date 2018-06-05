@@ -38,7 +38,7 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="myFriendsURL" value="/api/friends/getFriends"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="sendProxNotifURL" value="/api/users/sendProxNotif/"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="getNotificationsURL" value="/api/users/getNotifications/"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="getNotificationsURL" value="/api/notifications/getNotifications"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="updatePosURL" value="/api/users/position/"/>
                     </userDefinedRuntimeAttributes>
                     <connections>

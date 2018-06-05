@@ -14,7 +14,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var userNameLabel: UILabel!
     
     // API paths
-    @IBInspectable var userFieldURL: String! //recuperation de
+    @IBInspectable var userFieldURL: String!
     
     // API url
     let env = Bundle.main.infoDictionary!["MY_API_BASE_URL_ENDPOINT"] as! String

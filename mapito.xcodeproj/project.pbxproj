@@ -19,6 +19,7 @@
 		D66E3D5220B5A42A009208EA /* MapitoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66E3D5120B5A42A009208EA /* MapitoTextField.swift */; };
 		D687EA0F20BEEC65002AC5D1 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D687EA0E20BEEC65002AC5D1 /* NotificationsController.swift */; };
 		D6A2537F20BFE76400DEFFB8 /* UIImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2537E20BFE76400DEFFB8 /* UIImageHelper.swift */; };
+		D6A5AAC120C68CAF00EA595D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5AAC020C68CAF00EA595D /* Date.swift */; };
 		D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BC207F78D00022FD29 /* AppDelegate.swift */; };
 		D6A941BF207F78D00022FD29 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BE207F78D00022FD29 /* ProfileController.swift */; };
 		D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941C0207F78D00022FD29 /* FriendsController.swift */; };
@@ -68,6 +69,7 @@
 		D66E3D5120B5A42A009208EA /* MapitoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapitoTextField.swift; sourceTree = "<group>"; };
 		D687EA0E20BEEC65002AC5D1 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		D6A2537E20BFE76400DEFFB8 /* UIImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageHelper.swift; sourceTree = "<group>"; };
+		D6A5AAC020C68CAF00EA595D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		D6A941B9207F78D00022FD29 /* mapito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A941BC207F78D00022FD29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6A941BE207F78D00022FD29 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				D633CCE620AF0B5B00D92884 /* Friend.swift */,
 				D6ABAEEC20BEF2CD007DD0E5 /* Alert.swift */,
 				D6ABAEEE20BF0047007DD0E5 /* AppNotification.swift */,
+				D6A5AAC020C68CAF00EA595D /* Date.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				D6BBAA3E208B92CB00FA58FA /* NewFriendController.swift in Sources */,
 				D667AE5E20B5A122006A797C /* ForgotPasswordController.swift in Sources */,
 				D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */,
+				D6A5AAC120C68CAF00EA595D /* Date.swift in Sources */,
 				D6ABAEED20BEF2CD007DD0E5 /* Alert.swift in Sources */,
 				D6A2537F20BFE76400DEFFB8 /* UIImageHelper.swift in Sources */,
 				D6A941EF207FA15D0022FD29 /* LoginController.swift in Sources */,
@@ -539,7 +543,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://0debfd31.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -555,7 +559,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://0debfd31.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -676,7 +680,7 @@
 				DEVELOPMENT_TEAM = QKGKPTQFXA;
 				INFOPLIST_FILE = mapito/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MY_API_BASE_URL_ENDPOINT = "http://91e20e9e.ngrok.io";
+				MY_API_BASE_URL_ENDPOINT = "http://0debfd31.ngrok.io";
 				PRODUCT_BUNDLE_IDENTIFIER = mapito;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

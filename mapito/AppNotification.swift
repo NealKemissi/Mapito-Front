@@ -13,12 +13,14 @@ class AppNotification: CustomStringConvertible {
     var mail: String = ""
     var message: String = ""
     var type: Int?
+    var date: Date?
     
-    public var description: String { return "mail: \(mail)" }
+    public var description: String { return "type: \(type ?? -1), message: \(message), mail: \(mail), date: \(date))" }
     
     init?(json: [String: Any]) {
-        self.type = (json["type"] as? Int)!
-        self.message = (json["message"] as? String)!
-        self.mail = (json["mail"] as? String)!
+        self.type = json["type"] as? Int
+        self.message = json["message"] as! String
+        self.mail = json["mail"] as! String
+        self.date = json["date"] as? Date
     }
 }
