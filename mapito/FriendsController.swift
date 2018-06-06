@@ -81,6 +81,13 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         super.didReceiveMemoryWarning()
     }
     
+    // for background color
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.green
+        return headerView
+    }
+    
     // Grouped tableview
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -93,7 +100,7 @@ class FriendsController: UIViewController, UITableViewDelegate, UITableViewDataS
         } else if(section == 1){
             return "Amis"
         } else if(section==2){
-            return "Vos contact"
+            return "Vos contacts"
         } else {
             return ""
         }
