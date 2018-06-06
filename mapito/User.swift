@@ -52,15 +52,22 @@ class User: CustomStringConvertible {
         }
     }
     
-    func getUser(url: String, callback: @escaping (User)-> ()){
+     func getUser(url: String, callback: @escaping (Int, User)-> ()){
         var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         request.addValue(self.token, forHTTPHeaderField: "Authorization")
         let session = URLSession.shared.dataTask(with: request)
         { (data, response, error) in
             if let usableData = data {
-                let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
-                print(dataStringified!)
-               callback(User(data: usableData)!)
+                if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    print(dataStringified!)
+                    if(httpResponse.statusCode == 200){
+                        callback(200, User(data: usableData)!)
+                    } else {
+                        callback(httpResponse.statusCode, User())
+                        return;
+                    }
+                }
             }
         }
         session.resume()
@@ -286,7 +293,7 @@ class User: CustomStringConvertible {
         session.resume()
     }
     
-    //recup les notifs pour la page notif (a completer)
+    //recup les notifs pour la page notif (a completer) ancienne version
     func getAllNotifs(url: String, callback: @escaping ([AppNotification])-> ()) {
         let request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         let session = URLSession.shared.dataTask(with: request , completionHandler: { (data, response, error) in
@@ -298,14 +305,17 @@ class User: CustomStringConvertible {
         session.resume()
     }
     
+    //recup les notifs pour la page notif
     func getAppNotifications(url: String, callback: @escaping ([AppNotification])-> ()){
         var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         request.addValue(self.token, forHTTPHeaderField: "Authorization")
         let session = URLSession.shared.dataTask(with: request)
         { (data, response, error) in
             if let usableData = data {
+                //print(String(data: usableData, encoding: String.Encoding.utf8))
                 do {
                     let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
+                    print(jsonArray)
                     if let notificationsJSON = jsonArray as? [[String: AnyObject]] {
                         self.appNotifications = notificationsJSON.map { AppNotification(json: $0)! }
                     }

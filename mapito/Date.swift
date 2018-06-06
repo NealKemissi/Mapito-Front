@@ -17,7 +17,11 @@ class Date: CustomStringConvertible {
     var minutes: String = ""
     var secondes: String = ""
     
-    public var description: String { return "an: \(an), mois: \(mois), jour: \(jour), heure: \(heure), minutes: \(minutes), secondes: \(secondes)" }
+    public var description: String { return "\(mois)/\(jour)/\(an)  (\(heure)h \(minutes)min \(secondes)s)" }
+    // "\(mois)/\(jour)/\(an)  (\(heure):\(minutes):\(secondes))"
+    /*
+     "an: \(an), mois: \(mois), jour: \(jour), heure: \(heure), minutes: \(minutes), secondes: \(secondes)"
+    */
     
     init?(json: [String: Any]) {
         self.an = (json["an"] as? String)!

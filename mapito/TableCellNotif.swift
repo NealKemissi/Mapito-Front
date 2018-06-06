@@ -11,5 +11,5 @@ import UIKit
 
 class TableCellNotif: UITableViewCell {
     
-    @IBOutlet weak var Champs: UILabel!
+
 }
