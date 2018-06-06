@@ -14,6 +14,7 @@ class MainController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    //test
     
     override func viewDidAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard;
