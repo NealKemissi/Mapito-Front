@@ -15,7 +15,7 @@ class AppNotification: CustomStringConvertible {
     var type: Int?
     var date: Date?
     
-    public var description: String { return "type: \(type ?? -1), message: \(message), mail: \(mail), date: \(date))" }
+    public var description: String { return "type: \(type ?? -1), message: \(message), mail: \(mail), date: \(date!))" }
     
     init?(json: [String: Any]) {
         self.type = json["type"] as? Int

@@ -59,20 +59,33 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.didReceiveMemoryWarning()
     }
     
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+    /*func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         let center = CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         mapView.setRegion(region, animated: true)
-    }
-    
-    /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let image = UIImage(named: "pinata-profil-70")!
-        print(image)
-        let pinView: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Ami")
-        pinView.image = image
-        
-        return pinView
     }*/
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // Do not return annotationView if user pin
+        if annotation.isEqual(mapView.userLocation){
+            return nil
+        } else {
+            let pinIdentifier = "Ami"
+            let image = UIImage(named: "pinata-profil-70")!
+            
+            // Find existing AnnotationView
+            var pinView: MKAnnotationView? = mapView.dequeueReusableAnnotationView(withIdentifier: pinIdentifier)
+            
+            // Create it if does not exist and add image
+            if pinView == nil{
+                pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: pinIdentifier)
+            }
+            // Show bubble
+            pinView!.canShowCallout = true
+            pinView!.image = image
+            return pinView
+        }
+    }
     
     /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         print("---test recupération friends---")
@@ -126,6 +139,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     func updateFriendsPosition(){
         NSLog("refreshing position..")
+        self.mapView.removeAnnotations(self.mapView.annotations)
         // Get friends of user -> call api/friends
         print("---test recupération friends---")
         let url = env + myFriendsURL
@@ -180,11 +194,18 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
                         })
                     }
                     print("--friend.lastpos--")
+                    print(friend.mail)
                     print(friend.lastpos!)
                     let lastPin = Pin(coordinate: friend.lastpos!, title: "Pin", subtitle: "lastPin")
-                    self.mapView.removeAnnotations(self.mapView.annotations)
+                    self.mapView.removeAnnotation(lastPin)
+                    print("lastPin removed")
                     
                     let coordinate = friend.pos
+                    let pin = Pin(coordinate: coordinate, title: friend.prenom, subtitle: friend.mail)
+                    self.mapView.addAnnotation(pin)
+                    print("newPin added")
+                    
+                    /*let coordinate = friend.pos
                     let pin = Pin(coordinate: coordinate, title: "Ami", subtitle: friend.mail)
                     
                     let pinView: PinView = PinView(annotation: pin, reuseIdentifier: "Ami")
@@ -193,7 +214,7 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     print(friend.rgbProfil)
                     let color = pinView.imageView.hexStringToUIColor(hex: self.user.rgbProfil)
                     pinView.imageView.setImageColor(color: color)
-                    self.mapView.addAnnotation(pin)
+                    self.mapView.addAnnotation(pin)*/
                     
                    /*let coordinate2 = CLLocationCoordinate2D(latitude: 48.840904, longitude: 2.3603)
                     let pinTest = Pin(coordinate: coordinate2, title: "test", subtitle: "test")

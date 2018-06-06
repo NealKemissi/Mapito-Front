@@ -9,14 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "mapito/MapController.swift"
-            timestampString = "549910387.513369"
+            filePath = "mapito/AppNotification.swift"
+            timestampString = "549986152.58234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "updateFriendsPosition()"
-            landmarkType = "7">
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "AppNotification"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mapito.AppNotification.description.getter : Swift.String"
+                  moduleName = "mapito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/m2sar/Documents/He%CC%81loi%CC%88se/Mapito-Front/mapito/AppNotification.swift"
+                  timestampString = "549986404.440908"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mapito.AppNotification.(description.getter : Swift.String).(implicit closure #1)"
+                  moduleName = "mapito"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/m2sar/Documents/He%CC%81loi%CC%88se/Mapito-Front/mapito/AppNotification.swift"
+                  timestampString = "549986404.443746"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "15">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
