@@ -25,7 +25,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
     // Local variables
     let locationManager = (UIApplication.shared.delegate as! AppDelegate).locationManager
     var user = User()
-    var champs = ["nom", "prenom", "mail", "password", "rgbProfil"]
+    var champs = ["nom", "prenom", "mail", "password"] // rgbProfil
     //var indexArray = ["Info personnelles", "Info Connexion"]
     
     @IBAction func logout(_ sender: UIButton) {
@@ -38,6 +38,16 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         self.present(navigationAuthentication, animated: true);
         locationManager.stopUpdatingLocation()
     }
+    
+    
+    @IBAction func modifyPinata(_ sender: Any) {
+        print("ok")
+        let mainStory: UIStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let pinataController = mainStory.instantiateViewController(withIdentifier: "NewPinataController") as! NewPinataController
+        pinataController.field = "rgbProfil"
+        self.navigationController?.pushViewController(pinataController, animated: true)
+    }
+    
     
     @IBAction func switchIsChanged(_ sender: Any, forEvent event: UIEvent) {
         print("--invisibleMode--")
@@ -57,6 +67,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
                 print(data)
                 self.user = data
                 self.userNameLabel?.text = self.user.nom
+                self.userNameLabel.reloadInputViews()
                 self.userEmailLabel?.text = self.user.mail
                 //print(self.userEmailLabel?.text)
                 self.userFirstNameLabel?.text = self.user.prenom
