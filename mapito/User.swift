@@ -166,6 +166,8 @@ class User: CustomStringConvertible {
         { (data, response, error) in
             if let usableData = data {
                 if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    print(dataStringified!)
                     if(httpResponse.statusCode == 200){
                         do {
                             let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)

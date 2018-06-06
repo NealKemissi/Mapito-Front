@@ -21,6 +21,8 @@ class AppNotification: CustomStringConvertible {
         self.type = json["type"] as? Int
         self.message = json["message"] as! String
         self.mail = json["mail"] as! String
-        self.date = json["date"] as? Date
+        if let date = json["date"] as? [String: Any] {
+            self.date = Date(json: json["date"] as! [String : Any])
+        }
     }
 }

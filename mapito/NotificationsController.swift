@@ -46,6 +46,7 @@ class NotificationsController: UIViewController, UITableViewDelegate, UITableVie
             print("Mytoken: "+self.user.token)
             self.user.getAppNotifications(url: stringUrl, callback: { (response) in
                 self.allNotifs = response
+                print("-----------------------------------------------------------------")
                 print(self.allNotifs)
                 print("test liste notifs")
                 print(self.allNotifs)
