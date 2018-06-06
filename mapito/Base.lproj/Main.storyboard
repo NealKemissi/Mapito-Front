@@ -120,6 +120,85 @@
             </objects>
             <point key="canvasLocation" x="2749.5999999999999" y="-887.40629685157433"/>
         </scene>
+        <!--New Pinata Controller-->
+        <scene sceneID="pfo-cX-obD">
+            <objects>
+                <viewController storyboardIdentifier="NewPinataController" id="y38-Ei-tAt" customClass="NewPinataController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bpn-Ut-Lk2"/>
+                        <viewControllerLayoutGuide type="bottom" id="1mk-3l-n8M"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lj6-gw-4m4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Modifier Couleur Profil" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XJZ-KB-qbr">
+                                <rect key="frame" x="92" y="79" width="191" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yz2-Tr-Jcg">
+                                <rect key="frame" x="0.0" y="156" width="375" height="147"/>
+                                <color key="backgroundColor" red="0.9882352941176471" green="0.792156862745098" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="147" id="Q5d-Z1-SAZ"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="setPinataYellow:" destination="y38-Ei-tAt" eventType="touchUpInside" id="MJs-sN-0sk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHT-Ie-FA0">
+                                <rect key="frame" x="0.0" y="311" width="375" height="159"/>
+                                <color key="backgroundColor" red="0.96862745098039216" green="0.32941176470588235" blue="0.34481592116013066" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="setPinataRed:" destination="y38-Ei-tAt" eventType="touchUpInside" id="TQH-vo-P2a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4N-lk-Shh">
+                                <rect key="frame" x="0.0" y="478" width="375" height="159"/>
+                                <color key="backgroundColor" red="0.16470588235294117" green="0.70980392156862748" blue="0.45098039215686275" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="159" id="1u0-tW-PwE"/>
+                                </constraints>
+                                <state key="normal">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="setPinataGreen:" destination="y38-Ei-tAt" eventType="touchUpInside" id="In5-wU-vD2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LHT-Ie-FA0" firstAttribute="top" secondItem="Yz2-Tr-Jcg" secondAttribute="bottom" constant="8" symbolic="YES" id="0qm-Gu-Dod"/>
+                            <constraint firstAttribute="bottom" secondItem="P4N-lk-Shh" secondAttribute="bottom" constant="30" id="1UW-Px-EcT"/>
+                            <constraint firstItem="Yz2-Tr-Jcg" firstAttribute="leading" secondItem="Lj6-gw-4m4" secondAttribute="leading" id="5Uy-Tn-bCc"/>
+                            <constraint firstAttribute="trailing" secondItem="P4N-lk-Shh" secondAttribute="trailing" id="5o0-pJ-aU5"/>
+                            <constraint firstItem="Yz2-Tr-Jcg" firstAttribute="top" secondItem="Lj6-gw-4m4" secondAttribute="top" constant="156" id="Gsq-bJ-4ta"/>
+                            <constraint firstItem="Yz2-Tr-Jcg" firstAttribute="trailing" secondItem="LHT-Ie-FA0" secondAttribute="trailing" id="L0m-Vl-2T1"/>
+                            <constraint firstItem="P4N-lk-Shh" firstAttribute="top" secondItem="LHT-Ie-FA0" secondAttribute="bottom" constant="8" id="R0O-BA-iil"/>
+                            <constraint firstItem="Yz2-Tr-Jcg" firstAttribute="top" secondItem="XJZ-KB-qbr" secondAttribute="bottom" constant="56" id="Tdg-W1-Qgu"/>
+                            <constraint firstItem="Yz2-Tr-Jcg" firstAttribute="leading" secondItem="LHT-Ie-FA0" secondAttribute="leading" id="aSM-sG-0do"/>
+                            <constraint firstItem="Yz2-Tr-Jcg" firstAttribute="leading" secondItem="P4N-lk-Shh" secondAttribute="leading" id="aVQ-z7-VpC"/>
+                            <constraint firstAttribute="trailing" secondItem="Yz2-Tr-Jcg" secondAttribute="trailing" id="bnF-Hw-lka"/>
+                            <constraint firstItem="Yz2-Tr-Jcg" firstAttribute="centerX" secondItem="XJZ-KB-qbr" secondAttribute="centerX" id="iUf-n2-voI"/>
+                        </constraints>
+                    </view>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="/api/users"/>
+                    </userDefinedRuntimeAttributes>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0gk-tA-cEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4229.6000000000004" y="-209.14542728635683"/>
+        </scene>
         <!--NavigationProfile-->
         <scene sceneID="22h-Ds-eJi">
             <objects>
@@ -253,6 +332,17 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r59-Hu-wMn" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
+                                <rect key="frame" x="28" y="198" width="70" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Modifier">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="modifyPinata:" destination="9pv-A4-QxB" eventType="touchUpInside" id="5Fp-WX-Pv4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
