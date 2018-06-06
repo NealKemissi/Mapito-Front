@@ -21,7 +21,7 @@ class TableCellRequest: UITableViewCell {
     override func awakeFromNib() {
         accessoryView = buttonsView
         imageView?.image = #imageLiteral(resourceName: "logo_mapito")
-        
+        self.backgroundColor = UIColor.clear;
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.Mytoken = tokenIsValid
