@@ -13,7 +13,7 @@ class AppNotification: CustomStringConvertible {
     var mail: String = ""
     var message: String = ""
     var type: Int?
-    var date: Date?
+    var date: Dictionary<String,Any>?
     
     public var description: String { return "type: \(type ?? -1), message: \(message), mail: \(mail), date: \(date))" }
     
@@ -21,6 +21,6 @@ class AppNotification: CustomStringConvertible {
         self.type = json["type"] as? Int
         self.message = json["message"] as! String
         self.mail = json["mail"] as! String
-        self.date = json["date"] as? Date
+        self.date = json["date"] as? Dictionary<String,Any>
     }
 }

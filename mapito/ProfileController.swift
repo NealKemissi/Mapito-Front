@@ -44,31 +44,34 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "switchStatus"), object: invisibleMode.isOn)
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
             self.user.token = tokenIsValid
+            profileImageView.setRounded()
+            
+            let urlGetUser = self.env + self.getUserURL
+            print("-------------------------------------urlGetUser----------------------------------")
+            print(urlGetUser)
+            user.getUser(url: urlGetUser, callback: { (data) in
+                print(data)
+                self.user = data
+                self.userNameLabel?.text = self.user.nom
+                self.userEmailLabel?.text = self.user.mail
+                //print(self.userEmailLabel?.text)
+                self.userFirstNameLabel?.text = self.user.prenom
+                print(self.user.rgbProfil)
+                let color = self.profileImageView.hexStringToUIColor(hex: self.user.rgbProfil)
+                self.profileImageView.setImageColor(color: color)
+            })
+            
         }else {
             print("No token found");
         }
-        
-        profileImageView.setRounded()
-        
-        let urlGetUser = self.env + self.getUserURL
-        print("---urlGetUser---")
-        print(urlGetUser)
-        user.getUser(url: urlGetUser) { (data) in
-            print(data)
-            self.user = data
-            self.userNameLabel.text = self.user.nom
-            self.userEmailLabel.text = self.user.mail
-            self.userFirstNameLabel.text = self.user.prenom
-            print(self.user.rgbProfil)
-            let color = self.profileImageView.hexStringToUIColor(hex: self.user.rgbProfil)
-            self.profileImageView.setImageColor(color: color)
-        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
