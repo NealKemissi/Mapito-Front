@@ -53,7 +53,7 @@ class ProfileController: UIViewController, UITableViewDelegate, UITableViewDataS
             let urlGetUser = self.env + self.getUserURL
             print("-------------------------------------urlGetUser----------------------------------")
             print(urlGetUser)
-            user.getUser(url: urlGetUser, callback: { (data) in
+            user.getUser(url: urlGetUser, callback: { (response, data) in
                 print(data)
                 self.user = data
                 self.userNameLabel?.text = self.user.nom

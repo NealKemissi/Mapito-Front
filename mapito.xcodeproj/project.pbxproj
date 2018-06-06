@@ -20,6 +20,7 @@
 		D687EA0F20BEEC65002AC5D1 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D687EA0E20BEEC65002AC5D1 /* NotificationsController.swift */; };
 		D6A2537F20BFE76400DEFFB8 /* UIImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A2537E20BFE76400DEFFB8 /* UIImageHelper.swift */; };
 		D6A5AAC120C68CAF00EA595D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A5AAC020C68CAF00EA595D /* Date.swift */; };
+		D6A70F1C20C80CA6004B9862 /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A70F1B20C80CA6004B9862 /* PinView.swift */; };
 		D6A941BD207F78D00022FD29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BC207F78D00022FD29 /* AppDelegate.swift */; };
 		D6A941BF207F78D00022FD29 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941BE207F78D00022FD29 /* ProfileController.swift */; };
 		D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A941C0207F78D00022FD29 /* FriendsController.swift */; };
@@ -72,6 +73,7 @@
 		D687EA0E20BEEC65002AC5D1 /* NotificationsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		D6A2537E20BFE76400DEFFB8 /* UIImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageHelper.swift; sourceTree = "<group>"; };
 		D6A5AAC020C68CAF00EA595D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		D6A70F1B20C80CA6004B9862 /* PinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
 		D6A941B9207F78D00022FD29 /* mapito.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapito.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6A941BC207F78D00022FD29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6A941BE207F78D00022FD29 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				D6ABAEEC20BEF2CD007DD0E5 /* Alert.swift */,
 				D6ABAEEE20BF0047007DD0E5 /* AppNotification.swift */,
 				D6A5AAC020C68CAF00EA595D /* Date.swift */,
+				D6A70F1B20C80CA6004B9862 /* PinView.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				D6A941C1207F78D00022FD29 /* FriendsController.swift in Sources */,
 				D6A5AAC120C68CAF00EA595D /* Date.swift in Sources */,
 				D6ABAEED20BEF2CD007DD0E5 /* Alert.swift in Sources */,
+				D6A70F1C20C80CA6004B9862 /* PinView.swift in Sources */,
 				D6A2537F20BFE76400DEFFB8 /* UIImageHelper.swift in Sources */,
 				D6A941EF207FA15D0022FD29 /* LoginController.swift in Sources */,
 				D63B3F1220B6B3A300E2C104 /* StoryboardHelper.swift in Sources */,

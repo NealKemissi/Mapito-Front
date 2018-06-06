@@ -65,14 +65,14 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.setRegion(region, animated: true)
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let image = UIImage(named: "pinata-profil")!
+    /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let image = UIImage(named: "pinata-profil-70")!
         print(image)
-        let pinView: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Pin")
+        let pinView: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Ami")
         pinView.image = image
         
         return pinView
-    }
+    }*/
     
     /*func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         print("---test recupération friends---")
@@ -185,7 +185,14 @@ class MapController : UIViewController, MKMapViewDelegate, CLLocationManagerDele
                     self.mapView.removeAnnotations(self.mapView.annotations)
                     
                     let coordinate = friend.pos
-                    let pin = Pin(coordinate: coordinate, title: "Pin", subtitle: friend.mail)
+                    let pin = Pin(coordinate: coordinate, title: "Ami", subtitle: friend.mail)
+                    
+                    let pinView: PinView = PinView(annotation: pin, reuseIdentifier: "Ami")
+                    let image = UIImage(named: "pinata-profil-70")!
+                    pinView.imageView = UIImageView(image: image)
+                    print(friend.rgbProfil)
+                    let color = pinView.imageView.hexStringToUIColor(hex: self.user.rgbProfil)
+                    pinView.imageView.setImageColor(color: color)
                     self.mapView.addAnnotation(pin)
                     
                    /*let coordinate2 = CLLocationCoordinate2D(latitude: 48.840904, longitude: 2.3603)

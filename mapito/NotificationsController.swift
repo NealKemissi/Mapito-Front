@@ -21,7 +21,13 @@ class NotificationsController: UIViewController, UITableViewDelegate, UITableVie
     // Local variables
     private var user = User()
     private var allNotifs : [AppNotification] = []
-    var tableNotifs = ["Votre ami se trouvait a coté de vous hier", "Votre amis a accepté votre invitations"]
+    //private var indicator = UIActivityIndicatorView()
+    /*--viewdidload
+     indicator.center = self.view.center
+     indicator.activityIndicatorViewStyle = .whiteLarge
+     self.view.addSubview(indicator)
+     indicator.startAnimating()
+    */
     
     // Triggered when diplayed
     /*
@@ -47,9 +53,11 @@ class NotificationsController: UIViewController, UITableViewDelegate, UITableVie
             print("Mytoken: "+self.user.token)
             self.user.getAppNotifications(url: stringUrl, callback: { (response) in
                 self.allNotifs = response
-                //print(self.allNotifs)
+
+                print("-----------------------------------------------------------------")
+                print(self.allNotifs)
                 print("test liste notifs")
-                print(self.allNotifs[0].date)
+                //print(self.allNotifs[0].date)
                 self.table.reloadData()
 
             })
@@ -66,33 +74,32 @@ class NotificationsController: UIViewController, UITableViewDelegate, UITableVie
     
     // Grouped tableview
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return allNotifs.count //tester plus tard avec fct dates notif
     }
     // Titles of sections
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if(section==0){
-            return "Vos dernières notifications"
-        } else {
-            return ""
+        for i in 0...self.allNotifs.count {
+            if(section==i){
+              return self.allNotifs[i].date?.description
+            }
         }
+        return ""
     }
     
     // Number of labels per cell
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if(section==0){
-            return allNotifs.count
-        } else {
-            return 0
-        }
-        
+        return 1
     }
     
     // initialization of tableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableCellNotif", for: indexPath) as! TableCellNotif
-        
-        cell.textLabel?.text = allNotifs[indexPath.row].message
-        
+        for i in 0...self.allNotifs.count {
+            if(indexPath.section == i) {
+                cell.textLabel?.text = allNotifs[i].message
+                return cell
+            }
+        }
         return cell
     }
 }

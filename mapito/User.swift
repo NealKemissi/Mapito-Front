@@ -52,15 +52,22 @@ class User: CustomStringConvertible {
         }
     }
     
-     func getUser(url: String, callback: @escaping (User)-> ()){
+     func getUser(url: String, callback: @escaping (Int, User)-> ()){
         var request = URLRequest(url: URL(string: url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)!)
         request.addValue(self.token, forHTTPHeaderField: "Authorization")
         let session = URLSession.shared.dataTask(with: request)
         { (data, response, error) in
             if let usableData = data {
-                let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
-                print(dataStringified!)
-               callback(User(data: usableData)!)
+                if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    print(dataStringified!)
+                    if(httpResponse.statusCode == 200){
+                        callback(200, User(data: usableData)!)
+                    } else {
+                        callback(httpResponse.statusCode, User())
+                        return;
+                    }
+                }
             }
         }
         session.resume()
@@ -166,6 +173,8 @@ class User: CustomStringConvertible {
         { (data, response, error) in
             if let usableData = data {
                 if let httpResponse = response as? HTTPURLResponse {
+                    let dataStringified = String(data: data!, encoding: String.Encoding.utf8)
+                    print(dataStringified!)
                     if(httpResponse.statusCode == 200){
                         do {
                             let jsonArray = try JSONSerialization.jsonObject(with: usableData, options: .mutableContainers)
