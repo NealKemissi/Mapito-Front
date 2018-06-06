@@ -49,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="1974" y="-886"/>
         </scene>
-        <!--Phone Number Controller-->
+        <!--Mon numéro-->
         <scene sceneID="aeI-Ie-v7z">
             <objects>
-                <viewController id="Mav-aa-q2x" customClass="PhoneNumberController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Mon numéro" id="Mav-aa-q2x" customClass="PhoneNumberController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="271-Zi-GXC"/>
                         <viewControllerLayoutGuide type="bottom" id="Nid-HY-Gwl"/>
@@ -61,23 +61,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Mon numéro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIe-28-KjK">
-                                <rect key="frame" x="128" y="99" width="118" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aeu-pO-cba">
-                                <rect key="frame" x="74" y="187" width="227" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i75-8g-HoK">
-                                <rect key="frame" x="146" y="281" width="82" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i75-8g-HoK" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
+                                <rect key="frame" x="37.5" y="234" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Modifier">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,8 +71,43 @@
                                     <action selector="ModificationPhone:" destination="Mav-aa-q2x" eventType="touchUpInside" id="EBK-eh-ILb"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RrR-bf-fwC">
+                                <rect key="frame" x="37.5" y="114" width="300" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Numéro" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zy1-eG-kTw">
+                                        <rect key="frame" x="0.0" y="0.0" width="61" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Aeu-pO-cba" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24" width="300" height="17"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Aeu-pO-cba" firstAttribute="leading" secondItem="RrR-bf-fwC" secondAttribute="leading" id="8LX-iu-jO0"/>
+                                    <constraint firstAttribute="height" constant="60" id="NeV-mo-ZGA"/>
+                                    <constraint firstItem="Zy1-eG-kTw" firstAttribute="top" secondItem="RrR-bf-fwC" secondAttribute="top" id="W1M-EZ-Mld"/>
+                                    <constraint firstItem="Zy1-eG-kTw" firstAttribute="leading" secondItem="RrR-bf-fwC" secondAttribute="leading" id="cRu-aB-hzM"/>
+                                    <constraint firstItem="Zy1-eG-kTw" firstAttribute="leading" secondItem="Aeu-pO-cba" secondAttribute="leading" id="iXW-5A-Phd"/>
+                                    <constraint firstItem="Aeu-pO-cba" firstAttribute="top" secondItem="Zy1-eG-kTw" secondAttribute="bottom" constant="3.5" id="puO-DK-Zxw"/>
+                                    <constraint firstAttribute="width" constant="300" id="xT0-Nh-6zf"/>
+                                    <constraint firstAttribute="trailing" secondItem="Aeu-pO-cba" secondAttribute="trailing" id="xwF-kJ-Avz"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="i75-8g-HoK" firstAttribute="top" secondItem="RrR-bf-fwC" secondAttribute="bottom" constant="60" id="05x-F3-APl"/>
+                            <constraint firstItem="RrR-bf-fwC" firstAttribute="top" secondItem="271-Zi-GXC" secondAttribute="bottom" constant="50" id="3lm-s9-0kO"/>
+                            <constraint firstItem="i75-8g-HoK" firstAttribute="leading" secondItem="RrR-bf-fwC" secondAttribute="leading" id="VkM-Mf-382"/>
+                            <constraint firstItem="RrR-bf-fwC" firstAttribute="centerX" secondItem="oH6-Xd-YYb" secondAttribute="centerX" id="X99-qq-rVc"/>
+                            <constraint firstItem="i75-8g-HoK" firstAttribute="trailing" secondItem="RrR-bf-fwC" secondAttribute="trailing" id="iY5-Xg-KaO"/>
+                        </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="modifURL" value="/api/users"/>
@@ -286,25 +306,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HQd-tS-Lm3">
-                                <rect key="frame" x="67" y="142" width="240" height="140"/>
+                                <rect key="frame" x="37" y="70" width="300" height="140"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqW-k5-Jbu">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nouvelle Valeur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-bw-TAR">
                                                 <rect key="frame" x="8" y="0.0" width="119" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNM-Yv-HfT">
-                                                <rect key="frame" x="8" y="23.5" width="232" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qNM-Yv-HfT" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="23.5" width="292" height="17"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="Kkq-bw-TAR" firstAttribute="leading" secondItem="qNM-Yv-HfT" secondAttribute="leading" id="4Ns-6E-eey"/>
                                             <constraint firstItem="Kkq-bw-TAR" firstAttribute="top" secondItem="oqW-k5-Jbu" secondAttribute="top" id="NfU-bY-n0I"/>
@@ -315,39 +334,38 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ANy-Uo-S0k">
-                                        <rect key="frame" x="0.0" y="80" width="240" height="60"/>
+                                        <rect key="frame" x="0.0" y="80" width="300" height="60"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirmer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2t-gj-Ie6">
                                                 <rect key="frame" x="8" y="0.0" width="77" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lZ4-Tg-Mkk">
-                                                <rect key="frame" x="8" y="23.5" width="232" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lZ4-Tg-Mkk" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="23.5" width="292" height="17"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="f2t-gj-Ie6" firstAttribute="leading" secondItem="lZ4-Tg-Mkk" secondAttribute="leading" id="A7p-dX-KDq"/>
+                                            <constraint firstAttribute="height" constant="60" id="MhH-cq-c1d"/>
                                             <constraint firstAttribute="trailing" secondItem="lZ4-Tg-Mkk" secondAttribute="trailing" id="O6S-QO-SEB"/>
                                             <constraint firstItem="lZ4-Tg-Mkk" firstAttribute="top" secondItem="f2t-gj-Ie6" secondAttribute="bottom" constant="3.5" id="PCq-yI-vqy"/>
-                                            <constraint firstAttribute="height" constant="60" id="T8k-Ji-4fI"/>
                                             <constraint firstItem="f2t-gj-Ie6" firstAttribute="leading" secondItem="ANy-Uo-S0k" secondAttribute="leadingMargin" id="YIJ-pk-zFc"/>
                                             <constraint firstItem="f2t-gj-Ie6" firstAttribute="top" secondItem="ANy-Uo-S0k" secondAttribute="top" id="fdA-dH-l7Q"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="pdM-Ag-Teg"/>
+                                    <constraint firstItem="oqW-k5-Jbu" firstAttribute="top" secondItem="HQd-tS-Lm3" secondAttribute="top" id="GBa-bc-9BG"/>
+                                    <constraint firstAttribute="width" constant="300" id="pdM-Ag-Teg"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwU-gz-7CD">
-                                <rect key="frame" x="147" y="330" width="81" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xwU-gz-7CD" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
+                                <rect key="frame" x="37" y="270" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Modifier">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -356,17 +374,21 @@
                                     <action selector="modificationValue:" destination="s85-nB-olu" eventType="touchUpInside" id="j3v-xl-SYS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Valeur Actuelle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G3-5K-hcE">
-                                <rect key="frame" x="124" y="78" width="149" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Valeur Actuelle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G3-5K-hcE">
+                                <rect key="frame" x="130" y="28" width="114.5" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.92549019607843142" green="0.92549019607843142" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="HQd-tS-Lm3" firstAttribute="centerY" secondItem="qZX-l2-jqa" secondAttribute="centerY" constant="-121.5" id="u1K-QE-T8j"/>
+                            <constraint firstItem="xwU-gz-7CD" firstAttribute="top" secondItem="HQd-tS-Lm3" secondAttribute="bottom" constant="60" id="EOZ-bU-xSB"/>
+                            <constraint firstItem="0G3-5K-hcE" firstAttribute="centerX" secondItem="qZX-l2-jqa" secondAttribute="centerX" id="Pz5-mH-s5c"/>
+                            <constraint firstItem="0G3-5K-hcE" firstAttribute="top" secondItem="FX2-qF-M0B" secondAttribute="bottom" constant="8" id="YLs-Aw-nVP"/>
+                            <constraint firstItem="xwU-gz-7CD" firstAttribute="trailing" secondItem="HQd-tS-Lm3" secondAttribute="trailing" id="ZZX-8L-cDa"/>
+                            <constraint firstItem="HQd-tS-Lm3" firstAttribute="top" secondItem="FX2-qF-M0B" secondAttribute="bottom" constant="50" id="p3H-iC-cqq"/>
+                            <constraint firstItem="xwU-gz-7CD" firstAttribute="leading" secondItem="HQd-tS-Lm3" secondAttribute="leading" id="uq6-yG-Y50"/>
                             <constraint firstItem="HQd-tS-Lm3" firstAttribute="centerX" secondItem="qZX-l2-jqa" secondAttribute="centerX" id="zxG-7h-qm0"/>
                         </constraints>
                     </view>
@@ -650,10 +672,10 @@
             </objects>
             <point key="canvasLocation" x="2752.8000000000002" y="459.22038980509751"/>
         </scene>
-        <!--Ajouter amis-->
+        <!--Ajouter ami-->
         <scene sceneID="ydT-ta-Lg4">
             <objects>
-                <viewController storyboardIdentifier="NewFriendController" id="kJS-wT-1MX" customClass="NewFriendController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewFriendController" title="Ajouter ami" id="kJS-wT-1MX" customClass="NewFriendController" customModule="mapito" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7WU-gS-bSL"/>
                         <viewControllerLayoutGuide type="bottom" id="9ad-Hw-ULP"/>
@@ -709,6 +731,13 @@
                                     <action selector="addFriend:" destination="kJS-wT-1MX" eventType="touchUpInside" id="bd1-sP-RTU"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E6J-sx-nzh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="k43-Uq-JZ6"/>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -745,7 +774,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gR2-hy-kaL">
-                                <rect key="frame" x="37.5" y="144" width="300" height="70"/>
+                                <rect key="frame" x="37.5" y="114" width="300" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5W-nr-Z5H">
                                         <rect key="frame" x="8" y="0.0" width="41" height="21"/>
@@ -753,8 +782,8 @@
                                         <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jQX-ZF-vEJ" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="24" width="292" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jQX-ZF-vEJ" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="24" width="292" height="17"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -771,7 +800,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="Ka6-TR-DgA" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="294" width="300" height="45"/>
+                                <rect key="frame" x="37.5" y="244" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Réinitialiser mot de passe">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -785,9 +814,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Ka6-TR-DgA" firstAttribute="top" secondItem="gR2-hy-kaL" secondAttribute="bottom" constant="80" id="Fhy-0t-Exe"/>
+                            <constraint firstItem="Ka6-TR-DgA" firstAttribute="top" secondItem="gR2-hy-kaL" secondAttribute="bottom" constant="60" id="Fhy-0t-Exe"/>
                             <constraint firstItem="gR2-hy-kaL" firstAttribute="centerX" secondItem="VOP-Eo-uzh" secondAttribute="centerX" id="HIh-zB-z0J"/>
-                            <constraint firstItem="gR2-hy-kaL" firstAttribute="top" secondItem="Akn-6w-yQS" secondAttribute="bottom" constant="80" id="S7q-QO-E6A"/>
+                            <constraint firstItem="gR2-hy-kaL" firstAttribute="top" secondItem="Akn-6w-yQS" secondAttribute="bottom" constant="50" id="S7q-QO-E6A"/>
                             <constraint firstItem="Ka6-TR-DgA" firstAttribute="trailing" secondItem="gR2-hy-kaL" secondAttribute="trailing" id="obK-U0-Gnz"/>
                             <constraint firstItem="Ka6-TR-DgA" firstAttribute="leading" secondItem="gR2-hy-kaL" secondAttribute="leading" id="u08-pi-yPT"/>
                         </constraints>
@@ -816,14 +845,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="2we-5b-aKC" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="538" width="300" height="45"/>
+                                <rect key="frame" x="37" y="498" width="300" height="45"/>
                                 <state key="normal" title="Connexion"/>
                                 <connections>
                                     <action selector="loginBtnPressed:" destination="xHc-fY-BUV" eventType="touchUpInside" id="oSw-QY-ewh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="bCV-Vp-xp9" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="623" width="300" height="45"/>
+                                <rect key="frame" x="37" y="583" width="300" height="45"/>
                                 <state key="normal" title="Inscription"/>
                                 <connections>
                                     <segue destination="Nrf-zu-L9x" kind="show" id="VUm-bL-acX"/>
@@ -925,7 +954,7 @@
                             <constraint firstItem="Vxt-qB-mGS" firstAttribute="leading" secondItem="2we-5b-aKC" secondAttribute="leading" id="Ko7-JP-1zG"/>
                             <constraint firstItem="Vxt-qB-mGS" firstAttribute="top" secondItem="jb0-Km-nxi" secondAttribute="bottom" constant="4" id="Yx3-7I-Miv"/>
                             <constraint firstItem="bCV-Vp-xp9" firstAttribute="leading" secondItem="Vxt-qB-mGS" secondAttribute="leading" id="cBe-3D-E0S"/>
-                            <constraint firstItem="2we-5b-aKC" firstAttribute="top" secondItem="Vxt-qB-mGS" secondAttribute="bottom" constant="80" id="iJb-5v-caf"/>
+                            <constraint firstItem="2we-5b-aKC" firstAttribute="top" secondItem="Vxt-qB-mGS" secondAttribute="bottom" constant="40" id="iJb-5v-caf"/>
                             <constraint firstItem="bCV-Vp-xp9" firstAttribute="centerX" secondItem="sJ5-XV-hJr" secondAttribute="centerX" id="qmn-Z2-age"/>
                             <constraint firstItem="Vxt-qB-mGS" firstAttribute="trailing" secondItem="2we-5b-aKC" secondAttribute="trailing" id="qoE-Iv-M2a"/>
                             <constraint firstItem="jb0-Km-nxi" firstAttribute="centerX" secondItem="sJ5-XV-hJr" secondAttribute="centerX" id="uzT-MA-UBH"/>
@@ -959,7 +988,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="4VP-vy-gNU">
-                                <rect key="frame" x="37" y="144" width="300" height="300"/>
+                                <rect key="frame" x="37" y="114" width="300" height="300"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jz4-Am-vzv">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="60"/>
@@ -970,8 +999,8 @@
                                                 <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xbp-D8-doe" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="24" width="292" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xbp-D8-doe" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="24" width="292" height="17"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -995,8 +1024,8 @@
                                                 <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZaO-T6-hUa" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="24" width="292" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZaO-T6-hUa" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="24" width="292" height="17"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1020,8 +1049,8 @@
                                                 <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GrH-6e-Kj6" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="24" width="292" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GrH-6e-Kj6" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="24" width="292" height="17"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -1045,8 +1074,8 @@
                                                 <color key="textColor" red="0.0" green="0.70980392160000005" blue="0.56862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gsJ-Y5-Wwu" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
-                                                <rect key="frame" x="8" y="24" width="292" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gsJ-Y5-Wwu" customClass="MapitoTextField" customModule="mapito" customModuleProvider="target">
+                                                <rect key="frame" x="8" y="24" width="292" height="17"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -1067,7 +1096,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jnq-Lf-Go4" customClass="MapitoButton" customModule="mapito" customModuleProvider="target">
-                                <rect key="frame" x="37" y="524" width="300" height="45"/>
+                                <rect key="frame" x="37" y="474" width="300" height="45"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Inscription">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1080,10 +1109,10 @@
                         <color key="backgroundColor" red="0.92549019610000005" green="0.92549019610000005" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jnq-Lf-Go4" firstAttribute="trailing" secondItem="4VP-vy-gNU" secondAttribute="trailing" id="EVO-q1-bg8"/>
-                            <constraint firstItem="jnq-Lf-Go4" firstAttribute="top" secondItem="4VP-vy-gNU" secondAttribute="bottom" constant="80" id="IKo-dz-rTx"/>
+                            <constraint firstItem="jnq-Lf-Go4" firstAttribute="top" secondItem="4VP-vy-gNU" secondAttribute="bottom" constant="60" id="IKo-dz-rTx"/>
                             <constraint firstItem="jnq-Lf-Go4" firstAttribute="leading" secondItem="4VP-vy-gNU" secondAttribute="leading" id="lmI-MG-MA8"/>
                             <constraint firstItem="4VP-vy-gNU" firstAttribute="centerX" secondItem="dog-fu-txC" secondAttribute="centerX" id="rD5-Uh-0eu"/>
-                            <constraint firstItem="4VP-vy-gNU" firstAttribute="top" secondItem="aG3-kr-QVh" secondAttribute="bottom" constant="80" id="yeZ-Dl-yzr"/>
+                            <constraint firstItem="4VP-vy-gNU" firstAttribute="top" secondItem="aG3-kr-QVh" secondAttribute="bottom" constant="50" id="yeZ-Dl-yzr"/>
                         </constraints>
                     </view>
                     <userDefinedRuntimeAttributes>

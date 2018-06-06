@@ -20,7 +20,7 @@ class TableCellFriends: UITableViewCell {
     //permet d'intialiser la table view a l'affichage
     override func awakeFromNib() {
         accessoryView = ButtonSuppFriend
-        imageView?.image = #imageLiteral(resourceName: "logo_mapito")
+        imageView?.image = #imageLiteral(resourceName: "pinata-profil-70")
         
         if let tokenIsValid : String = UserDefaults.standard.string(forKey: "token" ){
             //on met dans la variable myToken le token enregistrer dans l'appli
