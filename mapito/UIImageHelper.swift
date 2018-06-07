@@ -19,7 +19,7 @@ extension UIImageView {
         let radius = self.frame.width / 2
         self.layer.cornerRadius = radius
         self.layer.masksToBounds = true
-        // self.layer.backgroundColor = UIColor(red: 236/255, green: 236/255, blue: 236/255, alpha: 1) as! CGColor
+        //self.layer.backgroundColor = (UIColor.white as! CGColor)
     }
     
     func hexStringToUIColor (hex:String) -> UIColor {

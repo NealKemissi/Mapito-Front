@@ -12,7 +12,9 @@ import UIKit
 class TableCell : UITableViewCell {
     
     @IBOutlet weak var Champs: UILabel!
-    @IBOutlet weak var Amis: UILabel!
+    override func awakeFromNib() {
+        self.backgroundColor = UIColor.clear
+    }
     
     
 }
